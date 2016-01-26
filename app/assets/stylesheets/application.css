@@ -62,14 +62,14 @@ body {
 .logo {
   font-size: 36px;
   font-weight: 500;
-  color: orange;
+  color: rgb(244, 101, 0);;
 }
 
 .global-nav-links {
   float: right;
   font-family: sans-serif;
   font-size: 14px;
-  color: #34A8C4;
+  color: rgb(12, 146, 183);;
   margin-top: 15px;
 }
 
@@ -79,11 +79,17 @@ body {
 
 .signin {
   padding: 10px;
-  border: 1px solid #34A8C4;
+  border: 1px solid #0C92B7;
   border-radius: 5px;
   margin: 20px;
 }
 
 .signin:hover {
   background-color: #E5F4F7;
+}
+
+.auth-modal {
+  width: 580px;
+  border: 1px solid #E1E3DF;
+  margin: auto;
 }
