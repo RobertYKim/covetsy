@@ -13,3 +13,77 @@
  *= require_tree .
  *= require_self
  */
+
+/* --- RESET --- */
+
+html, body, h1, a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  box-sizing: border-box;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+/* --- ELEMENTS --- */
+
+body {
+}
+
+/* --- CLEARFIX --- */
+
+.group:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+/* --- HEADER --- */
+
+.header {
+  border-bottom: 1px solid #E1E3DF;
+}
+
+.global-nav {
+  padding: 20px 10px;
+  width: 1000px;
+  margin: auto;
+}
+
+.global-nav-logo-search {
+  float: left;
+}
+
+.logo {
+  font-size: 36px;
+  font-weight: 500;
+  color: orange;
+}
+
+.global-nav-links {
+  float: right;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #34A8C4;
+  margin-top: 15px;
+}
+
+.register:hover {
+  text-decoration: underline;
+}
+
+.signin {
+  padding: 10px;
+  border: 1px solid #34A8C4;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.signin:hover {
+  background-color: #E5F4F7;
+}
