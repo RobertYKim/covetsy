@@ -1,0 +1,24 @@
+{
+  "name": "covetsy",
+  "version": "1.0.0",
+  "description": "[Heroku link][heroku] Future link to production site",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobertYKim/covetsy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobertYKim/covetsy/issues"
+  },
+  "homepage": "https://github.com/RobertYKim/covetsy#readme"
+}
