@@ -20,5 +20,17 @@
   "bugs": {
     "url": "https://github.com/RobertYKim/covetsy/issues"
   },
-  "homepage": "https://github.com/RobertYKim/covetsy#readme"
+  "homepage": "https://github.com/RobertYKim/covetsy#readme",
+  "dependencies": {
+    "babel-core": "^6.1.4",
+    "babel-loader": "^6.1.0",
+    "babel-preset-react": "^6.1.4",
+    "flux": "^2.1.1",
+    "history": "1.13.x",
+    "react": "^0.14.2",
+    "react-addons-linked-state-mixin": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-router": "1.0.2",
+    "webpack": "^1.12.4"
+  }
 }
