@@ -38,13 +38,14 @@ var Header = React.createClass({
     this.setState({modalVisible: false});
   },
 
-  toggleModalType: function (event) {
+  registerModal: function (event) {
     event.preventDefault();
-    if (this.state.modalType === "register") {
-      this.setState({modalType: "signin"});
-    } else {
-      this.setState({modalType: "register"});
-    }
+    this.setState({modalType: "register"});
+  },
+
+  signinModal: function (event) {
+    event.preventDefault();
+    this.setState({modalType: "signin"});
   },
 
   render: function () {
@@ -54,7 +55,8 @@ var Header = React.createClass({
       authForm = <AuthForm
                     modalType={this.state.modalType}
                     closeModal={this.closeModal}
-                    toggleModalType={this.toggleModalType} />;
+                    registerModal={this.registerModal}
+                    signinModal={this.signinModal} />;
     }
 
     return (

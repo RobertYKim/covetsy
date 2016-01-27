@@ -33,6 +33,7 @@ html, body, h1, a, ul, li, p {
 /* --- ELEMENTS --- */
 
 body {
+  position: relative;
 }
 
 /* --- CLEARFIX --- */
@@ -91,16 +92,25 @@ body {
 
 /* --- AUTH MODAL --- */
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .auth-modal {
   width: 580px;
   border: 1px solid #E1E3DF;
-  margin-top: 80px;
   border-radius: 3px;
   box-shadow: 0 0 20px #E1E3DF;
   position: absolute;
   left: 50%;
-  top: 360px;
-  transform: translate(-50%, -50%);
+  top: 80px;
+  transform: translate(-50%, 0);
   z-index: 1;
 }
 

@@ -3,11 +3,11 @@ var React = require('react'),
     Router = require('react-router').Router,
     Route = require('react-router').Route,
     IndexRoute = require('react-router').IndexRoute,
-    Header = require('./components/header.jsx'),
-    AuthForm = require('./components/auth_form.jsx');
+    App = require('./components/app'),
+    AuthForm = require('./components/auth_form');
 
 var routes = (
-  <Route path="/" component={Header}>
+  <Route path="/" component={App}>
     <Route path="join" component={AuthForm}></Route>
   </Route>
 );

@@ -10,8 +10,14 @@ var AuthForm = React.createClass({
       <div>
         <div className="auth-nav group">
           <ul>
-            <li><a className="active" href="#">Register</a></li>
-            <li><a className="inactive" href="#">Sign In</a></li>
+            <li><a
+                  className="active"
+                  onClick={this.props.registerModal}
+                  href="#">Register</a></li>
+            <li><a
+                  className="inactive"
+                  onClick={this.props.signinModal}
+                  href="#">Sign In</a></li>
           </ul>
         </div>
         <form className="auth-form">
@@ -59,12 +65,12 @@ var AuthForm = React.createClass({
             <label htmlFor="password">Password</label>
             <input
               id="password"
-              type="text"
+              type="password"
               name="user[password]"></input>
             <label htmlFor="confirm_password">Confirm Password</label>
             <input
               id="confirm_password"
-              type="text"
+              type="password"
               name="user[confirm_password]"></input>
             <label htmlFor="username">Username</label>
             <input
@@ -77,12 +83,46 @@ var AuthForm = React.createClass({
         </form>
       </div>;
     } else {
-
+      form =
+      <div>
+        <div className="auth-nav group">
+          <ul>
+            <li><a
+                  className="inactive"
+                  onClick={this.props.registerModal}
+                  href="#">Register</a></li>
+            <li><a
+                  className="active"
+                  onClick={this.props.signinModal}
+                  href="#">Sign In</a></li>
+          </ul>
+        </div>
+        <form className="auth-form">
+          <div className="o-auth">
+          </div>
+          <div className="credentials">
+            <label htmlFor="email-or-username">Email or Username</label>
+            <input
+              id="email-or-username"
+              type="text"
+              name="user[email_or_username]"></input>
+            <label htmlFor="last-name">Password</label>
+            <input
+              id="password"
+              type="password"
+              name="user[password]"></input>
+          </div>
+          <button>Register</button>
+        </form>
+      </div>;
     }
 
     return (
+      <div>
+
       <div className="auth-modal">
         {form}
+      </div>
       </div>
     );
   }
