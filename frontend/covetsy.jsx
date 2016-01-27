@@ -8,7 +8,6 @@ var React = require('react'),
 
 var routes = (
   <Route path="/" component={App}>
-    <Route path="join" component={AuthForm}></Route>
   </Route>
 );
 

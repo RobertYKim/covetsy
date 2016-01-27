@@ -126,9 +126,11 @@ var AuthForm = React.createClass({
     }
 
     return (
+    <div className="overlay">
       <div className="auth-modal">
         {form}
       </div>
+    </div>
     );
   }
 });
