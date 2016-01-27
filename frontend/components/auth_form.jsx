@@ -4,9 +4,16 @@ var React = require('react'),
 var AuthForm = React.createClass({
   handleClick: function (event) {
     event.preventDefault();
-    var text = event.target.innerText;
-    var type = (text === "Register" ? "register" : "signin");
-    AuthFormActions.showAuthForm(type);
+    if (event.target.className === "overlay") {
+      this.props.toggleVisibility();
+    } else {
+      var text = event.target.innerText;
+      if (text === "Register") {
+        AuthFormActions.showAuthForm("register");
+      } else if (text === "Sign In") {
+        AuthFormActions.showAuthForm("signin");
+      }
+    }
   },
 
   render: function () {
@@ -126,7 +133,7 @@ var AuthForm = React.createClass({
     }
 
     return (
-    <div className="overlay">
+    <div className="overlay" onClick={this.handleClick}>
       <div className="auth-modal">
         {form}
       </div>

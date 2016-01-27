@@ -18,6 +18,10 @@ var App = React.createClass({
     });
   },
 
+  toggleVisibility: function () {
+    this.setState({authFormVisible: false});
+  },
+
   getInitialState: function () {
     return {authFormVisible: false};
   },
@@ -29,7 +33,9 @@ var App = React.createClass({
   render: function () {
     var authForm;
     if (this.state.authFormVisible) {
-      authForm = <AuthForm modalType={this.state.authFormType}/>;
+      authForm = <AuthForm
+                    toggleVisibility={this.toggleVisibility}
+                    modalType={this.state.authFormType}/>;
     }
 
     return (
