@@ -1,6 +1,14 @@
-var React = require('react');
+var React = require('react'),
+    AuthFormActions = require('../actions/auth_form_actions');
 
 var AuthForm = React.createClass({
+  handleClick: function (event) {
+    event.preventDefault();
+    var text = event.target.innerText;
+    var type = (text === "Register" ? "register" : "signin");
+    AuthFormActions.showAuthForm(type);
+  },
+
   render: function () {
     var modalType = this.props.modalType;
     var form;
@@ -12,11 +20,11 @@ var AuthForm = React.createClass({
           <ul>
             <li><a
                   className="active"
-                  onClick={this.props.registerModal}
+                  onClick={this.handleClick}
                   href="#">Register</a></li>
             <li><a
                   className="inactive"
-                  onClick={this.props.signinModal}
+                  onClick={this.handleClick}
                   href="#">Sign In</a></li>
           </ul>
         </div>
@@ -89,11 +97,11 @@ var AuthForm = React.createClass({
           <ul>
             <li><a
                   className="inactive"
-                  onClick={this.props.registerModal}
+                  onClick={this.handleClick}
                   href="#">Register</a></li>
             <li><a
                   className="active"
-                  onClick={this.props.signinModal}
+                  onClick={this.handleClick}
                   href="#">Sign In</a></li>
           </ul>
         </div>
@@ -118,11 +126,8 @@ var AuthForm = React.createClass({
     }
 
     return (
-      <div>
-
       <div className="auth-modal">
         {form}
-      </div>
       </div>
     );
   }
