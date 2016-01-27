@@ -96,6 +96,7 @@ body {
   border: 1px solid #E1E3DF;
   margin-top: 80px;
   border-radius: 3px;
+  box-shadow: 0 0 20px #E1E3DF;
   position: absolute;
   left: 50%;
   top: 360px;
@@ -173,7 +174,7 @@ body {
   bottom: 20px;
 }
 
-.name {
+.name, .credentials {
   padding-top: 20px;
 }
 
@@ -181,11 +182,13 @@ body {
   display: block;
 }
 
-.name input {
+.name input, .credentials input {
   margin-bottom: 5px;
+  padding: 5px;
+  font-size: 12px;
 }
 
-.gender {
+.gender, .credentials {
   padding-bottom: 20px;
   border-bottom: 1px solid #E1E3DF;
 }
@@ -196,21 +199,27 @@ body {
   padding-right: 10px;
 }
 
-.credentials {
-  padding: 20px 0;
-  border-bottom: 1px solid #E1E3DF;
-}
-
 .credentials * {
   display: block;
 }
 
-.credentials input {
-  margin-bottom: 5px;
-}
-
 .auth-form button {
   margin: 20px 0;
+  padding: 10px 85px;
+  border-radius: 5px;
+  border: 1px solid rgb(54, 151, 177);
+  background-color: rgb(12, 146, 183);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.auth-form button:hover {
+  background-color: rgb(67, 177, 204);
+}
+
+.auth-form button:focus {
+  background-color: rgb(12, 146, 183);
 }
 
 .auth-form p {
