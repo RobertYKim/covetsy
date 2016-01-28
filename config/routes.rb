@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  namespace :api, defaults: {format: :json} do
+    resources :users, only: [:create, :show, :update]
+  end
 end
