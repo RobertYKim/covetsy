@@ -3,24 +3,25 @@ var React = require('react'),
 
 var AuthForm = React.createClass({
   handleClick: function (event) {
-    event.preventDefault();
     if (event.target.className === "overlay") {
+      event.preventDefault();
       this.props.toggleVisibility();
     } else if (event.target.text === "Register") {
+      event.preventDefault();
       AuthFormActions.showAuthForm("register");
     } else if (event.target.text === "Sign In") {
+      event.preventDefault();
       AuthFormActions.showAuthForm("signin");
     }
   },
 
   handleChange: function (event) {
-    var value = event.target.value;
-    this.setState({gender: value});
-  },
-
-  isChecked: function (value) {
-    if (this.state.gender === value) {
-      return "checked";
+    if (event.target.id === "female") {
+      this.setState({gender: "female"});
+    } else if (event.target.id === "male") {
+      this.setState({gender: "male"});
+    } else if (event.target.id === "rather") {
+      this.setState({gender: "rather"});
     }
   },
 
@@ -74,28 +75,25 @@ var AuthForm = React.createClass({
           <div className="gender">
             <input
               onChange={this.handleChange}
+              checked={this.state.gender === "female"}
               id="female"
-              type="radio"
-              name="user[gender]"
               value="f"
-              checked={this.isChecked("f")}></input>
-            <label htmlFor="female">Female</label>
+              name="user[gender]"
+              type="radio"/><label htmlFor="female">Female</label>
             <input
               onChange={this.handleChange}
+              checked={this.state.gender === "male"}
               id="male"
-              type="radio"
-              name="user[gender]"
               value="m"
-              checked={this.isChecked("m")}></input>
-            <label htmlFor="male">Male</label>
+              name="user[gender]"
+              type="radio"/><label htmlFor="male">Male</label>
             <input
               onChange={this.handleChange}
+              checked={this.state.gender === "rather"}
               id="rather"
-              type="radio"
-              name="user[gender]"
               value="r"
-              checked={this.isChecked("r")}></input>
-            <label htmlFor="rather">Rather not say</label>
+              name="user[gender]"
+              type="radio"/><label htmlFor="rather">Rather not say</label>
           </div>
           <div className="credentials">
             <label htmlFor="email">Email</label>
