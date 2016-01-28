@@ -1,5 +1,6 @@
 var React = require('react'),
-    AuthFormActions = require('../actions/auth_form_actions');
+    AuthFormActions = require('../actions/auth_form_actions'),
+    ApiUtil = require('../util/api_util');
 
 var AuthForm = React.createClass({
   handleClick: function (event) {
