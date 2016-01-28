@@ -42,12 +42,11 @@ var AuthForm = React.createClass({
   },
 
   handleRegistration: function (event) {
-    debugger
     event.preventDefault();
+    ApiUtil.createUser(this.state);
   },
 
   handleSignin: function (event) {
-    debugger
     event.preventDefault();
   },
 
