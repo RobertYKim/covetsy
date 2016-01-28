@@ -6,14 +6,34 @@ var AuthForm = React.createClass({
     event.preventDefault();
     if (event.target.className === "overlay") {
       this.props.toggleVisibility();
-    } else {
-      var text = event.target.innerText;
-      if (text === "Register") {
-        AuthFormActions.showAuthForm("register");
-      } else if (text === "Sign In") {
-        AuthFormActions.showAuthForm("signin");
-      }
+    } else if (event.target.text === "Register") {
+      AuthFormActions.showAuthForm("register");
+    } else if (event.target.text === "Sign In") {
+      AuthFormActions.showAuthForm("signin");
     }
+  },
+
+  handleChange: function (event) {
+    var value = event.target.value;
+    this.setState({gender: value});
+  },
+
+  isChecked: function (value) {
+    if (this.state.gender === value) {
+      return "checked";
+    }
+  },
+
+  handleRegistration: function (event) {
+    event.preventDefault();
+  },
+
+  handleSignin: function (event) {
+    event.preventDefault();
+  },
+
+  getInitialState: function () {
+    return {gender: ""};
   },
 
   render: function () {
@@ -35,7 +55,7 @@ var AuthForm = React.createClass({
                   href="#">Sign In</a></li>
           </ul>
         </div>
-        <form className="auth-form">
+        <form className="auth-form" onSubmit={this.handleRegistration}>
           <div className="o-auth">
             <p>We'll never post without your permission.</p>
           </div>
@@ -53,22 +73,28 @@ var AuthForm = React.createClass({
           </div>
           <div className="gender">
             <input
+              onChange={this.handleChange}
               id="female"
               type="radio"
               name="user[gender]"
-              value="f"></input>
+              value="f"
+              checked={this.isChecked("f")}></input>
             <label htmlFor="female">Female</label>
             <input
+              onChange={this.handleChange}
               id="male"
               type="radio"
               name="user[gender]"
-              value="m"></input>
+              value="m"
+              checked={this.isChecked("m")}></input>
             <label htmlFor="male">Male</label>
             <input
+              onChange={this.handleChange}
               id="rather"
               type="radio"
               name="user[gender]"
-              value="r"></input>
+              value="r"
+              checked={this.isChecked("r")}></input>
             <label htmlFor="rather">Rather not say</label>
           </div>
           <div className="credentials">
@@ -104,7 +130,7 @@ var AuthForm = React.createClass({
           <ul>
             <li><a
                   className="inactive"
-                  onClick={this.handleClick}
+                  onClick={this.handleSignin}
                   href="#">Register</a></li>
             <li><a
                   className="active"
@@ -112,7 +138,7 @@ var AuthForm = React.createClass({
                   href="#">Sign In</a></li>
           </ul>
         </div>
-        <form className="auth-form">
+        <form className="auth-form" onSubmit={this.handleSubmit}>
           <div className="o-auth">
           </div>
           <div className="credentials">
