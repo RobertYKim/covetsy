@@ -16,25 +16,51 @@ var AuthForm = React.createClass({
   },
 
   handleChange: function (event) {
-    if (event.target.id === "female") {
+    var id = event.target.id;
+    var value = event.target.value;
+    if (id === "first-name") {
+      this.setState({firstName: value});
+    } else if (id === "last-name") {
+      this.setState({lastName: value});
+    } else if (id === "female") {
       this.setState({gender: "female"});
-    } else if (event.target.id === "male") {
+    } else if (id === "male") {
       this.setState({gender: "male"});
-    } else if (event.target.id === "rather") {
+    } else if (id === "rather") {
       this.setState({gender: "rather"});
+    } else if (id === "email") {
+      this.setState({email: value});
+    } else if (id === "password") {
+      this.setState({password: value});
+    } else if (id === "confirm-password") {
+      this.setState({confirmPassword: value});
+    } else if (id === "username") {
+      this.setState({username: value});
+    } else if (id === "email-or-username") {
+      this.setState({emailOrUsername: value});
     }
   },
 
   handleRegistration: function (event) {
+    debugger
     event.preventDefault();
   },
 
   handleSignin: function (event) {
+    debugger
     event.preventDefault();
   },
 
   getInitialState: function () {
-    return {gender: ""};
+    return ({
+      firstName: "",
+      lastName: "",
+      gender: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      username: ""
+    });
   },
 
   render: function () {
@@ -63,14 +89,16 @@ var AuthForm = React.createClass({
           <div className="name">
             <label htmlFor="first-name">First Name</label>
             <input
+              onChange={this.handleChange}
               id="first-name"
               type="text"
-              name="user[first_name]"></input>
+              value={this.state.firstName}></input>
             <label htmlFor="last-name">Last Name</label>
             <input
+              onChange={this.handleChange}
               id="last-name"
               type="text"
-              name="user[last_name]"></input>
+              value={this.state.lastName}></input>
           </div>
           <div className="gender">
             <input
@@ -98,24 +126,28 @@ var AuthForm = React.createClass({
           <div className="credentials">
             <label htmlFor="email">Email</label>
             <input
+              onChange={this.handleChange}
               id="email"
               type="text"
-              name="user[email]"></input>
+              value={this.state.email}></input>
             <label htmlFor="password">Password</label>
             <input
+              onChange={this.handleChange}
               id="password"
               type="password"
-              name="user[password]"></input>
-            <label htmlFor="confirm_password">Confirm Password</label>
+              value={this.state.password}></input>
+            <label htmlFor="confirm-password">Confirm Password</label>
             <input
-              id="confirm_password"
+              onChange={this.handleChange}
+              id="confirm-password"
               type="password"
-              name="user[confirm_password]"></input>
+              value={this.state.confirmPassword}></input>
             <label htmlFor="username">Username</label>
             <input
+              onChange={this.handleChange}
               id="username"
               type="text"
-              name="user[username]"></input>
+              value={this.state.username}></input>
           </div>
           <button>Register</button>
           <p>By clicking Register, you agree to explore Covetsy. You may change your preferences in your account settings.</p>
@@ -128,7 +160,7 @@ var AuthForm = React.createClass({
           <ul>
             <li><a
                   className="inactive"
-                  onClick={this.handleSignin}
+                  onClick={this.handleClick}
                   href="#">Register</a></li>
             <li><a
                   className="active"
@@ -136,22 +168,24 @@ var AuthForm = React.createClass({
                   href="#">Sign In</a></li>
           </ul>
         </div>
-        <form className="auth-form" onSubmit={this.handleSubmit}>
+        <form className="auth-form" onSubmit={this.handleSignin}>
           <div className="o-auth">
           </div>
           <div className="credentials">
             <label htmlFor="email-or-username">Email or Username</label>
             <input
+              onChange={this.handleChange}
               id="email-or-username"
               type="text"
-              name="user[email_or_username]"></input>
+              value={this.state.emailOrUsername}></input>
             <label htmlFor="last-name">Password</label>
             <input
+              onChange={this.handleChange}
               id="password"
               type="password"
-              name="user[password]"></input>
+              value={this.state.password}></input>
           </div>
-          <button>Register</button>
+          <button>Sign In</button>
         </form>
       </div>;
     }
