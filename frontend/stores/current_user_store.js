@@ -10,7 +10,7 @@ CurrentUserStore.currentUser = function () {
   return $.extend({}, _currentUser);
 };
 
-CurrentUserStore.isLoggedIn = function () {
+CurrentUserStore.isSignedIn = function () {
   return !!_currentUser.id;
 };
 
@@ -20,6 +20,10 @@ CurrentUserStore.currentUserHasBeenFetched = function () {
 
 CurrentUserStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
+    case CurrentUserConstants.RESET_CURRENT_USER:
+      _currentUser = {};
+      CurrentUserStore.__emitChange();
+      break;
     case CurrentUserConstants.RECEIVE_CURRENT_USER:
       _currentUserHasBeenFetched = true;
       _currentUser = payload.currentUser;

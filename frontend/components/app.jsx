@@ -21,7 +21,7 @@ var App = React.createClass({
   },
 
   _currentUserChanged: function () {
-    if (CurrentUserStore.isLoggedIn()) {
+    if (CurrentUserStore.isSignedIn()) {
       this.setState({
         authFormVisible: false
       });
@@ -56,15 +56,19 @@ var App = React.createClass({
                     modalType={this.state.authFormType}/>;
     }
 
+    var signedIn;
     var welcomeMessage;
-    if (CurrentUserStore.isLoggedIn) {
+    if (CurrentUserStore.isSignedIn()) {
+      signedIn = true;
       var currentUser = CurrentUserStore.currentUser().username;
       welcomeMessage = <p>Welcome! {currentUser}</p>;
+    } else {
+      signedIn = false;
     }
 
     return (
       <div>
-        <Header />
+        <Header signedIn={signedIn}/>
         {this.props.children}
         {authForm}
         {welcomeMessage}

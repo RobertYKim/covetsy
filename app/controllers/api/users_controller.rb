@@ -5,8 +5,7 @@ class Api::UsersController < ApplicationController
       sign_in(@user)
       render :show
     else
-      flash.now[:errors] = @user.errors.full_messages
-      render :new
+      render json: ["Invalid registration information!"], status: 422
     end
   end
 

@@ -6,10 +6,10 @@ class Api::SessionsController < ApplicationController
     )
 
     if @user.nil?
-      flash.now[:errors] = ["Invalid username or password"]
+      render json: ["Invalid username or password"], status: 401
     else
       sign_in(@user)
-      redirect_to root_url
+      render "api/users/show"
     end
   end
 
@@ -24,6 +24,6 @@ class Api::SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to root_url
+    render json: {}
   end
 end
