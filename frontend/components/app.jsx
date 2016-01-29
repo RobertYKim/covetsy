@@ -20,6 +20,15 @@ var App = React.createClass({
     });
   },
 
+  _currentUserChanged: function () {
+    if (CurrentUserStore.isLoggedIn()) {
+      this.setState({
+        authFormVisible: false
+      });
+    }
+    this.forceUpdate();
+  },
+
   toggleVisibility: function () {
     this.setState({authFormVisible: false});
   },
@@ -31,11 +40,15 @@ var App = React.createClass({
   componentDidMount: function () {
     this.authFormListener = AuthFormStore.addListener(this._authFormChanged);
     this.currentUserListener =
-      CurrentUserStore.addListener(this.forceUpdate.bind(this));
+      CurrentUserStore.addListener(this._currentUserChanged);
     SessionsApiUtil.fetchCurrentUser();
   },
 
   render: function () {
+    if (!CurrentUserStore.currentUserHasBeenFetched()) {
+      return <p>PLEASE WAIT</p>;
+    }
+
     var authForm;
     if (this.state.authFormVisible) {
       authForm = <AuthForm
@@ -43,11 +56,18 @@ var App = React.createClass({
                     modalType={this.state.authFormType}/>;
     }
 
+    var welcomeMessage;
+    if (CurrentUserStore.isLoggedIn) {
+      var currentUser = CurrentUserStore.currentUser().username;
+      welcomeMessage = <p>Welcome! {currentUser}</p>;
+    }
+
     return (
       <div>
         <Header />
         {this.props.children}
         {authForm}
+        {welcomeMessage}
       </div>
     );
   }
