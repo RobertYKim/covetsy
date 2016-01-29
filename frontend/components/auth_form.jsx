@@ -1,6 +1,6 @@
 var React = require('react'),
     AuthFormActions = require('../actions/auth_form_actions'),
-    ApiUtil = require('../util/api_util');
+    UsersApiUtil = require('../util/users_api_util');
 
 var AuthForm = React.createClass({
   handleClick: function (event) {
@@ -20,9 +20,9 @@ var AuthForm = React.createClass({
     var id = event.target.id;
     var value = event.target.value;
     if (id === "first-name") {
-      this.setState({firstName: value});
+      this.setState({first_name: value});
     } else if (id === "last-name") {
-      this.setState({lastName: value});
+      this.setState({last_name: value});
     } else if (id === "female") {
       this.setState({gender: "female"});
     } else if (id === "male") {
@@ -34,17 +34,17 @@ var AuthForm = React.createClass({
     } else if (id === "password") {
       this.setState({password: value});
     } else if (id === "confirm-password") {
-      this.setState({confirmPassword: value});
+      this.setState({confirm_password: value});
     } else if (id === "username") {
       this.setState({username: value});
     } else if (id === "email-or-username") {
-      this.setState({emailOrUsername: value});
+      this.setState({email_or_username: value});
     }
   },
 
   handleRegistration: function (event) {
     event.preventDefault();
-    ApiUtil.createUser(this.state);
+    UsersApiUtil.createUser(this.state);
   },
 
   handleSignin: function (event) {
@@ -53,12 +53,12 @@ var AuthForm = React.createClass({
 
   getInitialState: function () {
     return ({
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       gender: "",
       email: "",
       password: "",
-      confirmPassword: "",
+      confirm_password: "",
       username: ""
     });
   },
@@ -92,13 +92,13 @@ var AuthForm = React.createClass({
               onChange={this.handleChange}
               id="first-name"
               type="text"
-              value={this.state.firstName}></input>
+              value={this.state.first_name}></input>
             <label htmlFor="last-name">Last Name</label>
             <input
               onChange={this.handleChange}
               id="last-name"
               type="text"
-              value={this.state.lastName}></input>
+              value={this.state.last_name}></input>
           </div>
           <div className="gender">
             <input
@@ -106,21 +106,21 @@ var AuthForm = React.createClass({
               checked={this.state.gender === "female"}
               id="female"
               value="f"
-              name="user[gender]"
+              name="user-gender"
               type="radio"/><label htmlFor="female">Female</label>
             <input
               onChange={this.handleChange}
               checked={this.state.gender === "male"}
               id="male"
               value="m"
-              name="user[gender]"
+              name="user-gender"
               type="radio"/><label htmlFor="male">Male</label>
             <input
               onChange={this.handleChange}
               checked={this.state.gender === "rather"}
               id="rather"
               value="r"
-              name="user[gender]"
+              name="user-gender"
               type="radio"/><label htmlFor="rather">Rather not say</label>
           </div>
           <div className="credentials">
@@ -141,7 +141,7 @@ var AuthForm = React.createClass({
               onChange={this.handleChange}
               id="confirm-password"
               type="password"
-              value={this.state.confirmPassword}></input>
+              value={this.state.confirm_password}></input>
             <label htmlFor="username">Username</label>
             <input
               onChange={this.handleChange}
@@ -177,7 +177,7 @@ var AuthForm = React.createClass({
               onChange={this.handleChange}
               id="email-or-username"
               type="text"
-              value={this.state.emailOrUsername}></input>
+              value={this.state.email_or_username}></input>
             <label htmlFor="last-name">Password</label>
             <input
               onChange={this.handleChange}

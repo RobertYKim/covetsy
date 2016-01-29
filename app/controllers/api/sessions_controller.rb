@@ -13,6 +13,15 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  def show
+    if current_user
+      @user = current_user
+      render "api/users/show"
+    else
+      render json: {}
+    end
+  end
+
   def destroy
     sign_out
     redirect_to root_url

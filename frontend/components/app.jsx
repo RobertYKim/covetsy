@@ -1,7 +1,9 @@
 var React = require('react'),
     Header = require('./header'),
     AuthForm = require('./auth_form'),
-    AuthFormStore = require('../stores/auth_form');
+    AuthFormStore = require('../stores/auth_form'),
+    CurrentUserStore = require('../stores/current_user_store'),
+    SessionsApiUtil = require('../util/sessions_api_util');
 
 var _getAuthFormState = function () {
   return AuthFormStore.state();
@@ -28,6 +30,9 @@ var App = React.createClass({
 
   componentDidMount: function () {
     this.authFormListener = AuthFormStore.addListener(this._authFormChanged);
+    this.currentUserListener =
+      CurrentUserStore.addListener(this.forceUpdate.bind(this));
+    SessionsApiUtil.fetchCurrentUser();
   },
 
   render: function () {

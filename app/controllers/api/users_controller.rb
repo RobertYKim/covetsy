@@ -1,10 +1,9 @@
 class Api::UsersController < ApplicationController
   def create
-    debugger
     @user = User.new(user_params)
     if @user.save
       sign_in(@user)
-      redirect_to root_url
+      render :show
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
@@ -18,8 +17,8 @@ class Api::UsersController < ApplicationController
       :email,
       :username,
       :password,
-      :firstName,
-      :lastName,
+      :first_name,
+      :last_name,
       :gender)
   end
 end
