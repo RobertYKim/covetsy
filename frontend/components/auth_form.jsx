@@ -1,6 +1,7 @@
 var React = require('react'),
     AuthFormActions = require('../actions/auth_form_actions'),
-    UsersApiUtil = require('../util/users_api_util');
+    UsersApiUtil = require('../util/users_api_util'),
+    SessionsApiUtil = require('../util/sessions_api_util');
 
 var AuthForm = React.createClass({
   handleClick: function (event) {
@@ -49,6 +50,7 @@ var AuthForm = React.createClass({
 
   handleSignin: function (event) {
     event.preventDefault();
+    SessionsApiUtil.signin(this.state);
   },
 
   getInitialState: function () {

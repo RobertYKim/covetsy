@@ -1,6 +1,17 @@
 var CurrentUserActions = require('../actions/current_user_actions');
 
 var SessionsApiUtil = {
+  signin: function (data) {
+    $.ajax({
+      type: "POST",
+      url: "api/session",
+      data: {user: data},
+      success: function (currentUser) {
+        CurrentUserActions.receiveCurrentUser(currentUser);
+      }
+    });
+  },
+
   signout: function () {
     $.ajax({
       type: "DELETE",
