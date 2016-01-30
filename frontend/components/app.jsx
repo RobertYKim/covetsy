@@ -1,6 +1,9 @@
 var React = require('react'),
     Header = require('./header'),
     AuthForm = require('./auth_form'),
+    Greeting = require('./greeting'),
+    Hero = require('./hero'),
+    Discover = require('./discover'),
     AuthFormStore = require('../stores/auth_form'),
     CurrentUserStore = require('../stores/current_user_store'),
     SessionsApiUtil = require('../util/sessions_api_util');
@@ -49,6 +52,19 @@ var App = React.createClass({
       return <p>PLEASE WAIT</p>;
     }
 
+    var signedIn,
+        greeting,
+        hero,
+        discover;
+    if (CurrentUserStore.isSignedIn()) {
+      signedIn = true;
+      greeting = <Greeting currentUser={CurrentUserStore.currentUser()}/>;
+    } else {
+      signedIn = false;
+      hero = <Hero />;
+      discover = <Discover />;
+    }
+
     var authForm;
     if (this.state.authFormVisible) {
       authForm = <AuthForm
@@ -56,22 +72,14 @@ var App = React.createClass({
                     modalType={this.state.authFormType}/>;
     }
 
-    var signedIn;
-    var welcomeMessage;
-    if (CurrentUserStore.isSignedIn()) {
-      signedIn = true;
-      var currentUser = CurrentUserStore.currentUser().username;
-      welcomeMessage = <p>Welcome! {currentUser}</p>;
-    } else {
-      signedIn = false;
-    }
-
     return (
       <div>
         <Header signedIn={signedIn}/>
         {this.props.children}
         {authForm}
-        {welcomeMessage}
+        {greeting}
+        {hero}
+        {discover}
       </div>
     );
   }

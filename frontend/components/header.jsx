@@ -40,7 +40,7 @@ var Header = React.createClass({
       <div className="header">
         <div className="global-nav group">
           <div className="global-nav-logo-search">
-            <a className="logo" href="#">Covetsy</a>
+            <a className="logo" href="#">covEtsy</a>
           </div>
           {links}
         </div>
