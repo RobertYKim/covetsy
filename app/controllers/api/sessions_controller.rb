@@ -4,12 +4,12 @@ class Api::SessionsController < ApplicationController
     if (/@/ =~ identfier).nil?
       @user = User.find_by_username_and_password(
       params[:user][:email_or_username],
-      params[:user][:password]
+      params[:user][:signin_password]
       )
     else
       @user = User.find_by_email_and_password(
       params[:user][:email_or_username],
-      params[:user][:password]
+      params[:user][:signin_password]
       )
     end
 

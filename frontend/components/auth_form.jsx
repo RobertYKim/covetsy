@@ -184,8 +184,10 @@ var AuthForm = React.createClass({
           usernameError = "Sorry, that username is taken.";
         } else if (usernameTooShort.test(error[0])) {
           usernameError = "Must be at least 4 characters.";
+        } else {
+          credentialsError = error[0];
         }
-      });      
+      });
     }
 
     var modalType = this.props.modalType;
@@ -377,6 +379,7 @@ var AuthForm = React.createClass({
           id="email-or-username"
           type="text"
           value={this.state.email_or_username}></input>
+        {credentialsError}
       </div>;
 
     var signinPasswordInput;
@@ -393,7 +396,7 @@ var AuthForm = React.createClass({
     var form;
     if (modalType === "register") {
       form =
-        <div>
+        <form className="auth-form" onSubmit={this.handleRegistration}>
           {oAuth}
           {firstNameInput}
           {lastNameInput}
@@ -404,24 +407,22 @@ var AuthForm = React.createClass({
           {usernameInput}
           {submitButton}
           {registrationDisclaimer}
-        </div>;
+        </form>;
     } else {
       form =
-        <div>
+        <form className="auth-form" onSubmit={this.handleSignin}>
           {oAuth}
           {emailOrUsernameInput}
           {signinPasswordInput}
           {submitButton}
-        </div>;
+        </form>;
     }
 
     return (
     <div className="overlay" onClick={this.handleClick}>
       <div className="auth-modal">
         {authNavTabs}
-        <form className="auth-form" onSubmit={this.handleRegistration}>
-          {form}
-        </form>
+        {form}
       </div>
     </div>
     );

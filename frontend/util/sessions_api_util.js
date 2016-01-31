@@ -1,4 +1,5 @@
-var CurrentUserActions = require('../actions/current_user_actions');
+var CurrentUserActions = require('../actions/current_user_actions'),
+    AuthFormActions = require('../actions/auth_form_actions');
 
 var SessionsApiUtil = {
   signin: function (data) {
@@ -8,6 +9,9 @@ var SessionsApiUtil = {
       data: {user: data},
       success: function (currentUser) {
         CurrentUserActions.receiveCurrentUser(currentUser);
+      },
+      error: function (errors) {
+        AuthFormActions.receiveSigninErrors([errors.responseJSON]);
       }
     });
   },
