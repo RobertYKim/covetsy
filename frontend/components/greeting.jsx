@@ -1,6 +1,12 @@
-var React = require('react');
+var React = require('react'),
+    ProfileModalActions = require('../actions/profile_modal_actions');
 
 var Greeting = React.createClass({
+  handleClick: function (event) {
+    event.preventDefault();
+    ProfileModalActions.hideProfileModal();
+  },
+
   render: function () {
     var identifier;
     if (this.props.currentUser.first_name) {
@@ -10,7 +16,7 @@ var Greeting = React.createClass({
     }
 
     return (
-      <div className="greeting">
+      <div className="greeting" onClick={this.handleClick}>
         <h1>Hi, {identifier}!</h1>
       </div>
     );

@@ -11,12 +11,15 @@ var _getProfileModalState = function () {
 
 var Header = React.createClass({
   handleClick: function (event) {
+    event.stopPropagation();
     event.preventDefault();
     var target = event.currentTarget.className;
     if (target === "register" || target === "signin") {
       AuthFormActions.showAuthForm(target);
     } else if (target === "you") {
       ProfileModalActions.showProfileModal();
+    } else {
+      ProfileModalActions.hideProfileModal();
     }
   },
 
@@ -71,7 +74,7 @@ var Header = React.createClass({
       </div>;
     }
     return (
-      <div className="header">
+      <div className="header" onClick={this.handleClick}>
         <div className="global-nav group">
           <div className="global-nav-logo-search">
             <a className="logo" href="#">covEtsy</a>
