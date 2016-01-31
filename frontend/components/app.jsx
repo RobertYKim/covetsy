@@ -4,7 +4,7 @@ var React = require('react'),
     Greeting = require('./greeting'),
     Hero = require('./hero'),
     Discover = require('./discover'),
-    AuthFormStore = require('../stores/auth_form'),
+    AuthFormStore = require('../stores/auth_form_store'),
     CurrentUserStore = require('../stores/current_user_store'),
     SessionsApiUtil = require('../util/sessions_api_util');
 
@@ -61,6 +61,7 @@ var App = React.createClass({
     if (CurrentUserStore.isSignedIn()) {
       signedIn = true;
       greeting = <Greeting currentUser={CurrentUserStore.currentUser()}/>;
+      discover = <Discover />;
     } else {
       signedIn = false;
       hero = <Hero />;
@@ -74,6 +75,7 @@ var App = React.createClass({
                     modalType={this.state.authFormType}
                     errors={this.state.authFormErrors}/>;
     }
+
 
     return (
       <div>

@@ -11,7 +11,7 @@ var SessionsApiUtil = {
         CurrentUserActions.receiveCurrentUser(currentUser);
       },
       error: function (errors) {
-        AuthFormActions.receiveSigninErrors([errors.responseJSON]);
+        AuthFormActions.receiveErrors([errors.responseJSON]);
       }
     });
   },

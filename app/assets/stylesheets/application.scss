@@ -313,6 +313,39 @@ body {
   font-size: 10px;
 }
 
+/* --- PROFILE MODAL --- */
+
+.profile-modal:before {
+  content: "▾";
+  position: absolute;
+  top: -20px;
+  right: 58px;
+  transform: scale(1, -1);
+  font-size: 30px;
+  color: #E1E3DF;
+}
+
+.profile-modal:after {
+  content: "▾";
+  position: absolute;
+  top: -18px;
+  right: 58px;
+  transform: scale(1, -1);
+  font-size: 30px;
+  color: #fff;
+}
+
+.profile-modal {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: -175px;
+  width: 260px;
+  height: 280px;
+  border: 1px solid #E1E3DF;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
 /* --- GREETING --- */
 
 .greeting {
