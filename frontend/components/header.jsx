@@ -17,11 +17,11 @@ var Header = React.createClass({
     var links;
     if (this.props.signedIn) {
       links =
-      <div className="global-nav-links">
-        <a
-          className="you"
-          href="#"
-          onClick={this.signout}>You</a>
+      <div className="global-nav-links group" onClick={this.signout}>
+        <div className="you">
+          <span className="fa fa-user fa-2x"></span>
+          <p>You ▾</p>
+        </div>
       </div>;
     } else {
       links =

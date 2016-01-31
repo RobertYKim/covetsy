@@ -51,7 +51,7 @@ var App = React.createClass({
 
   render: function () {
     if (!CurrentUserStore.currentUserHasBeenFetched()) {
-      return <p>PLEASE WAIT</p>;
+      return <span className="fa fa-spinner fa-5x fa-pulse"></span>;
     }
 
     var signedIn,
