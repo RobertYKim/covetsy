@@ -170,9 +170,23 @@ var AuthForm = React.createClass({
 
   render: function () {
     var errors = this.props.errors;
-    errors.forEach( function (error) {
-
-    });
+    var emailTaken = /Email has already been taken/;
+    var usernameTaken = /Username has already been taken/;
+    var usernameTooShort = /Username is too short/;
+    var emailError,
+        usernameError,
+        credentialsError;
+    if (errors) {
+      errors.forEach( function (error) {
+        if (emailTaken.test(error[0])) {
+          emailError = "Sorry, the email you have entered is already in use.";
+        } else if (usernameTaken.test(error[0])) {
+          usernameError = "Sorry, that username is taken.";
+        } else if (usernameTooShort.test(error[0])) {
+          usernameError = "Must be at least 4 characters.";
+        }
+      });      
+    }
 
     var modalType = this.props.modalType;
 
@@ -267,6 +281,8 @@ var AuthForm = React.createClass({
       this.state.unfocusedEmail &&
       this.state.invalidEmail) {
         emailInputNote = <span>Please enter a valid email address.</span>;
+    } else if (emailError) {
+      emailInputNote = <span>{emailError}</span>;
     }
     emailInput =
       <div className="email-input">
@@ -324,8 +340,8 @@ var AuthForm = React.createClass({
       this.state.username === "" &&
       this.state.unfocusedUsername) {
         usernameInputNote = <span>Can't be blank.</span>;
-    } else if (this.props.errors) {
-      usernameInputNote = <span>{this.props.errors[0][0]}</span>;
+    } else if (usernameError) {
+      usernameInputNote = <span>{usernameError}</span>;
     }
     usernameInput =
       <div className="username-input">
