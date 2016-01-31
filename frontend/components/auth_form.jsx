@@ -169,6 +169,11 @@ var AuthForm = React.createClass({
   },
 
   render: function () {
+    var errors = this.props.errors;
+    errors.forEach( function (error) {
+
+    });
+
     var modalType = this.props.modalType;
 
     var registerTabStatus,
@@ -319,6 +324,8 @@ var AuthForm = React.createClass({
       this.state.username === "" &&
       this.state.unfocusedUsername) {
         usernameInputNote = <span>Can't be blank.</span>;
+    } else if (this.props.errors) {
+      usernameInputNote = <span>{this.props.errors[0][0]}</span>;
     }
     usernameInput =
       <div className="username-input">

@@ -1,5 +1,6 @@
 var UserActions = require('../actions/user_actions'),
-    CurrentUserActions = require('../actions/current_user_actions');
+    CurrentUserActions = require('../actions/current_user_actions'),
+    AuthFormActions = require('../actions/auth_form_actions');
 
 var UsersApiUtil = {
   createUser: function (data, callback) {
@@ -13,6 +14,9 @@ var UsersApiUtil = {
         if (callback) {
           callback();
         }
+      },
+      error: function (errors) {
+        AuthFormActions.receiveErrors(errors.responseJSON);
       }
     });
   }

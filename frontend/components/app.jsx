@@ -17,9 +17,11 @@ var App = React.createClass({
     var authFormState = _getAuthFormState();
     var visibility = authFormState.visibility;
     var type = authFormState.type;
+    var errors = authFormState.errors;
     this.setState({
       authFormVisible: visibility,
-      authFormType: type
+      authFormType: type,
+      authFormErrors: errors
     });
   },
 
@@ -69,7 +71,8 @@ var App = React.createClass({
     if (this.state.authFormVisible) {
       authForm = <AuthForm
                     toggleVisibility={this.toggleVisibility}
-                    modalType={this.state.authFormType}/>;
+                    modalType={this.state.authFormType}
+                    errors={this.state.authFormErrors}/>;
     }
 
     return (

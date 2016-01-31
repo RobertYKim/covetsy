@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
       sign_in(@user)
       render :show
     else
-      render json: ["Invalid registration information!"], status: 422
+      render json: [@user.errors.full_messages], status: 422
     end
   end
 
