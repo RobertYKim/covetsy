@@ -14,7 +14,20 @@ var AuthForm = React.createClass({
     } else if (event.target.text === "Sign In") {
       event.preventDefault();
       AuthFormActions.showAuthForm("signin");
+    } else if (
+        event.target.id === "email" ||
+        event.target.htmlFor === "email") {
+      this.setState({clickedEmail: true});
+    } else if (
+        event.target.id === "username" ||
+        event.target.htmlFor === "username") {
+      this.setState({clickedUsername: true});
+    } else if (
+        event.target.id !== "username" &&
+        event.target.htmlFor !== "username") {
+      this.setState({unfocusedUsername: true});
     }
+    this.resetFocus();
   },
 
   handleChange: function (event) {
@@ -32,17 +45,37 @@ var AuthForm = React.createClass({
     } else if (id === "rather") {
       this.setState({gender: "rather"});
     } else if (id === "email") {
-      this.setState({email: value});
+      this.validateEmail(value);
+      this.setState({
+        email: value,
+        unfocusedEmail: false
+      });
     } else if (id === "password") {
-      this.setState({password: value});
+      this.validatePassword(value);
+      this.setState({
+        password: value,
+        unfocusedPassword: false
+      });
     } else if (id === "confirm-password") {
-      this.setState({confirm_password: value});
+      this.validateConfirmPassword(value);
+      this.setState({
+        confirm_password: value,
+        unfocusedConfirmPassword: false
+      });
     } else if (id === "username") {
       var oldState = this.state.username;
       if (nonword.test(value)) {
-        this.setState({username: oldState});
+        this.validateUsername(oldState);
+        this.setState({
+          username: oldState,
+          unfocusedUsername: false
+        });
       } else {
-        this.setState({username: value});
+        this.validateUsername(value);
+        this.setState({
+          username: value,
+          unfocusedUsername: false
+        });
       }
     } else if (id === "email-or-username") {
       this.setState({email_or_username: value});
@@ -51,9 +84,65 @@ var AuthForm = React.createClass({
     }
   },
 
+  resetFocus: function () {
+    this.setState({
+      unfocusedEmail: true,
+      unfocusedPassword: true,
+      unfocusedConfirmPassword: true
+    });
+  },
+
+  validateEmail: function (value) {
+    var at = /\w@\w/;
+    var dot = /\w\.\w/;
+    if (at.test(value) && dot.test(value)) {
+      this.setState({invalidEmail: false});
+    } else {
+      this.setState({invalidEmail: true});
+    }
+  },
+
+  validatePassword: function (value) {
+    if (value.length >= 6) {
+      this.setState({invalidPassword: false});
+    } else {
+      this.setState({invalidPassword: true});
+    }
+  },
+
+  validateConfirmPassword: function (value) {
+    if (value === this.state.password) {
+      this.setState({invalidConfirmPassword: false});
+    } else {
+      this.setState({invalidConfirmPassword: true});
+    }
+  },
+
+  validateUsername: function (value) {
+    if (value === "") {
+      this.setState({invalidUsername: true});
+    } else {
+      this.setState({invalidUsername: false});
+    }
+  },
+
+  validRegistration: function () {
+    if (
+      this.state.invalidEmail ||
+      this.state.invalidPassword ||
+      this.state.invalidConfirmPassword ||
+      this.state.invalidUsername) {
+        return false;
+    } else {
+      return true;
+    }
+  },
+
   handleRegistration: function (event) {
     event.preventDefault();
-    UsersApiUtil.createUser(this.state);
+    if (this.validRegistration()) {
+      UsersApiUtil.createUser(this.state);
+    }
   },
 
   handleSignin: function (event) {
@@ -71,7 +160,11 @@ var AuthForm = React.createClass({
       confirm_password: "",
       username: "",
       email_or_username: "",
-      signin_password: ""
+      signin_password: "",
+      invalidEmail: true,
+      invalidPassword: true,
+      invalidConfirmPassword: true,
+      invalidUsername: true
     });
   },
 
@@ -122,6 +215,7 @@ var AuthForm = React.createClass({
           id="first-name"
           type="text"
           value={this.state.first_name}></input>
+        <span>Names on covEtsy are public, but optional.</span>
       </div>;
 
     var lastNameInput;
@@ -161,7 +255,14 @@ var AuthForm = React.createClass({
           type="radio"/><label htmlFor="rather">Rather not say</label>
       </div>;
 
-    var emailInput;
+    var emailInput,
+        emailInputNote;
+    if (
+      this.state.clickedEmail &&
+      this.state.unfocusedEmail &&
+      this.state.invalidEmail) {
+        emailInputNote = <span>Please enter a valid email address.</span>;
+    }
     emailInput =
       <div className="email-input">
         <label htmlFor="email">Email</label>
@@ -170,9 +271,17 @@ var AuthForm = React.createClass({
           id="email"
           type="text"
           value={this.state.email}></input>
+        {emailInputNote}
       </div>;
 
-    var passwordInput;
+    var passwordInput,
+        passwordInputNote;
+    if (
+      this.state.password !== "" &&
+      this.state.password.length < 6 &&
+      this.state.unfocusedPassword) {
+        passwordInputNote = <span>Must be at least 6 characters.</span>;
+    }
     passwordInput =
       <div className="password-input">
         <label htmlFor="password">Password</label>
@@ -181,9 +290,17 @@ var AuthForm = React.createClass({
           id="password"
           type="password"
           value={this.state.password}></input>
+        {passwordInputNote}
       </div>;
 
-    var confirmPasswordInput;
+    var confirmPasswordInput,
+        confirmPasswordInputNote;
+    if (
+      this.state.confirm_password !== "" &&
+      this.state.confirm_password !== this.state.password &&
+      this.state.unfocusedConfirmPassword) {
+        confirmPasswordInputNote = <span>Passwords must match.</span>;
+    }
     confirmPasswordInput =
       <div className="confirm-password-input">
         <label htmlFor="confirm-password">Confirm Password</label>
@@ -192,9 +309,17 @@ var AuthForm = React.createClass({
           id="confirm-password"
           type="password"
           value={this.state.confirm_password}></input>
+        {confirmPasswordInputNote}
       </div>;
 
-    var usernameInput;
+    var usernameInput,
+        usernameInputNote;
+    if (
+      this.state.clickedUsername &&
+      this.state.username === "" &&
+      this.state.unfocusedUsername) {
+        usernameInputNote = <span>Can't be blank.</span>;
+    }
     usernameInput =
       <div className="username-input">
         <label htmlFor="username">Username</label>
@@ -203,6 +328,7 @@ var AuthForm = React.createClass({
           id="username"
           type="text"
           value={this.state.username}></input>
+        {usernameInputNote}
       </div>;
 
     var submitButton;

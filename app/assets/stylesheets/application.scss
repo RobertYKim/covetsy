@@ -232,6 +232,29 @@ body {
   font-size: 12px;
 }
 
+.first-name-input span {
+  float: right;
+  display: block;
+  margin: 5px;
+  width: 220px;
+  font-size: 12px;
+}
+
+.email-input span,
+.password-input span,
+.confirm-password-input span,
+.username-input span {
+  float: right;
+  display: block;
+  width: 220px;
+  margin-left: 5px;
+  margin-top: 5px;
+  padding: 6px;
+  color: rgb(176, 56, 30);
+  border: 1px solid rgb(244, 191, 203);;
+  background-color: rgb(252, 238, 238);
+}
+
 .gender, .username-input {
   padding-top: 5px;
   padding-bottom: 20px;
@@ -283,6 +306,7 @@ body {
 
 .hero {
   height: 400px;
+  min-width: 1000px;
   width: 100%;
   background-image: image-url("ireland.JPG");
   background-size: cover;
@@ -292,6 +316,7 @@ body {
 
 .hero-body {
   width: 1000px;
+  padding: 20px;
   margin: auto;
 }
 
