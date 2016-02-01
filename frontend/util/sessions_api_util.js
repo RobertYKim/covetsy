@@ -21,7 +21,6 @@ var SessionsApiUtil = {
       type: "DELETE",
       url: "api/session",
       success: function () {
-        console.log("successfully signed out!");
         CurrentUserActions.resetCurrentUser();
       }
     });
@@ -32,7 +31,6 @@ var SessionsApiUtil = {
       type: "GET",
       url: "api/session",
       success: function (currentUser) {
-        console.log("fetched current user!");
         CurrentUserActions.receiveCurrentUser(currentUser);
         if (callback) {
           callback(currentUser);

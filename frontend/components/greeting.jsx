@@ -3,7 +3,6 @@ var React = require('react'),
 
 var Greeting = React.createClass({
   handleClick: function (event) {
-    debugger
     event.preventDefault();
     ProfileModalActions.hideProfileModal();
   },
