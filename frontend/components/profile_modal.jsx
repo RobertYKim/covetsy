@@ -45,7 +45,7 @@ var ProfileModal = React.createClass({
       <a href="#" className="profile-modal-signout-link">Sign out</a>;
 
     return (
-      <div className="profile-modal" onClick={this.handleClick}>
+      <div className="profile-modal">
         <div className="profile-modal-user group">
           <div className="profile-modal-user-image">
             {profileImage}
