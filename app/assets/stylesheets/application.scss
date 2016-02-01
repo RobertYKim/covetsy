@@ -95,8 +95,32 @@ body {
   text-align: center;
 }
 
-.global-nav-links a {
+.global-nav-links > a {
+  display: block;
   color: rgb(12, 146, 183);
+}
+
+.register {
+  float: left;
+  padding: 10px;
+  margin-top: 1px;
+  margin-right: 10px;
+}
+
+.register:hover {
+  text-decoration: underline;
+}
+
+.signin {
+  float: left;
+  padding: 10px;
+  border: 1px solid #0C92B7;
+  border-radius: 5px;
+
+}
+
+.signin:hover {
+  background-color: #E5F4F7;
 }
 
 .you:hover {
@@ -105,21 +129,6 @@ body {
 
 .fa-user {
   padding-right: 2px;
-}
-
-.register:hover {
-  text-decoration: underline;
-}
-
-.signin {
-  padding: 10px;
-  border: 1px solid #0C92B7;
-  border-radius: 5px;
-  margin: 20px;
-}
-
-.signin:hover {
-  background-color: #E5F4F7;
 }
 
 /* --- AUTH MODAL --- */
@@ -340,33 +349,65 @@ body {
   margin-top: 10px;
   margin-left: -175px;
   width: 260px;
-  height: 280px;
   border: 1px solid #E1E3DF;
   border-radius: 5px;
   background-color: #fff;
 }
 
-.profile-modal-image {
+.profile-modal-user {
+  border-bottom: 1px solid #E1E3DF;
+}
+
+.profile-modal-user:hover .profile-modal-button {
+  box-shadow: 0 0 5px #E1E3DF;
+  color: rgb(51, 51, 51);
+  border: 1px solid rgb(204, 204, 204);
+}
+
+.profile-modal-user:hover .profile-modal-button:after {
+  color: rgb(63, 147, 181);
+}
+
+.profile-modal-user-image {
   float: left;
   padding: 20px;
   margin-left: 5px;
 }
 
-.profile-modal-info {
+.profile-modal-user-info {
   float: left;
 }
 
-.profile-modal-info h4 {
+.profile-modal-user-info h4 {
   margin-top: 20px;
   margin-bottom: 10px;
   text-align: left;
+  color: rgb(51, 51, 51);
   font-family: 'Merriweather', serif;
+  font-weight: 700;
 }
 
 .profile-modal-button {
-  border: 1px solid #000;
+  color: rgb(102, 102, 102);;
+  border: 1px solid #E1E3DF;
   padding: 5px;
   border-radius: 3px;
+}
+
+.profile-modal-button:after {
+  content: " ▸ ";
+}
+
+.profile-modal-signout {
+  color: rgb(51, 51, 51);
+  text-align: left;
+  padding: 15px 20px;
+  margin: 10px 0;
+}
+
+.profile-modal-signout:hover {
+  background-color: #E5F4F7;
+  color: rgb(12, 146, 183);
 }
 
 /* --- GREETING --- */
@@ -387,7 +428,7 @@ body {
   height: 400px;
   min-width: 1000px;
   width: 100%;
-  background-image: image-url("ireland.JPG");
+  background-image: image-url("heroimage.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -404,7 +445,7 @@ body {
   font-size: 40px;
   font-weight: 700;
   width: 550px;
-  padding-top: 120px;
+  padding-top: 100px;
 }
 
 .hero-overlay {

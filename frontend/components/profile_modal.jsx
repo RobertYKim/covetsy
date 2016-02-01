@@ -1,6 +1,7 @@
 var React = require('react'),
     ProfileModalActions = require('../actions/profile_modal_actions'),
-    CurrentUserStore = require('../stores/current_user_store');
+    CurrentUserStore = require('../stores/current_user_store'),
+    SessionsApiUtil = require('../util/sessions_api_util');
 
 var ProfileModal = React.createClass({
   handleClick: function (event) {
@@ -8,6 +9,10 @@ var ProfileModal = React.createClass({
     if (event.target.className === "profile-modal-overlay") {
       ProfileModalActions.hideProfileModal();
     }
+  },
+
+  signout: function () {
+    SessionsApiUtil.signout();
   },
 
   render: function () {
@@ -35,14 +40,23 @@ var ProfileModal = React.createClass({
         View profile
       </a>;
 
+    var signout;
+    signout =
+      <a href="#" className="profile-modal-signout-link">Sign out</a>;
+
     return (
-      <div className="profile-modal group" onClick={this.handleClick}>
-        <div className="profile-modal-image">
-          {profileImage}
+      <div className="profile-modal" onClick={this.handleClick}>
+        <div className="profile-modal-user group">
+          <div className="profile-modal-user-image">
+            {profileImage}
+          </div>
+          <div className="profile-modal-user-info">
+            {profileName}
+            {profileViewButton}
+          </div>
         </div>
-        <div className="profile-modal-info">
-          {profileName}
-          {profileViewButton}
+        <div className="profile-modal-signout" onClick={this.signout}>
+          {signout}
         </div>
       </div>
     );

@@ -2,8 +2,7 @@ var React = require('react'),
     ProfileModal = require('./profile_modal'),
     AuthFormActions = require('../actions/auth_form_actions'),
     ProfileModalActions = require('../actions/profile_modal_actions'),
-    ProfileModalStore = require('../stores/profile_modal_store'),
-    SessionsApiUtil = require('../util/sessions_api_util');
+    ProfileModalStore = require('../stores/profile_modal_store');
 
 var _getProfileModalState = function () {
   return ProfileModalStore.state();
@@ -21,10 +20,6 @@ var Header = React.createClass({
     } else {
       ProfileModalActions.hideProfileModal();
     }
-  },
-
-  signout: function () {
-    SessionsApiUtil.signout();
   },
 
   _profileModalChanged: function () {
@@ -57,12 +52,12 @@ var Header = React.createClass({
         <div className="you" onClick={this.handleClick}>
           <span className="fa fa-user fa-2x"></span>
           <p>You ▾</p>
-          {profileModal}
         </div>
+        {profileModal}
       </div>;
     } else {
       links =
-      <div className="global-nav-links">
+      <div className="global-nav-links group">
         <a
           className="register"
           href="#"
