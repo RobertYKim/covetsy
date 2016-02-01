@@ -17,7 +17,7 @@ var Header = React.createClass({
       AuthFormActions.showAuthForm(target);
     } else if (target === "you") {
       ProfileModalActions.showProfileModal();
-    } else {
+    } else if (event.target.className !== "profile-modal") {
       ProfileModalActions.hideProfileModal();
     }
   },

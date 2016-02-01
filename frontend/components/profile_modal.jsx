@@ -6,13 +6,12 @@ var React = require('react'),
 var ProfileModal = React.createClass({
   handleClick: function (event) {
     event.preventDefault();
-    if (event.target.className === "profile-modal-overlay") {
+    if (event.target.className === "profile-modal-user") {
+      UserEditFormActions.showUserEditForm();
       ProfileModalActions.hideProfileModal();
+    } else if (event.target.className === "profile-modal-signout") {
+      SessionsApiUtil.signout();
     }
-  },
-
-  signout: function () {
-    SessionsApiUtil.signout();
   },
 
   render: function () {
@@ -46,7 +45,7 @@ var ProfileModal = React.createClass({
 
     return (
       <div className="profile-modal">
-        <div className="profile-modal-user group">
+        <div className="profile-modal-user group" onClick={this.handleClick}>
           <div className="profile-modal-user-image">
             {profileImage}
           </div>
@@ -55,7 +54,7 @@ var ProfileModal = React.createClass({
             {profileViewButton}
           </div>
         </div>
-        <div className="profile-modal-signout" onClick={this.signout}>
+        <div className="profile-modal-signout" onClick={this.handleClick}>
           {signout}
         </div>
       </div>

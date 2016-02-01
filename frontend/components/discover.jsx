@@ -3,6 +3,7 @@ var React = require('react'),
 
 var Discover = React.createClass({
   handleClick: function (event) {
+    debugger
     event.preventDefault();
     ProfileModalActions.hideProfileModal();
   },
