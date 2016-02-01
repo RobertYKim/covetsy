@@ -9,7 +9,7 @@ var React = require('react'),
 
 var routes = (
   <Route path="/" component={App}>
-
+    <IndexRoute component={Homepage}/>
   </Route>
 );
 

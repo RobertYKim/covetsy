@@ -1,16 +1,11 @@
 var React = require('react'),
     Header = require('./header'),
-
-    Greeting = require('./greeting'),
-    Hero = require('./hero'),
-    Discover = require('./discover'),
     AuthFormStore = require('../stores/auth_form_store'),
     CurrentUserStore = require('../stores/current_user_store'),
     ProfileStore = require('../stores/profile_store'),
     SessionsApiUtil = require('../util/sessions_api_util');
 
 var App = React.createClass({
-
 
   _profileChanged: function () {
     var profileState = AuthFormStore.state();
@@ -26,7 +21,6 @@ var App = React.createClass({
   },
 
   componentDidMount: function () {
-
     this.currentUserListener =
       CurrentUserStore.addListener(this._currentUserChanged);
     SessionsApiUtil.fetchCurrentUser();
@@ -38,28 +32,20 @@ var App = React.createClass({
       return <span className="fa fa-spinner fa-5x fa-pulse"></span>;
     }
 
-    var signedIn,
-        greeting,
-        hero,
-        discover;
-    if (CurrentUserStore.isSignedIn()) {
-      signedIn = true;
-      greeting = <Greeting currentUser={CurrentUserStore.currentUser()}/>;
-      discover = <Discover />;
-    } else {
-      signedIn = false;
-      hero = <Hero />;
-      discover = <Discover />;
-    }
+    var signedIn = CurrentUserStore.isSignedIn();
+    var currentUser = CurrentUserStore.currentUser();
+    var childrenWithProps =
+      React.Children.map(this.props.children, function (child) {
+        return React.cloneElement(
+          child, { signedIn: signedIn, currentUser: currentUser }
+        );
+      }
+    );
 
     return (
       <div>
         <Header signedIn={signedIn}/>
-        {this.props.children}
-
-        {greeting}
-        {hero}
-        {discover}
+        {childrenWithProps}
       </div>
     );
   }
