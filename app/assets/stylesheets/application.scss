@@ -458,6 +458,36 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.hero-space {
+  height: 100px;
+}
+
+.hero-seller {
+  position: absolute;
+  z-index: 2;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+}
+
+.hero-seller-picture {
+  float: left;
+  height: 60px;
+  width: 60px;
+  background-position: center;
+  background-image: image-url("featuredowner.jpg");
+  border-radius: 50%;
+}
+
+.hero-seller-info {
+  float: left;
+  margin: 10px;
+}
+
+.name-store {
+  margin-bottom: 5px;
+}
+
 /* --- DISCOVER --- */
 
 .discover {
