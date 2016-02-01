@@ -15,6 +15,7 @@ AuthFormStore.state = function () {
 AuthFormStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case AuthFormConstants.RECEIVE_ERRORS:
+      _visible = true;
       _errors = payload.errors;
       AuthFormStore.__emitChange();
       break;
@@ -23,8 +24,8 @@ AuthFormStore.__onDispatch = function (payload) {
       _type = payload.type;
       AuthFormStore.__emitChange();
       break;
-    case AuthFormConstants.UPDATE_VISIBILITY:
-      _visible = payload.visibility;
+    case AuthFormConstants.HIDE_AUTH_FORM:
+      _visible = false;
       AuthFormStore.__emitChange();
       break;
   }

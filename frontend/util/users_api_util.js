@@ -1,5 +1,4 @@
-var UserActions = require('../actions/user_actions'),
-    CurrentUserActions = require('../actions/current_user_actions'),
+var CurrentUserActions = require('../actions/current_user_actions'),
     AuthFormActions = require('../actions/auth_form_actions');
 
 var UsersApiUtil = {
@@ -9,7 +8,6 @@ var UsersApiUtil = {
       url: "api/users",
       data: {user: data},
       success: function (user) {
-        UserActions.receiveUser(user);
         CurrentUserActions.receiveCurrentUser(user);
         if (callback) {
           callback();

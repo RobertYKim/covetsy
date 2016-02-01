@@ -16,10 +16,9 @@ var AuthFormActions = {
     });
   },
 
-  updateVisiblity: function (visibility) {
+  hideAuthForm: function () {
     Dispatcher.dispatch({
-      actionType: AuthFormConstants.UPDATE_VISIBILITY,
-      visibility: visibility
+      actionType: AuthFormConstants.HIDE_AUTH_FORM,
     });
   }
 };

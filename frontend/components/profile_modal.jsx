@@ -1,5 +1,6 @@
 var React = require('react'),
     ProfileModalActions = require('../actions/profile_modal_actions'),
+    ProfileActions = require('../actions/profile_actions'),
     CurrentUserStore = require('../stores/current_user_store'),
     SessionsApiUtil = require('../util/sessions_api_util');
 
@@ -7,8 +8,9 @@ var ProfileModal = React.createClass({
   handleClick: function (event) {
     event.preventDefault();
     if (event.target.className === "profile-modal-user") {
-      UserEditFormActions.showUserEditForm();
       ProfileModalActions.hideProfileModal();
+      var currentUser = CurrentUserStore.currentUser();
+      ProfileActions.showProfile(currentUser);
     } else if (event.target.className === "profile-modal-signout") {
       SessionsApiUtil.signout();
     }

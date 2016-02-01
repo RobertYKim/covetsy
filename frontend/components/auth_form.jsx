@@ -5,10 +5,11 @@ var React = require('react'),
 
 var AuthForm = React.createClass({
   handleClick: function (event) {
+    event.stopPropagation();
     this.resetFocus();
     if (event.target.className === "overlay") {
       event.preventDefault();
-      this.props.toggleVisibility();
+      AuthFormActions.hideAuthForm();
     } else if (event.target.text === "Register") {
       event.preventDefault();
       AuthFormActions.showAuthForm("register");
@@ -142,12 +143,14 @@ var AuthForm = React.createClass({
   handleRegistration: function (event) {
     event.preventDefault();
     if (this.validRegistration()) {
+      AuthFormActions.hideAuthForm();
       UsersApiUtil.createUser(this.state);
     }
   },
 
   handleSignin: function (event) {
     event.preventDefault();
+    AuthFormActions.hideAuthForm();
     SessionsApiUtil.signin(this.state);
   },
 

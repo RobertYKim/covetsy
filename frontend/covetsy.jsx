@@ -4,10 +4,12 @@ var React = require('react'),
     Route = require('react-router').Route,
     IndexRoute = require('react-router').IndexRoute,
     App = require('./components/app'),
+    Homepage = require('./components/homepage'),
     AuthForm = require('./components/auth_form');
 
 var routes = (
   <Route path="/" component={App}>
+
   </Route>
 );
 

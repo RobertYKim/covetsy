@@ -1,7 +1,9 @@
 var React = require('react'),
+    AuthForm = require('./auth_form'),
     ProfileModal = require('./profile_modal'),
     AuthFormActions = require('../actions/auth_form_actions'),
     ProfileModalActions = require('../actions/profile_modal_actions'),
+    AuthFormStore = require('../stores/auth_form_store'),
     ProfileModalStore = require('../stores/profile_modal_store');
 
 var _getProfileModalState = function () {
@@ -22,6 +24,25 @@ var Header = React.createClass({
     }
   },
 
+  _authFormChanged: function () {
+    var authFormState = AuthFormStore.state();
+    var visibility = authFormState.visibility;
+    var type = authFormState.type;
+    var errors = authFormState.errors;
+    this.setState({
+      authFormVisible: visibility,
+      authFormType: type,
+      authFormErrors: errors
+    });
+  },
+
+  getInitialState: function () {
+    return ({
+      authFormVisible: false,
+      profileModalVisible: false
+    });
+  },
+
   _profileModalChanged: function () {
     var profileModalState = _getProfileModalState();
     var visibility = profileModalState.visibility;
@@ -30,11 +51,8 @@ var Header = React.createClass({
     });
   },
 
-  getInitialState: function () {
-    return ({profileModalVisible: false});
-  },
-
   componentDidMount: function () {
+    this.authFormListener = AuthFormStore.addListener(this._authFormChanged);
     this.profileModalLisener =
       ProfileModalStore.addListener(this._profileModalChanged);
   },
@@ -43,6 +61,13 @@ var Header = React.createClass({
     var profileModal;
     if (this.state.profileModalVisible) {
       profileModal = <ProfileModal />;
+    }
+
+    var authForm;
+    if (this.state.authFormVisible) {
+      authForm = <AuthForm
+                    modalType={this.state.authFormType}
+                    errors={this.state.authFormErrors}/>;
     }
 
     var links;
@@ -70,6 +95,7 @@ var Header = React.createClass({
     }
     return (
       <div className="header" onClick={this.handleClick}>
+        {authForm}
         <div className="global-nav group">
           <div className="global-nav-logo-search">
             <a className="logo" href="#">covEtsy</a>

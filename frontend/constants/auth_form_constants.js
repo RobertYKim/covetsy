@@ -1,7 +1,7 @@
 var AuthFormConstants = {
   RECEIVE_ERRORS: "RECEIVE_ERRORS",
   SHOW_AUTH_FORM: "SHOW_AUTH_FORM",
-  UPDATE_VISIBILITY: "UPDATE_VISIBILITY"
+  HIDE_AUTH_FORM: "HIDE_AUTH_FORM"
 };
 
 module.exports = AuthFormConstants;
