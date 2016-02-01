@@ -20,7 +20,7 @@
 
 /* --- RESET --- */
 
-html, body, h1, a, ul, li, p {
+html, body, h1, h4, a, ul, li, p {
   margin: 0;
   padding: 0;
   border: 0;
@@ -344,6 +344,29 @@ body {
   border: 1px solid #E1E3DF;
   border-radius: 5px;
   background-color: #fff;
+}
+
+.profile-modal-image {
+  float: left;
+  padding: 20px;
+  margin-left: 5px;
+}
+
+.profile-modal-info {
+  float: left;
+}
+
+.profile-modal-info h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-family: 'Merriweather', serif;
+}
+
+.profile-modal-button {
+  border: 1px solid #000;
+  padding: 5px;
+  border-radius: 3px;
 }
 
 /* --- GREETING --- */
