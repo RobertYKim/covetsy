@@ -5,11 +5,13 @@ var React = require('react'),
     IndexRoute = require('react-router').IndexRoute,
     App = require('./components/app'),
     Homepage = require('./components/homepage'),
+    Profile = require('./components/profile'),
     AuthForm = require('./components/auth_form');
 
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Homepage}/>
+    <Route path="people/:username" component={Profile}/>
   </Route>
 );
 
