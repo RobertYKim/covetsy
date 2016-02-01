@@ -5,6 +5,7 @@ var React = require('react'),
 
 var AuthForm = React.createClass({
   handleClick: function (event) {
+    this.resetFocus();
     if (event.target.className === "overlay") {
       event.preventDefault();
       this.props.toggleVisibility();
@@ -19,15 +20,14 @@ var AuthForm = React.createClass({
         event.target.htmlFor === "email") {
       this.setState({clickedEmail: true});
     } else if (
+        !this.state.clickedUsername &&
         event.target.id === "username" ||
         event.target.htmlFor === "username") {
-      this.setState({clickedUsername: true});
-    } else if (
-        event.target.id !== "username" &&
-        event.target.htmlFor !== "username") {
-      this.setState({unfocusedUsername: true});
+      this.setState({
+        clickedUsername: true,
+        unfocusedUsername: false
+      });
     }
-    this.resetFocus();
   },
 
   handleChange: function (event) {
@@ -88,7 +88,8 @@ var AuthForm = React.createClass({
     this.setState({
       unfocusedEmail: true,
       unfocusedPassword: true,
-      unfocusedConfirmPassword: true
+      unfocusedConfirmPassword: true,
+      unfocusedUsername: true
     });
   },
 
@@ -164,7 +165,8 @@ var AuthForm = React.createClass({
       invalidEmail: true,
       invalidPassword: true,
       invalidConfirmPassword: true,
-      invalidUsername: true
+      invalidUsername: true,
+      clickedUsername: false
     });
   },
 
@@ -279,6 +281,7 @@ var AuthForm = React.createClass({
     var emailInput,
         emailInputNote;
     if (
+      this.state.email !== "" &&
       this.state.clickedEmail &&
       this.state.unfocusedEmail &&
       this.state.invalidEmail) {
