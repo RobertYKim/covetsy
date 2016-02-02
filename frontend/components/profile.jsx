@@ -17,6 +17,31 @@ var Profile = React.createClass({
     });
   },
 
+  createDate: function (timestamp) {
+    var months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'];
+    var month,
+        date,
+        year,
+        createdAt;
+    createdAt = new Date(timestamp);
+    date = createdAt.getDate();
+    month = months[createdAt.getMonth()];
+    year = createdAt.getFullYear();
+    return month + " " + date + ", " + year;
+  },
+
   componentDidMount: function () {
     this.profileListener = ProfileStore.addListener(this._profileChanged);
     var user = this.props.params.username;
@@ -45,30 +70,8 @@ var Profile = React.createClass({
         lastName,
         username,
         path,
-        month,
-        date,
-        year,
-        createdAt,
         joinDate;
-    var months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'];
-      debugger
-    createdAt = new Date(this.state.user.created_at);
-    date = createdAt.getDate();
-    month = months[createdAt.getMonth()];
-    year = createdAt.getFullYear();
-    joinDate = month + " " + date + ", " + year;
+    joinDate = this.createDate(this.state.user.created_at);
     firstName = this.state.user.first_name;
     lastName = this.state.user.last_name;
     username = this.props.params.username;
