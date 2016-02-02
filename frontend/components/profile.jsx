@@ -1,4 +1,8 @@
 var React = require('react'),
+    ProfilePictureModal = require('./profile_picture_modal'),
+    ProfilePictureModalActions =
+      require('../actions/profile_picture_modal_actions'),
+    ProfilePictureModalStore = require('../stores/profile_picture_modal_store'),
     ProfileStore = require('../stores/profile_store'),
     UsersApiUtil = require('../util/users_api_util');
 
@@ -15,6 +19,17 @@ var Profile = React.createClass({
       user: user,
       errors: errors
     });
+  },
+
+  _profilePictureModalChanged: function () {
+    var ProfilePictureModalState = ProfilePictureModalStore.state();
+    var visibility = ProfilePictureModalState.visibility;
+    this.setState({profilePictureModalVisible: visibility});
+  },
+
+  handleClick: function (event) {
+    event.preventDefault();
+    ProfilePictureModalActions.showProfilePictureModal();
   },
 
   createDate: function (timestamp) {
@@ -46,6 +61,8 @@ var Profile = React.createClass({
     this.profileListener = ProfileStore.addListener(this._profileChanged);
     var user = this.props.params.username;
     UsersApiUtil.fetchUser(user);
+    this.profilePictureModalListener =
+      ProfilePictureModalStore.addListener(this._profilePictureModalChanged);
   },
 
   componentWillUnmount: function () {
@@ -61,6 +78,11 @@ var Profile = React.createClass({
       return <span className="fa fa-spinner fa-5x fa-pulse"></span>;
     } else if (!this.state.user) {
       return <span className="fa fa-spinner fa-5x fa-pulse"></span>;
+    }
+
+    var profilePictureModal;
+    if (this.state.profilePictureModalVisible) {
+      profilePictureModal = <ProfilePictureModal />;
     }
 
     var identifier,
@@ -90,6 +112,7 @@ var Profile = React.createClass({
 
     return (
       <div className="profile group">
+        {profilePictureModal}
         <div className="profile-breadcrumbs">
           <a href="#">Home</a>
           <h5>{location}</h5>
@@ -98,7 +121,7 @@ var Profile = React.createClass({
           <div className="profile-nav-image">
             <span className="fa fa-user fa-5x"></span>
           </div>
-          <div className="profile-nav-camera">
+          <div className="profile-nav-camera" onClick={this.handleClick}>
             <span className="fa fa-camera"></span>
           </div>
           <div className="profile-identifier">
