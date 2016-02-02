@@ -501,7 +501,7 @@ body {
 /* --- DISCOVER --- */
 
 .discover {
-  height: 800px;
+  height: 1000px;
   width: 100%;
   background-color: rgb(245, 245, 241);
 }
@@ -521,6 +521,7 @@ body {
 /* --- PROFILE --- */
 
 .profile {
+  box-sizing: border-box;
   width: 1000px;
   height: 1000px;
   padding: 0 10px;

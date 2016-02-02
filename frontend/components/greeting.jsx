@@ -17,7 +17,7 @@ var Greeting = React.createClass({
     }
 
     return (
-      <div className="greeting" >
+      <div className="greeting" onClick={this.handleClick}>
         <h1>Hi, {identifier}!</h1>
       </div>
     );
