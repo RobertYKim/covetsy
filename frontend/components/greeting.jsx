@@ -3,6 +3,7 @@ var React = require('react'),
 
 var Greeting = React.createClass({
   handleClick: function (event) {
+    event.stopPropagation();
     event.preventDefault();
     ProfileModalActions.hideProfileModal();
   },
@@ -16,7 +17,7 @@ var Greeting = React.createClass({
     }
 
     return (
-      <div className="greeting" onClick={this.handleClick}>
+      <div className="greeting" >
         <h1>Hi, {identifier}!</h1>
       </div>
     );

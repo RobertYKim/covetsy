@@ -9,6 +9,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find_by_username(params[:username])
+    if @user
+      render :show
+    else
+      render json: [@user.errors.full_messages], status: 404
+    end
+  end
+
   private
 
   def user_params

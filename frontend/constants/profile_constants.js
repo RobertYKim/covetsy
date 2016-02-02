@@ -1,5 +1,6 @@
 var ProfileConstants = {
-  SHOW_PROFILE: "SHOW_PROFILE"
+  RECEIVE_USER: "RECEIVE_USER",
+  RECEIVE_ERRORS: "RECEIVE_ERRORS"
 };
 
 module.exports = ProfileConstants;

@@ -20,7 +20,7 @@ var Header = React.createClass({
     } else if (target === "you") {
       ProfileModalActions.showProfileModal();
     } else if (event.target.className !== "profile-modal") {
-      ProfileModalActions.hideProfileModal();
+
     }
   },
 

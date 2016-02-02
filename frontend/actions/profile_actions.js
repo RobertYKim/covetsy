@@ -2,10 +2,17 @@ var Dispatcher = require('../dispatcher/dispatcher'),
     ProfileConstants = require('../constants/profile_constants');
 
 var ProfileActions = {
-  showProfile: function (user) {
+  receiveUser: function (user) {
     Dispatcher.dispatch({
-      actionType: ProfileConstants.SHOW_PROFILE,
+      actionType: ProfileConstants.RECEIVE_USER,
       user: user
+    });
+  },
+
+  receiveErrors: function (errors) {
+    Dispatcher.dispatch({
+      actionType: ProfileConstants.RECEIVE_ERRORS,
+      errors: errors
     });
   }
 };

@@ -3,6 +3,7 @@ var React = require('react'),
     Router = require('react-router').Router,
     Route = require('react-router').Route,
     IndexRoute = require('react-router').IndexRoute,
+    browserHistory = require('react-router').browserHistory,
     App = require('./components/app'),
     Homepage = require('./components/homepage'),
     Profile = require('./components/profile'),
@@ -17,7 +18,7 @@ var routes = (
 
 document.addEventListener("DOMContentLoaded", function () {
   ReactDOM.render(
-    <Router>{routes}</Router>,
+    <Router history={browserHistory}>{routes}</Router>,
     document.getElementById('root')
   );
 });

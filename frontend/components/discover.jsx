@@ -3,13 +3,14 @@ var React = require('react'),
 
 var Discover = React.createClass({
   handleClick: function (event) {
+    event.stopPropagation();
     event.preventDefault();
     ProfileModalActions.hideProfileModal();
   },
 
   render: function () {
     return (
-      <div className="discover" onClick={this.handleClick}>
+      <div className="discover" >
         <div className="discover-body">
           <h2>Discover items you can't find anywhere else</h2>
         </div>

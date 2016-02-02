@@ -20,7 +20,7 @@
 
 /* --- RESET --- */
 
-html, body, h1, h4, a, ul, li, p {
+html, body, h1, h2, h3, h4, h5, a, ul, li, p {
   margin: 0;
   padding: 0;
   border: 0;
@@ -43,7 +43,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgb(245, 245, 241);
+  background-color: #fff;
   font-family: 'Merriweather', serif;
 }
 
@@ -71,6 +71,7 @@ body {
 }
 
 .global-nav {
+  box-sizing: border-box;
   padding: 20px 10px;
   width: 1000px;
   margin: auto;
@@ -93,6 +94,7 @@ body {
   font-size: 14px;
   color: rgb(102, 102, 102);
   text-align: center;
+  margin-top: 5px;
 }
 
 .global-nav-links > a {
@@ -327,7 +329,6 @@ body {
 .profile-modal:before {
   content: "▾";
   position: absolute;
-  z-index: 1;
   top: -20px;
   right: 58px;
   transform: scale(1, -1);
@@ -347,6 +348,7 @@ body {
 
 .profile-modal {
   position: absolute;
+  z-index: 2;
   margin-top: 10px;
   margin-left: -175px;
   width: 260px;
@@ -415,13 +417,19 @@ body {
 /* --- GREETING --- */
 
 .greeting {
-  margin: auto;
   padding: 30px 0;
-  width: 1000px;
+  width: 100%;
+  background-color: rgb(245, 245, 241);
+}
+
+.greeting h1 {
+  box-sizing: border-box;
+  margin: auto;
   text-align: center;
   color: rgb(34, 34, 34);
   font-size: 22px;
   font-weight: bold;
+  width: 1000px;
 }
 
 /* --- HERO --- */
@@ -437,8 +445,9 @@ body {
 }
 
 .hero-body {
+  box-sizing: border-box;
   width: 1000px;
-  padding: 20px;
+  padding: 25px;
   margin: auto;
 }
 
@@ -495,11 +504,12 @@ body {
 .discover {
   height: 800px;
   width: 100%;
+  background-color: rgb(245, 245, 241);
 }
 
 .discover-body {
   width: 1000px;
-  padding: 60px;
+  padding: 60px 0;
   margin: auto;
 }
 
@@ -507,4 +517,124 @@ body {
   text-align: center;
   font-size: 30px;
   font-weight: 400;
+}
+
+/* --- PROFILE --- */
+
+.profile {
+  width: 1000px;
+  height: 1000px;
+  padding: 0 10px;
+  margin: auto;
+  background-color: #fff;
+}
+
+.profile-breadcrumbs {
+  padding-bottom: 3px;
+  border-bottom: 1px solid #E1E3DF;
+}
+
+.profile-breadcrumbs * {
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  display: inline;
+}
+
+.profile-breadcrumbs h5 {
+  color: rgb(102, 102, 102);
+}
+
+.profile-nav {
+  position: relative;
+  float: left;
+  background: rgb(245, 245, 241);
+  width: 190px;
+  height: 275px;
+  padding: 15px 0;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.profile-nav-image {
+  margin: auto;
+  width: 160px;
+  height: 160px;
+  border: 1px solid #E1E3DF;
+  border-radius: 50%;
+}
+
+.profile-nav .fa-user {
+  color: rgb(102, 102, 102);
+  margin-top: 35px;
+  margin-left: 50px;
+}
+
+.profile-nav-camera {
+  position: absolute;
+  right: 15px;
+  top: 135px;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 1px solid #E1E3DF;
+  border-radius: 50%;
+}
+
+.profile-nav .fa-camera {
+  margin-top: 12px;
+  margin-left: 12px;
+  color: rgb(63, 147, 181);
+}
+
+.profile-identifier {
+  color: rgb(63, 147, 181);
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 20px;
+}
+
+.profile-tabs-profile {
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  border-top: 1px solid #E1E3DF;
+  border-bottom: 1px solid #E1E3DF;
+  background-color: #fff;
+  color: rgb(102, 102, 102);
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.profile-title {
+  float: left;
+  font-family: sans-serif;
+  font-size: 20px;
+  margin: 30px 0;
+  margin-left: 30px;
+  width: 750px;
+}
+
+.profile-about {
+  float: left;
+  margin-left: 30px;
+  width: 325px;
+  height: 200px;
+  border: 1px solid #E1E3DF;
+  box-shadow: 0 0 20px #E1E3DF;
+  padding: 20px;
+  font-family: sans-serif;;
+}
+
+.profile-about h4 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.profile-about p {
+  font-size: 12px;
+  color: rgb(102, 102, 102);
 }
