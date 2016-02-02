@@ -4,7 +4,8 @@ var React = require('react'),
     AuthFormActions = require('../actions/auth_form_actions'),
     ProfileModalActions = require('../actions/profile_modal_actions'),
     AuthFormStore = require('../stores/auth_form_store'),
-    ProfileModalStore = require('../stores/profile_modal_store');
+    ProfileModalStore = require('../stores/profile_modal_store'),
+    SessionsApiUtil = require('../util/sessions_api_util');
 
 var _getProfileModalState = function () {
   return ProfileModalStore.state();
@@ -19,6 +20,12 @@ var Header = React.createClass({
       AuthFormActions.showAuthForm(target);
     } else if (target === "you") {
       ProfileModalActions.showProfileModal();
+    } else if (target === "guest") {
+      AuthFormActions.hideAuthForm();
+      SessionsApiUtil.signin({
+        email_or_username: "guest",
+        signin_password: "password"
+      });
     } else if (event.target.className !== "profile-modal") {
 
     }
