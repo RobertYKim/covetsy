@@ -23,8 +23,18 @@ var Profile = React.createClass({
     UsersApiUtil.fetchUser(user);
   },
 
+  componentWillUnmount: function () {
+    this.profileListener.remove();
+  },
+
+  getInitialState: function () {
+    return {user: {}};
+  },
+
   render: function () {
     if (!ProfileStore.userHasBeenFetched()) {
+      return <span className="fa fa-spinner fa-5x fa-pulse"></span>;
+    } else if (!this.state.user) {
       return <span className="fa fa-spinner fa-5x fa-pulse"></span>;
     }
 
@@ -53,6 +63,7 @@ var Profile = React.createClass({
       'October',
       'November',
       'December'];
+      debugger
     createdAt = new Date(this.state.user.created_at);
     date = createdAt.getDate();
     month = months[createdAt.getMonth()];

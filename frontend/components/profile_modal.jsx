@@ -1,7 +1,7 @@
 var React = require('react'),
     History = require('react-router').History,
-    ProfileModalActions = require('../actions/profile_modal_actions'),
     ProfileActions = require('../actions/profile_actions'),
+    ProfileModalActions = require('../actions/profile_modal_actions'),
     CurrentUserStore = require('../stores/current_user_store'),
     SessionsApiUtil = require('../util/sessions_api_util');
 
@@ -9,9 +9,8 @@ var ProfileModal = React.createClass({
   mixins: [History],
 
   handleClick: function (event) {
-    var that = this;
     event.preventDefault();
-    if (event.target.className === "profile-modal-user group") {
+    if (event.currentTarget.className === "profile-modal-user group") {
       ProfileModalActions.hideProfileModal();
       var currentUser = CurrentUserStore.currentUser().username;
       this.history.pushState(null, '/people/' + currentUser, {});

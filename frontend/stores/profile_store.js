@@ -18,6 +18,10 @@ ProfileStore.userHasBeenFetched = function () {
 
 ProfileStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
+    case ProfileConstants.RESET_USER:
+      _user = {};
+      _userHasBeenFetched = false;
+      break;
     case ProfileConstants.RECEIVE_USER:
       _user = payload.user;
       _userHasBeenFetched = true;
