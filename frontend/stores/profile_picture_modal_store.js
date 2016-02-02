@@ -12,6 +12,10 @@ ProfilePictureModalStore.state = function () {
 
 ProfilePictureModalStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
+    case ProfilePictureModalConstants.HIDE_PROFILE_PICTURE_MODAL:
+      _visible = false;
+      ProfilePictureModalStore.__emitChange();
+      break;
     case ProfilePictureModalConstants.SHOW_PROFILE_PICTURE_MODAL:
       _visible = true;
       ProfilePictureModalStore.__emitChange();

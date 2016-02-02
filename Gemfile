@@ -35,6 +35,11 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Font Awesome for icons
 gem 'font-awesome-sass'
 
+# File Uploading
+gem 'paperclip'
+gem 'aws-sdk', '~> 1.6'
+gem 'figaro'
+
 group :production do
   gem 'rails_12factor'
 end

@@ -650,3 +650,86 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.profile-picture-modal-form {
+  width: 545px;
+  height: 515px;
+  background-color: #fff;
+  margin: auto;
+  margin-top: 200px;
+  border-radius: 5px;
+  border: 1px solid rgb(179, 179, 179);
+  box-shadow: 0 0 20px rgb(179, 179, 179);
+}
+
+.profile-picture-modal-form-title {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 70px;
+  background-color: rgb(245, 245, 241);
+  border-bottom: 1px solid #E1E3DF;
+}
+
+.profile-picture-modal-form-title h4 {
+  font-family: sans-serif;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 25px;
+}
+
+.profile-picture-modal-form-content-image {
+  margin: auto;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  width: 160px;
+  height: 160px;
+  border: 1px solid #E1E3DF;
+  border-radius: 50%;
+}
+
+.profile-picture-modal-form-content-image .fa-user {
+  color: rgb(102, 102, 102);
+  margin-top: 35px;
+  margin-left: 50px;
+}
+
+.profile-picture-modal-form-content h3 {
+  text-align: center;
+  font-size: 14px;
+  font-family: sans-serif;
+  margin: 10px 0;
+}
+
+.profile-picture-modal-form-content-instructions {
+  font-weight: 700;
+}
+
+.profile-picture-modal-upload {
+  margin: auto;
+  margin-top: 40px;
+  position: relative;
+  width: 130px;
+}
+
+.profile-picture-modal-upload-button {
+  box-sizing: border-box;
+  width: 130px;
+  height: 35px;
+  background-color: rgb(47, 152, 185);
+  border: 1px solid rgb(42, 134, 163);
+  border-radius: 5px;
+  font-family: sans-serif;
+  color: #fff;
+  text-align: center;
+  padding-top: 8px;
+}
+
+.profile-picture-modal-upload-input {
+  box-sizing: border-box;
+  opacity: 0;
+  border: 1px solid #f00;
+  position: absolute;
+  top: 0;
+  width: 130px;
+  height: 35px;
+}
