@@ -104,21 +104,20 @@ body {
 
 .register {
   float: left;
-  padding: 10px;
+  padding: 10px 0;
   margin-top: 1px;
-  margin-right: 10px;
 }
 
 .register:hover {
   text-decoration: underline;
 }
 
-.signin {
+.signin, .guest {
   float: left;
   padding: 10px;
   border: 1px solid #0C92B7;
   border-radius: 5px;
-
+  margin-left: 20px;
 }
 
 .signin:hover {

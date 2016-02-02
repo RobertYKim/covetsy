@@ -88,6 +88,10 @@ var Header = React.createClass({
           href="#"
           onClick={this.handleClick}>Register</a>
         <a
+          className="guest"
+          href="#"
+          onClick={this.handleClick}>Guest Sign in</a>
+        <a
           className="signin"
           href="#"
           onClick={this.handleClick}>Sign in</a>
