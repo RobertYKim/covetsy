@@ -732,6 +732,10 @@ body {
   padding-top: 8px;
 }
 
+.profile-picture-modal-upload:hover .profile-picture-modal-upload-button{
+  background-color: rgb(53, 162, 193);
+}
+
 .profile-picture-modal-upload-input {
   box-sizing: border-box;
   opacity: 0;
@@ -756,8 +760,16 @@ body {
   margin: 10px;
 }
 
+.profile-picture-modal-cancel-submit a:first-child:hover {
+  background-color: rgb(245, 245, 241);
+}
+
 .profile-picture-modal-cancel-submit a:last-child {
   background-color: rgb(47, 152, 185);
   border: 1px solid rgb(42, 134, 163);
   color: #fff;
+}
+
+.profile-picture-modal-cancel-submit a:last-child:hover {
+  background-color: rgb(53, 162, 193);
 }
