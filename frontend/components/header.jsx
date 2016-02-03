@@ -75,6 +75,10 @@ var Header = React.createClass({
     this.profileModalLisener.remove();
   },
 
+  componentWillReceiveProps: function () {
+    AuthFormActions.hideAuthForm();
+  },
+
   render: function () {
     var currentUser = CurrentUserStore.currentUser();
 
