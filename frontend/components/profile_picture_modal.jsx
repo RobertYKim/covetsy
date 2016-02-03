@@ -9,6 +9,15 @@ ProfilePictureModal = React.createClass({
     }
   },
 
+  cancelImage: function (event) {
+    event.preventDefault();
+    this.setState({imageFile: null, imageUrl: ""});
+  },
+
+  submitImage: function (event) {
+    event.preventDefault();
+  },
+
   changeFile: function(event) {
     var reader = new FileReader();
     var file = event.currentTarget.files[0];
