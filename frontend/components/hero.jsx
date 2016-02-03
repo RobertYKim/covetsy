@@ -1,7 +1,7 @@
 var React = require('react');
 
 var Hero = React.createClass({
-// <img src={window.covetsy_assets.background}/>
+
   render: function () {
     return (
       <div className="hero">

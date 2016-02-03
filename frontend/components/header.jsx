@@ -64,6 +64,11 @@ var Header = React.createClass({
       ProfileModalStore.addListener(this._profileModalChanged);
   },
 
+  componentWillUnmount: function () {
+    this.authFormListener.remove();
+    this.profileModalLisener.remove();
+  },
+
   render: function () {
     var profileModal;
     if (this.state.profileModalVisible) {
