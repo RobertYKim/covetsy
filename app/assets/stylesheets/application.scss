@@ -563,6 +563,11 @@ body {
   height: 160px;
   border: 1px solid #E1E3DF;
   border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-nav-image-upload {
+  width: 100%;
 }
 
 .profile-nav .fa-user {
@@ -576,7 +581,7 @@ body {
   top: 135px;
   width: 40px;
   height: 40px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, .6);;
   border: 1px solid #E1E3DF;
   border-radius: 50%;
 }

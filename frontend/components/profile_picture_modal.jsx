@@ -1,6 +1,7 @@
 var React = require('react'),
     ProfilePictureModalActions =
-      require('../actions/profile_picture_modal_actions');
+      require('../actions/profile_picture_modal_actions'),
+    UsersApiUtil = require('../util/users_api_util');
 
 ProfilePictureModal = React.createClass({
   handleClick: function (event) {
@@ -9,13 +10,20 @@ ProfilePictureModal = React.createClass({
     }
   },
 
-  cancelImage: function (event) {
-    event.preventDefault();
+  resetForm: function (event) {
+    if (event) {
+      event.preventDefault();
+    }
     this.setState({imageFile: null, imageUrl: ""});
   },
 
   submitImage: function (event) {
     event.preventDefault();
+
+    var formData = new FormData();
+    formData.append("user[image]", this.state.imageFile);
+
+    UsersApiUtil.editUser(formData, this.resetForm);
   },
 
   changeFile: function(event) {
@@ -44,6 +52,8 @@ ProfilePictureModal = React.createClass({
     var image;
     if (this.state.imageUrl) {
       image = <img src={this.state.imageUrl}></img>;
+    } else if (this.props.imageUrl) {
+      image = <img src={this.props.imageUrl}></img>;
     } else {
       image = <span className="fa fa-user fa-5x"></span>;
     }
@@ -70,7 +80,7 @@ ProfilePictureModal = React.createClass({
     if (this.state.imageUrl) {
       buttons =
         <div className="profile-picture-modal-cancel-submit">
-          <a href="#" onClick={this.cancelImage}>Go back</a>
+          <a href="#" onClick={this.resetForm}>Go back</a>
           <a href="#" onClick={this.submitImage}>Save</a>
         </div>;
     } else {

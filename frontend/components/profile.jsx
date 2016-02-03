@@ -4,6 +4,7 @@ var React = require('react'),
       require('../actions/profile_picture_modal_actions'),
     ProfilePictureModalStore = require('../stores/profile_picture_modal_store'),
     ProfileStore = require('../stores/profile_store'),
+    CurrentUserStore = require('../stores/current_user_store'),
     UsersApiUtil = require('../util/users_api_util');
 
 var _getProfile = function () {
@@ -67,6 +68,7 @@ var Profile = React.createClass({
 
   componentWillUnmount: function () {
     this.profileListener.remove();
+    this.profilePictureModalListener.remove();
   },
 
   getInitialState: function () {
@@ -82,7 +84,12 @@ var Profile = React.createClass({
 
     var profilePictureModal;
     if (this.state.profilePictureModalVisible) {
-      profilePictureModal = <ProfilePictureModal />;
+      if (this.state.user.image_url) {
+        profilePictureModal =
+          <ProfilePictureModal imageUrl={this.state.user.image_url}/>;
+      } else {
+        profilePictureModal = <ProfilePictureModal />;
+      }
     }
 
     var identifier,
@@ -110,6 +117,24 @@ var Profile = React.createClass({
     path = "#/people/" + username;
     title = identifier + "'s Profile";
 
+    var profileImage;
+    if (this.state.user && this.state.user.image_url) {
+      profileImage =
+        <img
+          className="profile-nav-image-upload"
+          src={this.state.user.image_url}></img>;
+    } else {
+      profileImage = <span className="fa fa-user fa-5x"></span>;
+    }
+
+    var camera;
+    if (CurrentUserStore.currentUser().username === username) {
+      camera =
+      <div className="profile-nav-camera" onClick={this.handleClick}>
+        <span className="fa fa-camera"></span>
+      </div>;
+    }
+
     return (
       <div className="profile group">
         {profilePictureModal}
@@ -119,11 +144,9 @@ var Profile = React.createClass({
         </div>
         <div className="profile-nav">
           <div className="profile-nav-image">
-            <span className="fa fa-user fa-5x"></span>
+            {profileImage}
           </div>
-          <div className="profile-nav-camera" onClick={this.handleClick}>
-            <span className="fa fa-camera"></span>
-          </div>
+          {camera}
           <div className="profile-identifier">
             <a href={path}>{identifier}</a>
           </div>

@@ -35,6 +35,22 @@ var UsersApiUtil = {
         ProfileActions.receiveErrors(errors.responseJSON);
       }
     });
+  },
+
+  editUser: function (formData, callback) {
+    $.ajax({
+      type: "PATCH",
+      url: "api/users/:id",
+      processData: false,
+      contentType: false,
+      data: formData,
+      success: function (user) {
+        ProfileActions.receiveUser(user);
+        if (callback) {
+          callback();
+        }
+      }
+    });
   }
 };
 
