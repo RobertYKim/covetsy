@@ -30,7 +30,7 @@ var App = React.createClass({
   componentWillUnmount: function () {
     this.currentUser.remove();
     this.profileListener.remove();
-  }
+  },
 
   render: function () {
     if (!CurrentUserStore.currentUserHasBeenFetched()) {
