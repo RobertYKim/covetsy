@@ -26,7 +26,7 @@ var Header = React.createClass({
         email_or_username: "guest",
         signin_password: "password"
       });
-    } else if (event.target.className === "profile-modal") {
+    } else if (event.target.className !== "profile-modal") {
       ProfileModalActions.hideProfileModal();
     }
   },

@@ -1,5 +1,6 @@
 var React = require('react'),
     ProfilePictureModal = require('./profile_picture_modal'),
+    ProfileModalActions = require('../actions/profile_modal_actions'),
     ProfilePictureModalActions =
       require('../actions/profile_picture_modal_actions'),
     ProfilePictureModalStore = require('../stores/profile_picture_modal_store'),
@@ -29,8 +30,13 @@ var Profile = React.createClass({
   },
 
   handleClick: function (event) {
-    event.preventDefault();
-    ProfilePictureModalActions.showProfilePictureModal();
+    if (event.currentTarget.className === "profile-nav-camera") {
+      event.preventDefault();
+      ProfilePictureModalActions.showProfilePictureModal();
+    }
+    if (event.target.className !== "profile-modal") {
+      ProfileModalActions.hideProfileModal();
+    }
   },
 
   createDate: function (timestamp) {
@@ -136,10 +142,15 @@ var Profile = React.createClass({
     }
 
     return (
-      <div className="profile group">
+      <div className="profile group" onClick={this.handleClick}>
         {profilePictureModal}
         <div className="profile-breadcrumbs">
-          <a href="#">Home</a>
+          <a
+            className="profile-breadcrumbs-home"
+            href="#"
+            onClick={this.handleClick}>
+            Home
+          </a>
           <h5>{location}</h5>
         </div>
         <div className="profile-nav">
