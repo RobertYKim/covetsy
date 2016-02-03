@@ -14,7 +14,7 @@ var ProfileModal = React.createClass({
       ProfileModalActions.hideProfileModal();
       var currentUser = CurrentUserStore.currentUser().username;
       this.history.pushState(null, '/people/' + currentUser, {});
-    } else if (event.target.className === "profile-modal-signout") {
+    } else if (event.currentTarget.className === "profile-modal-signout") {
       SessionsApiUtil.signout();
       this.history.pushState(null, '/', {});
     }
