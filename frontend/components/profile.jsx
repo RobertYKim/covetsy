@@ -77,6 +77,11 @@ var Profile = React.createClass({
     this.profilePictureModalListener.remove();
   },
 
+  componentWillReceiveProps: function (newProps) {
+    var user = newProps.params.username;
+    UsersApiUtil.fetchUser(user);
+  },
+
   getInitialState: function () {
     return {user: {}};
   },
