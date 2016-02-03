@@ -1,4 +1,5 @@
 var React = require('react'),
+    History = require('react-router').History,
     AuthForm = require('./auth_form'),
     ProfileModal = require('./profile_modal'),
     AuthFormActions = require('../actions/auth_form_actions'),
@@ -12,6 +13,8 @@ var _getProfileModalState = function () {
 };
 
 var Header = React.createClass({
+  mixins: [History],
+
   handleClick: function (event) {
     event.stopPropagation();
     event.preventDefault();
@@ -26,6 +29,8 @@ var Header = React.createClass({
         email_or_username: "guest",
         signin_password: "password"
       });
+    } else if (event.target.className === "logo") {
+      this.history.pushState(null, '/', {});
     } else if (event.target.className !== "profile-modal") {
       ProfileModalActions.hideProfileModal();
     }
