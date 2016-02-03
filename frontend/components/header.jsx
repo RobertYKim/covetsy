@@ -6,6 +6,7 @@ var React = require('react'),
     ProfileModalActions = require('../actions/profile_modal_actions'),
     AuthFormStore = require('../stores/auth_form_store'),
     ProfileModalStore = require('../stores/profile_modal_store'),
+    CurrentUserStore = require('../stores/current_user_store'),
     SessionsApiUtil = require('../util/sessions_api_util');
 
 var _getProfileModalState = function () {
@@ -75,9 +76,11 @@ var Header = React.createClass({
   },
 
   render: function () {
+    var currentUser = CurrentUserStore.currentUser();
+
     var profileModal;
     if (this.state.profileModalVisible) {
-      profileModal = <ProfileModal />;
+      profileModal = <ProfileModal imageUrl={currentUser.image_url}/>;
     }
 
     var authForm;
@@ -92,7 +95,11 @@ var Header = React.createClass({
       links =
       <div className="global-nav-links group">
         <div className="you" onClick={this.handleClick}>
-          <span className="fa fa-user fa-2x"></span>
+          <div className="you-container">
+            <img
+              className="you-container-image"
+              src={currentUser.image_url}></img>
+          </div>
           <p>You ▾</p>
         </div>
         {profileModal}

@@ -22,7 +22,12 @@ var ProfileModal = React.createClass({
 
   render: function () {
     var profileImage;
-    profileImage = <span className="fa fa-user fa-4x"></span>;
+    profileImage =
+      <div className="profile-modal-container">
+        <img
+          className="profile-modal-container-image"
+          src={this.props.imageUrl}></img>
+      </div>;
 
     var profileName,
         currentUser,
