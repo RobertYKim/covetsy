@@ -798,3 +798,44 @@ body {
 .profile-picture-modal-cancel-submit a:last-child:hover {
   background-color: rgb(53, 162, 193);
 }
+
+/* --- SELL --- */
+
+.sell-hero {
+  min-height: 1080px;
+  width: 100%;
+  height: auto;
+  background-image: url("https://s3.amazonaws.com/covetsy-seed/heros/sellhero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.sell-hero-space {
+  height: 230px;
+}
+
+.sell-hero h1 {
+  margin: auto;
+  width: 600px;
+  color: #fff;
+  font-size: 36px;
+  text-shadow: 0 0 200px #000;
+}
+
+.sell-hero a {
+  display: block;
+  margin: auto;
+  margin-top: 40px;
+  width: 220px;
+  padding: 10px 0;
+  border: 1px solid #E1E3DF;
+  border-radius: 5px;
+  background-color: #fff;
+  color: rgb(51, 51, 51);
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.sell-hero a:hover {
+  background-color: rgb(245, 245, 241);
+}

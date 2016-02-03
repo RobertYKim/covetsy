@@ -7,12 +7,13 @@ var React = require('react'),
     App = require('./components/app'),
     Homepage = require('./components/homepage'),
     Profile = require('./components/profile'),
-    AuthForm = require('./components/auth_form');
+    Sell = require('./components/sell');
 
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Homepage}/>
     <Route path="people/:username" component={Profile}/>
+    <Route path="sell" component={Sell}/>
   </Route>
 );
 
