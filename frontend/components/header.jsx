@@ -101,10 +101,22 @@ var Header = React.createClass({
           onClick={this.handleClick}>Sell on covEtsy</a>;
     }
 
+    var shop;
+    if (currentUser && currentUser.shop_owner) {
+      shop =
+      <div className="shop" onClick={this.handleClick}>
+        <div className="shop-container">
+          <span className="fa fa-university fa-lg"></span>
+        </div>
+        <p>Shop ▾</p>
+      </div>;
+    }
+
     var links;
     if (this.props.signedIn) {
       links =
       <div className="global-nav-links group">
+        {shop}
         {sell}
         <div className="you" onClick={this.handleClick}>
           <div className="you-container">

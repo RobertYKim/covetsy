@@ -108,6 +108,23 @@ body {
   margin-right: 0;
 }
 
+.shop {
+  float: left;
+  padding-right: 10px;
+}
+
+.shop:hover {
+  color: #000;
+}
+
+.shop-container {
+  padding: 5px;
+}
+
+.shop p {
+  padding-top: 1px;
+}
+
 .sell {
   float: left;
   padding: 10px 0;
@@ -380,8 +397,8 @@ body {
 .profile-modal {
   position: absolute;
   z-index: 2;
-  margin-top: 10px;
-  margin-left: -175px;
+  margin-top: 60px;
+  margin-left: -113px;
   width: 260px;
   border: 1px solid #E1E3DF;
   border-radius: 5px;

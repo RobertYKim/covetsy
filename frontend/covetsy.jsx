@@ -13,7 +13,6 @@ var React = require('react'),
 
 var validate = function (nextState, transition, callback) {
   SessionsApiUtil.fetchCurrentUser( function (currentUser) {
-    debugger
     if (!currentUser || currentUser.shop_owner) {
       transition(null, "/", {});
     }
