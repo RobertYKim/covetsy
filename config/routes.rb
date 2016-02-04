@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create, :show, :update]
     resource :session, only: [:create, :show, :destroy]
-    resources :shops, only: [:create, :show, :update]
+    resources :shops, only: [:create, :show, :update] do
+      collection do
+        get "exists"
+      end
+    end
   end
 end

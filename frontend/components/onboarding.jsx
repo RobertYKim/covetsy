@@ -1,9 +1,38 @@
 var React = require('react'),
+    ShopStore = require('../stores/shop_store'),
+    OnboardingStore = require('../stores/onboarding_store'),
     CurrentUserStore = require('../stores/current_user_store'),
     ShopsApiUtil = require('../util/shops_api_util'),
     UsersApiUtil = require('../util/users_api_util');
 
 var Onboarding = React.createClass({
+  _shopStoreChanged: function () {
+    var shop = ShopStore.shop();
+    if (shop.shop_name === this.state.shop_name) {
+      this.setState({invalidShopName: true});
+    } else {
+      this.setState({invalidShopName: false});
+    }
+  },
+
+  _onboardingStoreChanged: function () {
+    var json = OnboardingStore.existingStore();
+    var status = json[0] === "true" ? true : false;
+    this.setState({nameTaken: status, checkedName: this.state.shop_name});
+  },
+
+  handleBlur: function (event) {
+    this.validateShopName(this.state.shop_name);
+    this.setState({unfocusedShopName: true});
+  },
+
+  handleClick: function (event) {
+    if (event.target.className !== "submit") {
+      event.preventDefault();
+      this.setState({clickedShopName: true});
+    }
+  },
+
   handleChange: function (event) {
     var id = event.target.id;
     var value = event.target.value;
@@ -11,9 +40,17 @@ var Onboarding = React.createClass({
     if (id === "shop-name") {
       var oldState = this.state.shop_name;
       if (nonword.test(value)) {
-        this.setState({shop_name: oldState});
+        this.setState({
+          shop_name: oldState,
+          unfocusedShopName: false,
+          nameTaken: "notYetChecked"
+        });
       } else {
-        this.setState({shop_name: value});
+        this.setState({
+          shop_name: value,
+          unfocusedShopName: false,
+          nameTaken: "notYetChecked"
+        });
       }
     } else if (id === "shop-language") {
       this.setState({language: value});
@@ -34,7 +71,10 @@ var Onboarding = React.createClass({
 
   handleSubmit: function (event) {
     event.preventDefault();
-    if (this.validShopName(this.state.shop_name)) {
+    if (
+      !this.state.nameTaken &&
+      this.state.checkedName === this.state.shop_name
+    ) {
       ShopsApiUtil.createShop(
         this.state,
         UsersApiUtil.editUser({shop_owner: true})
@@ -42,7 +82,18 @@ var Onboarding = React.createClass({
     }
   },
 
-  validShopName: function (name) {
+  validateShopName: function (name) {
+    if (
+      this.state.clickedShopName &&
+      this.validShopNameLength(name)
+    ) {
+      ShopsApiUtil.shopExists(name);
+    } else {
+      this.setState({invalidShopName: true});
+    }
+  },
+
+  validShopNameLength: function (name) {
     if (name.length >= 4 && name.length <= 20) {
       return true;
     }
@@ -51,6 +102,9 @@ var Onboarding = React.createClass({
 
   getInitialState: function () {
     return ({
+      clickedShopName: false,
+      invalidShopName: true,
+      nameTaken: "notYetChecked",
       shop_name: "",
       language: "english",
       country: "unitedStates",
@@ -62,6 +116,13 @@ var Onboarding = React.createClass({
   componentDidMount: function () {
     var user = CurrentUserStore.currentUser();
     this.setState({user_id: user.id});
+    this.shopStoreListener = ShopStore.addListener(this._shopStoreChanged);
+    this.onboardingStoreListener =
+      OnboardingStore.addListener(this._onboardingStoreChanged);
+  },
+
+  componentWillUnmount: function () {
+    this.shopStoreListener.remove();
   },
 
   render: function () {
@@ -198,8 +259,37 @@ var Onboarding = React.createClass({
         </div>
       </li>;
 
+    var shopNameMessage;
+    if (
+      this.state.clickedShopName &&
+      this.state.unfocusedShopName &&
+      this.validShopNameLength(this.state.shop_name)
+    ) {
+      if (this.state.nameTaken === "notYetChecked") {
+        shopNameMessage = <h5>Checking...</h5>;
+      } else if (this.state.nameTaken) {
+        shopNameMessage =
+          <h5 className="red">
+            Shucks, that name’s already been used by another covEtsy member.
+            Please try another one.
+          </h5>;
+      } else {
+        shopNameMessage = <h5 className="green">Available</h5>;
+      }
+    } else if (
+      this.state.clickedShopName &&
+      this.state.unfocusedShopName &&
+      !this.validShopNameLength(this.state.shop_name)
+    ) {
+      shopNameMessage =
+        <h5 className="red">Shop names must have 4-20 characters.</h5>;
+    }
+
     return (
-      <form className="onboarding-form" onSubmit={this.handleSubmit}>
+      <form
+        className="onboarding-form"
+        onClick={this.handleClick}
+        onSubmit={this.handleSubmit}>
         <div className="onboarding-form-title-name">
           <h3>Name your shop</h3>
           <h4>Choose a memorable name that reflects your style.</h4>
@@ -210,8 +300,13 @@ var Onboarding = React.createClass({
                 type="text"
                 placeholder="Enter your shop name"
                 onChange={this.handleChange}
-                value={this.state.shop_name}></input>
-              <button>Check availability</button>
+                onBlur={this.handleBlur}
+                value={this.state.shop_name}
+                onClick={this.handleClick}></input>
+              <button className="check" onClick={this.handleClick}>
+                Check availability
+              </button>
+              {shopNameMessage}
             </div>
             <p>
               Your shop name will appear in your shop and next to each of your
@@ -232,10 +327,8 @@ var Onboarding = React.createClass({
             </ul>
           </div>
         </div>
-        <button>Create shop</button>
+        <button className="submit">Create shop</button>
       </form>
-
-
     );
   }
 });

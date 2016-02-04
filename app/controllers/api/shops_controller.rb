@@ -8,6 +8,24 @@ class Api::ShopsController < ApplicationController
     end
   end
 
+  def show
+    @shop = Shop.find_by_shop_name(params[:shop_name])
+    if @shop
+      render :show
+    else
+      render json: ["User not found"], status: 404
+    end
+  end
+
+  def exists
+    @shop = Shop.find_by_shop_name(params[:shop_name])
+    if @shop
+      render json: ["true"]
+    else
+      render json: ["false"]
+    end
+  end
+
   private
 
   def shop_params
