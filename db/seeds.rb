@@ -64,3 +64,40 @@ frankie = User.create!(
   password: "frankiefrankie",
   image: "https://s3.amazonaws.com/covetsy-seed/users/frankie.jpg"
 )
+
+# Languages
+Language.destroy_all
+german = Language.create!(name: "german")
+english = Language.create!(name: "english")
+spanish = Language.create!(name: "spanish")
+french = Language.create!(name: "french")
+italian = Language.create!(name: "italian")
+japanese = Language.create!(name: "japanese")
+dutch = Language.create!(name: "dutch")
+portugese = Language.create!(name: "portugese")
+russian = Language.create!(name: "russian")
+
+# Countries
+Country.destroy_all
+australia = Country.create!(name: "australia")
+canada = Country.create!(name: "canada")
+france = Country.create!(name: "france")
+germany = Country.create!(name: "germany")
+greece = Country.create!(name: "greece")
+ireland = Country.create!(name: "ireland")
+italy = Country.create!(name: "italy")
+japan = Country.create!(name: "japan")
+newZealand = Country.create!(name: "newZealand")
+russia = Country.create!(name: "russia")
+spain = Country.create!(name: "spain")
+theNetherlands = Country.create!(name: "theNetherlands")
+unitedKingdom = Country.create!(name: "unitedKingdom")
+unitedStates = Country.create!(name: "unitedStates")
+
+# Currencies
+usd = Currency.create!(name: "usd")
+cad = Currency.create!(name: "cad")
+eur = Currency.create!(name: "eur")
+gbp = Currency.create!(name: "gbp")
+aud = Currency.create!(name: "aud")
+jpy = Currency.create!(name: "jpy")
