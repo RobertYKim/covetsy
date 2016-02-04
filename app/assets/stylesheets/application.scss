@@ -101,7 +101,11 @@ body {
 .global-nav-links > a {
   display: block;
   color: rgb(12, 146, 183);
-  margin-left: 20px;
+  margin: 0 10px;
+}
+
+.global-nav-links > a:last-child {
+  margin-right: 0;
 }
 
 .sell {
@@ -133,6 +137,11 @@ body {
 
 .signin:hover, .guest:hover {
   background-color: #E5F4F7;
+}
+
+.you {
+  float: left;
+  margin-left: 10px;
 }
 
 .you:hover {

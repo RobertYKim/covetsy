@@ -92,10 +92,20 @@ var Header = React.createClass({
                     errors={this.state.authFormErrors}/>;
     }
 
+    var sell;
+    if (currentUser && !currentUser.shop_owner) {
+      sell =
+        <a
+          className="sell"
+          href="#"
+          onClick={this.handleClick}>Sell on covEtsy</a>;
+    }
+
     var links;
     if (this.props.signedIn) {
       links =
       <div className="global-nav-links group">
+        {sell}
         <div className="you" onClick={this.handleClick}>
           <div className="you-container">
             <img
