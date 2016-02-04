@@ -23,7 +23,7 @@ ProfilePictureModal = React.createClass({
     var formData = new FormData();
     formData.append("user[image]", this.state.imageFile);
 
-    UsersApiUtil.editUser(formData, this.resetForm);
+    UsersApiUtil.editUserPhoto(formData, this.resetForm);
   },
 
   changeFile: function(event) {

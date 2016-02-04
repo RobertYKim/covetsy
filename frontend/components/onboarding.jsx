@@ -37,7 +37,7 @@ var Onboarding = React.createClass({
     if (this.validShopName(this.state.shop_name)) {
       ShopsApiUtil.createShop(
         this.state,
-        UsersApiUtil.editUser({user: {shop_owner: true}})
+        UsersApiUtil.editUser({shop_owner: true})
       );
     }
   },
@@ -61,7 +61,7 @@ var Onboarding = React.createClass({
 
   componentDidMount: function () {
     var user = CurrentUserStore.currentUser();
-    this.setState({user: user});
+    this.setState({user_id: user.id});
   },
 
   render: function () {

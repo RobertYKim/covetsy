@@ -4,20 +4,16 @@ class Shop < ActiveRecord::Base
   validates :shop_name, :user_id, uniqueness: true
   validates :shop_name, length: { minimum: 4, maximum: 20 }
 
-  after_initialize :lookup_language, :lookup_country, :lookup_currency
-
-  private
-
-  def lookup_language
-    language_id = Language.find_by(name: language).id
+  def language=(language)
+    self.language_id = Language.find_by(name: language).id
   end
 
-  def lookup_country
-    country_id = Country.find_by(name: country).id
+  def country=(country)
+    self.country_id = Country.find_by(name: country).id
   end
 
-  def lookup_currency
-    currency_id = Currency.find_by(name: currency).id
+  def currency=(currency)
+    self.currency_id = Currency.find_by(name: currency).id
   end
-  
+
 end

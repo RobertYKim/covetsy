@@ -37,7 +37,21 @@ var UsersApiUtil = {
     });
   },
 
-  editUser: function (formData, callback) {
+  editUser: function (data, callback) {
+    $.ajax({
+      type: "PATCH",
+      url: "api/users/:id",
+      data: {user: data},
+      success: function (user) {
+        ProfileActions.receiveUser(user);
+        if (callback) {
+          callback();
+        }
+      }
+    });
+  },
+
+  editUserPhoto: function (formData, callback) {
     $.ajax({
       type: "PATCH",
       url: "api/users/:id",
