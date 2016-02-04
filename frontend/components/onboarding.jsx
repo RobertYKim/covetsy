@@ -1,16 +1,67 @@
-var React = require('react');
+var React = require('react'),
+    CurrentUserStore = require('../stores/current_user_store'),
+    ShopsApiUtil = require('../util/shops_api_util'),
+    UsersApiUtil = require('../util/users_api_util');
 
 var Onboarding = React.createClass({
   handleChange: function (event) {
+    var id = event.target.id;
+    var value = event.target.value;
+    var nonword = /\W/;
+    if (id === "shop-name") {
+      var oldState = this.state.shop_name;
+      if (nonword.test(value)) {
+        this.setState({shop_name: oldState});
+      } else {
+        this.setState({shop_name: value});
+      }
+    } else if (id === "shop-language") {
+      this.setState({language: value});
+    } else if (id === "shop-country") {
+      this.setState({country: value});
+    } else if (id === "shop-currency") {
+      this.setState({currency: value});
+    } else if (id === "full-time") {
+      this.setState({seller_type: value});
+    } else if (id === "part-full") {
+      this.setState({seller_type: value});
+    } else if (id === "part-time") {
+      this.setState({seller_type: value});
+    } else if (id === "other") {
+      this.setState({seller_type: value});
+    }
+  },
 
+  handleSubmit: function (event) {
+    event.preventDefault();
+    if (this.validShopName(this.state.shop_name)) {
+      ShopsApiUtil.createShop(
+        this.state,
+        UsersApiUtil.editUser({user: {shop_owner: true}})
+      );
+    }
+  },
+
+  validShopName: function (name) {
+    if (name.length >= 4 && name.length <= 20) {
+      return true;
+    }
+    return false;
   },
 
   getInitialState: function () {
     return ({
+      shop_name: "",
       language: "english",
       country: "unitedStates",
-      currency: "usd"
+      currency: "usd",
+      seller_type: "other"
     });
+  },
+
+  componentDidMount: function () {
+    var user = CurrentUserStore.currentUser();
+    this.setState({user: user});
   },
 
   render: function () {
@@ -19,8 +70,8 @@ var Onboarding = React.createClass({
         <label htmlFor="shop-language">Shop language</label>
         <select
           id="shop-language"
-          defaultValue="english"
-          onChange={this.handleChange}>
+          onChange={this.handleChange}
+          value={this.state.language}>
           <option value="german">Deutsch</option>
           <option value="english">English</option>
           <option value="spanish">Español</option>
@@ -41,8 +92,8 @@ var Onboarding = React.createClass({
         <label htmlFor="shop-country">Shop country</label>
         <select
           id="shop-country"
-          defaultValue="unitedStates"
-          onChange={this.handleChange}>
+          onChange={this.handleChange}
+          value={this.state.country}>
           <option value="australia">Australia</option>
           <option value="canada">Canada</option>
           <option value="france">France</option>
@@ -69,8 +120,8 @@ var Onboarding = React.createClass({
         <label htmlFor="shop-currency">Shop currency</label>
         <select
           id="shop-currency"
-          defaultValue="usd"
-          onChange={this.handleChange}>
+          onChange={this.handleChange}
+          value={this.state.currency}>
           <option value="usd">$ United States Dollar</option>
           <option value="cad">$ Canadian Dollar</option>
           <option value="eur">€ Euro</option>
@@ -93,7 +144,7 @@ var Onboarding = React.createClass({
           <li>
             <input
               onChange={this.handleChange}
-              checked={this.state.type === "full"}
+              checked={this.state.seller_type === "full"}
               id="full-time"
               value="full"
               name="type"
@@ -105,7 +156,7 @@ var Onboarding = React.createClass({
           <li>
             <input
               onChange={this.handleChange}
-              checked={this.state.type === "partfull"}
+              checked={this.state.seller_type === "partfull"}
               id="part-full"
               value="partfull"
               name="type"
@@ -117,7 +168,7 @@ var Onboarding = React.createClass({
           <li>
             <input
               onChange={this.handleChange}
-              checked={this.state.type === "part"}
+              checked={this.state.seller_type === "part"}
               id="part-time"
               value="part"
               name="type"
@@ -129,7 +180,7 @@ var Onboarding = React.createClass({
           <li>
             <input
               onChange={this.handleChange}
-              checked={this.state.type === "other"}
+              checked={this.state.seller_type === "other"}
               id="other"
               value="other"
               name="type"
@@ -148,16 +199,18 @@ var Onboarding = React.createClass({
       </li>;
 
     return (
-      <form className="onboarding-form">
+      <form className="onboarding-form" onSubmit={this.handleSubmit}>
         <div className="onboarding-form-title-name">
           <h3>Name your shop</h3>
           <h4>Choose a memorable name that reflects your style.</h4>
           <div className="onboarding-form-name-form">
             <div className="onboarding-form-name-input group">
               <input
+                id="shop-name"
                 type="text"
                 placeholder="Enter your shop name"
-                onChange={this.handleChange}></input>
+                onChange={this.handleChange}
+                value={this.state.shop_name}></input>
               <button>Check availability</button>
             </div>
             <p>
