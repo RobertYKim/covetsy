@@ -1,11 +1,26 @@
 var React = require('react');
 
 var Onboarding = React.createClass({
+  handleChange: function (event) {
+
+  },
+
+  getInitialState: function () {
+    return ({
+      language: "english",
+      country: "unitedStates",
+      currency: "usd"
+    });
+  },
+
   render: function () {
     var shopLanguage =
       <li className="group">
         <label htmlFor="shop-language">Shop language</label>
-        <select id="shop-language" defaultValue="english">
+        <select
+          id="shop-language"
+          defaultValue="english"
+          onChange={this.handleChange}>
           <option value="german">Deutsch</option>
           <option value="english">English</option>
           <option value="spanish">Español</option>
@@ -24,7 +39,10 @@ var Onboarding = React.createClass({
     var shopCountry =
       <li className="group">
         <label htmlFor="shop-country">Shop country</label>
-        <select id="shop-country" defaultValue="unitedStates">
+        <select
+          id="shop-country"
+          defaultValue="unitedStates"
+          onChange={this.handleChange}>
           <option value="australia">Australia</option>
           <option value="canada">Canada</option>
           <option value="france">France</option>
@@ -49,7 +67,10 @@ var Onboarding = React.createClass({
     var shopCurrency =
       <li className="group">
         <label htmlFor="shop-currency">Shop currency</label>
-        <select id="shop-currency" defaultValue="usd">
+        <select
+          id="shop-currency"
+          defaultValue="usd"
+          onChange={this.handleChange}>
           <option value="usd">$ United States Dollar</option>
           <option value="cad">$ Canadian Dollar</option>
           <option value="eur">€ Euro</option>
@@ -71,6 +92,8 @@ var Onboarding = React.createClass({
         <ul>
           <li>
             <input
+              onChange={this.handleChange}
+              checked={this.state.type === "full"}
               id="full-time"
               value="full"
               name="type"
@@ -81,6 +104,8 @@ var Onboarding = React.createClass({
           </li>
           <li>
             <input
+              onChange={this.handleChange}
+              checked={this.state.type === "partfull"}
               id="part-full"
               value="partfull"
               name="type"
@@ -91,6 +116,8 @@ var Onboarding = React.createClass({
           </li>
           <li>
             <input
+              onChange={this.handleChange}
+              checked={this.state.type === "part"}
               id="part-time"
               value="part"
               name="type"
@@ -101,6 +128,8 @@ var Onboarding = React.createClass({
           </li>
           <li>
             <input
+              onChange={this.handleChange}
+              checked={this.state.type === "other"}
               id="other"
               value="other"
               name="type"
@@ -125,7 +154,10 @@ var Onboarding = React.createClass({
           <h4>Choose a memorable name that reflects your style.</h4>
           <div className="onboarding-form-name-form">
             <div className="onboarding-form-name-input group">
-              <input type="text" placeholder="Enter your shop name"></input>
+              <input
+                type="text"
+                placeholder="Enter your shop name"
+                onChange={this.handleChange}></input>
               <button>Check availability</button>
             </div>
             <p>

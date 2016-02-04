@@ -11,10 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202202117) do
+ActiveRecord::Schema.define(version: 20160204025031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "countries", ["name"], name: "index_countries_on_name", unique: true, using: :btree
+
+  create_table "currencies", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "currencies", ["name"], name: "index_currencies_on_name", unique: true, using: :btree
+
+  create_table "languages", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "languages", ["name"], name: "index_languages_on_name", unique: true, using: :btree
+
+  create_table "shops", force: :cascade do |t|
+    t.integer  "user_id",     null: false
+    t.string   "shop_name",   null: false
+    t.integer  "language_id", null: false
+    t.integer  "country_id",  null: false
+    t.integer  "currency_id", null: false
+    t.string   "seller_type", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "shops", ["user_id", "shop_name"], name: "index_shops_on_user_id_and_shop_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
