@@ -2,8 +2,7 @@ var React = require('react'),
     ShopStore = require('../stores/shop_store'),
     OnboardingStore = require('../stores/onboarding_store'),
     CurrentUserStore = require('../stores/current_user_store'),
-    ShopsApiUtil = require('../util/shops_api_util'),
-    UsersApiUtil = require('../util/users_api_util');
+    ShopsApiUtil = require('../util/shops_api_util');
 
 var Onboarding = React.createClass({
   _shopStoreChanged: function () {
@@ -75,10 +74,7 @@ var Onboarding = React.createClass({
       !this.state.nameTaken &&
       this.state.checkedName === this.state.shop_name
     ) {
-      ShopsApiUtil.createShop(
-        this.state,
-        UsersApiUtil.editUser({shop_owner: true})
-      );
+      ShopsApiUtil.createShop(this.state);
     }
   },
 

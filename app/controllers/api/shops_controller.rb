@@ -1,7 +1,9 @@
 class Api::ShopsController < ApplicationController
   def create
-    @shop = Shop.new(shop_params)
+    @shop = current_user.build_shop(shop_params)
+    debugger
     if @shop.save
+      current_user.update(shop_owner: true)
       render :show
     else
       render json [@shop.errors.full_messages], status: 422
@@ -30,7 +32,6 @@ class Api::ShopsController < ApplicationController
 
   def shop_params
     params.require(:shop).permit(
-      :user_id,
       :shop_name,
       :language,
       :country,

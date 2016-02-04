@@ -4,6 +4,8 @@ class Shop < ActiveRecord::Base
   validates :shop_name, :user_id, uniqueness: true
   validates :shop_name, length: { minimum: 4, maximum: 20 }
 
+  belongs_to :user
+
   def language=(language)
     self.language_id = Language.find_by(name: language).id
   end
