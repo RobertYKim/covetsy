@@ -20,7 +20,7 @@
 
 /* --- RESET --- */
 
-html, body, h1, h2, h3, h4, h5, a, ul, li, p {
+html, body, h1, h2, h3, h4, h5, a, ul, li, p, input, label, select, button {
   margin: 0;
   padding: 0;
   border: 0;
@@ -55,7 +55,7 @@ body {
   display: block;
 }
 
-/* --- HEADER --- */
+/* --- SPINNER --- */
 .fa-spinner {
   position: relative;
   left: 50%;
@@ -838,4 +838,192 @@ body {
 
 .sell-hero a:hover {
   background-color: rgb(245, 245, 241);
+}
+
+/* --- ONBOARDING --- */
+
+.onboarding-form {
+  color: rgb(34, 34, 34);
+  background-color: rgb(245, 245, 241);
+  list-style-type: none;
+  line-height: 1.5;
+  min-width: 1000px;
+  height: 1000px;
+}
+
+.onboarding-form h3 {
+  font-size: 22px;
+  font-weight: 700;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+.onboarding-form h4 {
+  font-family: sans-serif;
+  font-size: 16px;
+  padding-bottom: 30px;
+}
+
+.onboarding-form h3, .onboarding-form h4 {
+  text-align: center;
+}
+
+.onboarding-form-name-form, .onboarding-form-preferences-form {
+  margin: 0 40px;
+  width: auto;
+  min-width: 840px;
+  padding: 30px 40px;
+  background-color: #fff;
+  border: 1px solid #E1E3DF;
+  border-radius: 3px;
+}
+
+.onboarding-form-name-input {
+  margin: auto;
+  width: 650px;
+}
+
+.onboarding-form-name-input * {
+  font-family: sans-serif;
+  height: 45px;
+}
+
+.onboarding-form-name-input input {
+  float: left;
+  font-size: 18px;
+  width: 500px;
+  padding: 10px 15px;
+  border-top: 1px solid #E1E3DF;
+  border-bottom: 1px solid #E1E3DF;
+  border-left: 1px solid #E1E3DF;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.onboarding-form-name-input input:hover {
+  border-top: 1px solid rgb(102, 102, 102);
+  border-bottom: 1px solid rgb(102, 102, 102);
+  border-left: 1px solid rgb(102, 102, 102);
+}
+
+.onboarding-form-name-input input:focus {
+  border-top: 1px solid rgb(42, 134, 163);
+  border-bottom: 1px solid rgb(42, 134, 163);
+  border-left: 1px solid rgb(42, 134, 163);
+}
+
+.onboarding-form-name-input button {
+  float: right;
+  text-align: center;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(34, 34, 34);
+  background-color: #fff;
+  border: 1px solid #E1E3DF;
+  outline: 0;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.onboarding-form-name-input button:hover {
+  background-color: rgb(245, 245, 241);
+}
+
+.onboarding-form-name-input button:active {
+  border: 1px solid rgb(51, 51, 51);
+}
+
+.onboarding-form-name-input button:focus {
+  border: 1px solid rgb(42, 134, 163);
+}
+
+.onboarding-form-name-form p {
+  margin: auto;
+  margin-top: 25px;
+  width: 650px;
+  text-align: center;
+}
+
+.onboarding-form-name-form ul, .onboarding-form-preferences-form ul {
+  list-style: none;
+}
+
+.onboarding-form-name-form label:first-child {
+  font-weight: 700;
+}
+
+.onboarding-form-name-form label, .onboarding-form-preferences-form label {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.onboarding-form-name-form p, .onboarding-form-preferences-form p {
+  color: rgb(102, 102, 102);
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+.onboarding-form-preferences-form > ul > li {
+  padding-bottom: 20px;
+}
+
+.onboarding-form-preferences-form li > label:first-child {
+  float: left;
+  width: 20%;
+  font-weight: 700;
+  margin-right: 50px;
+}
+
+.onboarding-form-preferences-form li > select {
+  width: 33%;
+  float: left;
+  font-size: 14px;
+  font-family: sans-serif;
+  height: 40px;
+  border: 1px solid #E1E3DF;
+}
+
+.onboarding-form-preferences-form li > ul {
+  float: left;
+}
+
+.onboarding-form-preferences-form input {
+  margin-right: 5px;
+}
+
+.onboarding-form-preferences-form input > label {
+  float: left;
+}
+
+.onboarding-form-preferences-form li > div {
+  width: 33%;
+  float: right;
+}
+
+.onboarding-form-preferences-form li > p {
+  text-align: left;
+}
+
+.onboarding-form-preferences-form > ul > li:last-child {
+  padding-top: 20px;
+  border-top: 1px solid #E1E3DF;
+}
+
+.onboarding-form > button {
+  padding: 5px 15px;
+  background-color: rgb(47, 152, 185);
+  border: 1px solid #000;
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-family: sans-serif;
+  border: 1px solid rgb(42, 134, 163);
+  color: #fff;
+}
+
+.onboarding-form > button:hover {
+  background-color: rgb(53, 162, 193);
 }

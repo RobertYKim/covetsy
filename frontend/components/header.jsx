@@ -76,7 +76,7 @@ var Header = React.createClass({
   },
 
   componentWillReceiveProps: function () {
-    AuthFormActions.hideAuthForm();
+
   },
 
   render: function () {
