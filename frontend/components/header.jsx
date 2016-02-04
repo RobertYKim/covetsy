@@ -22,6 +22,8 @@ var Header = React.createClass({
     var target = event.currentTarget.className;
     if (target === "register" || target === "signin") {
       AuthFormActions.showAuthForm(target);
+    } else if (target === "sell") {
+      this.history.pushState(null, 'sell', {});
     } else if (target === "you") {
       ProfileModalActions.showProfileModal();
     } else if (target === "guest") {
@@ -75,10 +77,6 @@ var Header = React.createClass({
     this.profileModalLisener.remove();
   },
 
-  componentWillReceiveProps: function () {
-
-  },
-
   render: function () {
     var currentUser = CurrentUserStore.currentUser();
 
@@ -111,6 +109,10 @@ var Header = React.createClass({
     } else {
       links =
       <div className="global-nav-links group">
+        <a
+          className="sell"
+          href="#"
+          onClick={this.handleClick}>Sell on covEtsy</a>
         <a
           className="register"
           href="#"
