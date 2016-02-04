@@ -1,13 +1,17 @@
 var React = require('react'),
+    History = require('react-router').History,
     AuthFormActions = require('../actions/auth_form_actions'),
     ProfileModalActions = require('../actions/profile_modal_actions'),
     CurrentUserStore = require('../stores/current_user_store');
 
 var Sell = React.createClass({
+  mixins: [History],
+
   handleClick: function (event) {
     event.preventDefault();
     if (event.target.className === "sell-hero-link") {
       if (CurrentUserStore.isSignedIn()) {
+        this.history.pushState(null, 'onboarding', {});
       } else {
         AuthFormActions.showAuthForm("signin");
       }
