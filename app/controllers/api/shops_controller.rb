@@ -6,7 +6,7 @@ class Api::ShopsController < ApplicationController
       current_user.update(shop_owner: true)
       render :show
     else
-      render json [@shop.errors.full_messages], status: 422
+      render json: [@shop.errors.full_messages], status: 422
     end
   end
 
