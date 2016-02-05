@@ -87,17 +87,40 @@ greece = Country.create!(name: "greece")
 ireland = Country.create!(name: "ireland")
 italy = Country.create!(name: "italy")
 japan = Country.create!(name: "japan")
-newZealand = Country.create!(name: "newZealand")
+new_zealand = Country.create!(name: "newZealand")
 russia = Country.create!(name: "russia")
 spain = Country.create!(name: "spain")
-theNetherlands = Country.create!(name: "theNetherlands")
-unitedKingdom = Country.create!(name: "unitedKingdom")
-unitedStates = Country.create!(name: "unitedStates")
+the_netherlands = Country.create!(name: "theNetherlands")
+united_kingdom = Country.create!(name: "unitedKingdom")
+united_states = Country.create!(name: "unitedStates")
 
 # Currencies
+Currency.destroy_all
 usd = Currency.create!(name: "usd")
 cad = Currency.create!(name: "cad")
 eur = Currency.create!(name: "eur")
 gbp = Currency.create!(name: "gbp")
 aud = Currency.create!(name: "aud")
 jpy = Currency.create!(name: "jpy")
+
+# Shops
+Shop.destroy_all
+guest_store = Shop.create!(
+  user_id: guest.id,
+  shop_name: "gueststore",
+  language_id: english.id,
+  country_id: united_states.id,
+  currency_id: usd.id,
+  seller_type: "other"
+)
+
+# Listings
+Listing.destroy_all
+guest_listing_1 = Listing.create!(
+  shop_id: guest_store.id,
+  title: "Handmade boomerang",
+  price: 59.99,
+  quantity: 1,
+  description: "Expertly crafted with responsibly sourced mahogany. Finished
+    with a natural beeswax collected by the students of Apiary Academy."
+)
