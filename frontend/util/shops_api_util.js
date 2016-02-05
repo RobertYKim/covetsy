@@ -22,8 +22,7 @@ var ShopsApiUtil = {
   fetchShop: function (shop_name, callback) {
     $.ajax({
       type: "GET",
-      url: "api/shops/:id",
-      data: {shop_name: shop_name},
+      url: "api/shops/" + shop_name,
       success: function (shop) {
         ShopActions.receiveShop(shop);
         if (callback) {

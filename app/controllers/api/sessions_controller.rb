@@ -24,6 +24,7 @@ class Api::SessionsController < ApplicationController
   def show
     if current_user
       @user = current_user
+      @shop = @user.shop
       render "api/users/show"
     else
       render json: {}

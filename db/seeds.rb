@@ -6,7 +6,8 @@ guest = User.create!(
   username: "guest",
   email: "guest@gmail.com",
   password: "password",
-  image: "https://s3.amazonaws.com/covetsy-seed/users/jonathan.jpg"
+  image: "https://s3.amazonaws.com/covetsy-seed/users/jonathan.jpg",
+  shop_owner: true
 )
 robert = User.create!(
   first_name: "Robert",

@@ -10,7 +10,11 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_username(params[:username])
+    @user = User.find_by_username(params[:id])
+    if @user.shop_owner
+      @shop = @user.shop
+    end
+    
     if @user
       render :show
     else

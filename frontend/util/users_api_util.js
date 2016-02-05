@@ -23,8 +23,7 @@ var UsersApiUtil = {
   fetchUser: function (username, callback) {
     $.ajax({
       type: "GET",
-      url: "api/users/:id",
-      data: {username: username},
+      url: "api/users/" + username,
       success: function (user) {
         ProfileActions.receiveUser(user);
         if (callback) {

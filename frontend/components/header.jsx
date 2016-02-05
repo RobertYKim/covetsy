@@ -25,8 +25,8 @@ var Header = React.createClass({
     } else if (target === "sell") {
       this.history.pushState(null, 'sell', {});
     } else if (target === "shop") {
-      var currentUser = CurrentUserStore.currentUser().username;
-      this.history.pushState(null, '/shops/' + currentUser, {});
+      var currentUserShop = CurrentUserStore.currentUser().shop_name;
+      this.history.pushState(null, '/shop/' + currentUserShop, {});
     } else if (target === "you") {
       ProfileModalActions.showProfileModal();
     } else if (target === "guest") {
