@@ -4,6 +4,8 @@ class Api::ListingsController < ApplicationController
       @listing = Listing.new(listing_params)
     else
       render json: ["Cannot create listings for other shops."], status: 403
+    end
+    
     if @listing.save
       render :show
     else
