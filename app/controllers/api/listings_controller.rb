@@ -5,7 +5,7 @@ class Api::ListingsController < ApplicationController
     else
       render json: ["Cannot create listings for other shops."], status: 403
     end
-    
+
     if @listing.save
       render :show
     else
@@ -15,6 +15,7 @@ class Api::ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @listing_images = @listing.listing_images
     if @listing
       render :show
     else

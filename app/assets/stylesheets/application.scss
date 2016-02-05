@@ -1233,9 +1233,15 @@ body {
 
 .listing-gallery {
   width: auto;
-  height: 475px;
+  height: 380px;
   border: 1px solid #000;
   margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.listing-gallery img {
+  width: 100%;
+  height: auto;
 }
 
 .listing-detail {
