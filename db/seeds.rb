@@ -108,7 +108,7 @@ jpy = Currency.create!(name: "jpy")
 Shop.destroy_all
 guest_store = Shop.create!(
   user_id: guest.id,
-  shop_name: "gueststore",
+  shop_name: "dutchdesign",
   language_id: english.id,
   country_id: united_states.id,
   currency_id: usd.id,
@@ -119,9 +119,50 @@ guest_store = Shop.create!(
 Listing.destroy_all
 guest_listing_1 = Listing.create!(
   shop_id: guest_store.id,
-  title: "Handmade boomerang",
+  title: "Cutting Boards: Set of Three",
   price: 59.99,
   quantity: 1,
-  description: "Expertly crafted with responsibly sourced mahogany. Finished
-    with a natural beeswax collected by the students of Apiary Academy."
+  description: "Expertly crafted with responsibly sourced walnut, teak, and
+    mahogany. Finished with a natural beeswax from Apiary Academy."
+)
+guest_listing_2 = Listing.create!(
+  shop_id: guest_store.id,
+  title: "Candle Sticks: Set of Two",
+  price: 49.99,
+  quantity: 1,
+  description: "Bring warmth to your space with these vintage-inspired brass
+    candle sticks! Made in a workshop powered exclusively with solar energy."
+)
+guest_listing_3 = Listing.create!(
+  shop_id: guest_store.id,
+  title: "Post-Post-Modern Chandelier",
+  price: 199.99,
+  quantity: 1,
+  description: "One-of-a-kind chandelier made with 100% post-consumer
+    materials. Edison bulbs not included."
+)
+guest_listing_4 = Listing.create!(
+  shop_id: guest_store.id,
+  title: "Perforated Toolbox",
+  price: 29.99,
+  quantity: 1,
+  description: "Keep all your tools organized with this toolbox! Just don't
+    put anything small in it because it will fall out! Body is made from
+    recycled aluminum cans and handle is white oak from reclaimed Dutch East
+    India Company ship hulls. Own a piece of history today!"
+)
+guest_listing_5 = Listing.create!(
+  shop_id: guest_store.id,
+  title: "Cork Stool",
+  price: 119.99,
+  quantity: 1,
+  description: "Comfortable stool with a cork seat and brushed aluminum legs."
+)
+guest_listing_6 = Listing.create!(
+  shop_id: guest_store.id,
+  title: "Handmade Square Basket",
+  price: 49.99,
+  quantity: 1,
+  description: "Weaved using traditional under water techniques. Measures 1 x
+    1 x 1 foot."
 )

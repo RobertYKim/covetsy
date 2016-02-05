@@ -1158,9 +1158,41 @@ body {
   margin-bottom: 15px;
 }
 
-.shop-listings {
-  height: 1200px;
-  border: 1px solid orange;
+.shop-stock {
+  margin-top: -10px;
+  min-height: 800px;
+}
+
+.shop-listing {
+  box-sizing: border-box;
+  width: 184px;
+  height: 220px;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #E1E3DF;
+  float: left;
+}
+
+.shop-stock div:nth-child(4) {
+  margin-right: 0;
+}
+
+.shop-listing-image {
+  width: auto;
+  height: 155px;
+  margin: auto;
+  margin-bottom: 5px;
+  border: 1px solid #E1E3DF;
+}
+
+.shop-stock h5:first-of-type:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.shop-stock h5:last-child {
+  color: #0c0;
 }
 
 /* --- LISTING --- */

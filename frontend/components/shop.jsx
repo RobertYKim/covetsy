@@ -120,10 +120,23 @@ var Shop = React.createClass({
 
     var shopBanner;
 
-    var shopListings;
-    shopListings =
-      <div className="shop-listings">
-        <h5>ShopListings</h5>
+    var shopListings = [];
+    if (this.state.shop.listings) {
+      for (var i = 0; i < this.state.shop.listings.length; i++) {
+        shopListings.push(
+          <div key={i} className="shop-listing">
+            <div className="shop-listing-image"></div>
+            <h5>{this.state.shop.listings[i].title}</h5>
+            <h5>${this.state.shop.listings[i].price}</h5>
+          </div>
+        );
+      }
+    }
+
+    var shopStock;
+    shopStock =
+      <div className="shop-stock">
+        {shopListings}
       </div>;
 
     return (
@@ -135,7 +148,7 @@ var Shop = React.createClass({
         </div>
         <div className="shop-content">
           {shopBanner}
-          {shopListings}
+          {shopStock}
         </div>
       </div>
     );
