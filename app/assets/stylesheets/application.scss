@@ -1167,7 +1167,8 @@ body {
 
 .listing {
   background: rgb(245, 245, 241);
-  padding-top: 130px;
+  padding: 130px 0;
+  font-family: sans-serif;
 }
 
 .listing-body {
@@ -1185,34 +1186,48 @@ body {
   float: left;
   margin: auto;
   width: 540px;
-  height: 900px;
-  border: 1px solid #000;
 }
 
 .listing-right {
   float: right;
   margin: auto;
   width: 365px;
-  height: 500px;
-  border: 1px solid #000;
 }
 
 .listing-gallery {
   width: auto;
   height: 475px;
-  border: 1px solid green;
+  border: 1px solid #000;
   margin-bottom: 30px;
 }
 
 .listing-detail {
+  padding: 10px;
   width: auto;
-  height: 600px;
-  border: 1px solid orange;
+}
+
+.listing-detail h5:first-child {
+  font-weight: 700;
+  padding-bottom: 20px;
 }
 
 .listing-overview {
+  padding: 10px;
   width: auto;
-  height: 460px;
   border: 10px solid rgb(228, 243, 217);
   border-radius: 5px;
+}
+
+.listing-overview h5 {
+  padding-bottom: 20px;
+  font-weight: 700;
+}
+
+.listing-overview h5:first-child {
+  font-family: 'Merriweather', serif;
+  font-size: 18px;
+}
+
+.listing-overview h5:nth-child(2) {
+  font-size: 20px;
 }

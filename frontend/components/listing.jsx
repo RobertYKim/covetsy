@@ -27,7 +27,7 @@ var Listing = React.createClass({
     if (!ListingStore.listingHasBeenFetched()) {
       return <span className="fa fa-spinner fa-5x fa-pulse"></span>;
     }
-
+    var listing = this.state.listing;
     var listingHeader;
 
     var listingGallery;
@@ -39,7 +39,8 @@ var Listing = React.createClass({
     var listingDetail;
     listingDetail =
       <div className="listing-detail">
-
+        <h5>Item Details</h5>
+        <p>{listing.description}</p>
       </div>;
 
     var listingLeft;
@@ -52,7 +53,9 @@ var Listing = React.createClass({
     var listingOverview;
     listingOverview =
       <div className="listing-overview">
-
+        <h5>{listing.title}</h5>
+        <h5>${listing.price}</h5>
+        <p>Quantity: {listing.quantity}</p>
       </div>;
 
     var listingRight;
