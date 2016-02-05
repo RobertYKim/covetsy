@@ -111,7 +111,7 @@ var Header = React.createClass({
         <div className="shop-container">
           <span className="fa fa-university fa-lg"></span>
         </div>
-        <p>Shop ▾</p>
+        <p>Your Shop</p>
       </div>;
     }
 
