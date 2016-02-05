@@ -20,5 +20,6 @@ Rails.application.routes.draw do
         get "exists"
       end
     end
+    resources :listings, only: [:create, :show, :update]
   end
 end
