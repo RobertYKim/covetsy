@@ -43,6 +43,10 @@ var Shop = React.createClass({
     ShopsApiUtil.fetchShop(shop);
   },
 
+  componentWillUnmount: function () {
+    this.shopStoreListener.remove();
+  },
+
   render: function () {
     if (!ShopStore.shopHasBeenFetched()) {
       return <span className="fa fa-spinner fa-5x fa-pulse"></span>;

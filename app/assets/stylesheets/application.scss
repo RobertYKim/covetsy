@@ -1080,8 +1080,10 @@ body {
 /* --- SELL --- */
 
 .shop-body {
+  box-sizing: border-box;
   width: 1000px;
   margin: auto;
+  padding: 0 10px;
   color: rgb(102, 102, 102);
   font-family: sans-serif;
   font-weight: 12px;
@@ -1090,7 +1092,7 @@ body {
 
 .shop-breadcrumbs {
   height: 20px;
-  padding: 3px 0;
+  padding-top: 3px;
   border-bottom: 1px solid #E1E3DF;
   margin-bottom: 15px;
 }
