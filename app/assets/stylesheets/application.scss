@@ -1186,9 +1186,8 @@ body {
   border: 1px solid #E1E3DF;
 }
 
-.shop-stock h5:first-of-type:hover {
+.shop-stock a:first-of-type:hover {
   text-decoration: underline;
-  cursor: pointer;
 }
 
 .shop-stock h5:last-child {

@@ -121,13 +121,15 @@ var Shop = React.createClass({
     var shopBanner;
 
     var shopListings = [];
-    if (this.state.shop.listings) {
-      for (var i = 0; i < this.state.shop.listings.length; i++) {
+    var listings = this.state.shop.listings;
+    if (listings) {
+      for (var i = 0; i < listings.length; i++) {
+        var listingPath = "/#/listing/" + listings[i].id;
         shopListings.push(
           <div key={i} className="shop-listing">
             <div className="shop-listing-image"></div>
-            <h5>{this.state.shop.listings[i].title}</h5>
-            <h5>${this.state.shop.listings[i].price}</h5>
+            <a href={listingPath}>{listings[i].title}</a>
+            <h5>${listings[i].price}</h5>
           </div>
         );
       }
