@@ -5,6 +5,7 @@ class Shop < ActiveRecord::Base
   validates :shop_name, length: { minimum: 4, maximum: 20 }
 
   belongs_to :user
+  has_many :listings
 
   def language=(language)
     self.language_id = Language.find_by(name: language).id
