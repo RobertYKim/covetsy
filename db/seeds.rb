@@ -166,3 +166,10 @@ guest_listing_6 = Listing.create!(
   description: "Weaved using traditional under water techniques. Measures 1 x
     1 x 1 foot."
 )
+
+# Listing Images
+ListingImage.destroy_all
+guest_listing_1_image = ListingImage.create!(
+  listing_id: guest_listing_1.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/users/jonathan.jpg"
+)

@@ -1184,6 +1184,12 @@ body {
   margin: auto;
   margin-bottom: 5px;
   border: 1px solid #E1E3DF;
+  overflow: hidden;
+}
+
+.shop-listing-image img {
+  height: auto;
+  width: 100%;
 }
 
 .shop-stock a:first-of-type:hover {

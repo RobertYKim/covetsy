@@ -122,12 +122,19 @@ var Shop = React.createClass({
 
     var shopListings = [];
     var listings = this.state.shop.listings;
+    console.log(listings);
     if (listings) {
       for (var i = 0; i < listings.length; i++) {
         var listingPath = "/#/listing/" + listings[i].id;
+        var image = "";
+        if (listings[i].listing_images[0]) {
+          image = <img src={listings[i].listing_images[0].image_url}></img>;
+        }
         shopListings.push(
           <div key={i} className="shop-listing">
-            <div className="shop-listing-image"></div>
+            <div className="shop-listing-image">
+              {image}
+            </div>
             <a href={listingPath}>{listings[i].title}</a>
             <h5>${listings[i].price}</h5>
           </div>

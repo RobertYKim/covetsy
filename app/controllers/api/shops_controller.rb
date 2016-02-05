@@ -13,7 +13,7 @@ class Api::ShopsController < ApplicationController
   def show
     @shop = Shop.find_by_shop_name(params[:id])
     @user = @shop.user
-    @listings = @shop.listings
+    @listings = @shop.listings.includes(:listing_images)
     if @shop
       render :show
     else
