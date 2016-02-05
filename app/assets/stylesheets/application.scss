@@ -1162,3 +1162,57 @@ body {
   height: 1200px;
   border: 1px solid orange;
 }
+
+/* --- LISTING --- */
+
+.listing {
+  background: rgb(245, 245, 241);
+  padding-top: 130px;
+}
+
+.listing-body {
+  box-sizing: border-box;
+  width: 1000px;
+  margin: auto;
+  padding: 30px;
+  height: 1000px;
+  background-color: #fff;
+  border: 1px solid #E1E3DF;
+  border-radius: 5px;
+}
+
+.listing-left {
+  float: left;
+  margin: auto;
+  width: 540px;
+  height: 900px;
+  border: 1px solid #000;
+}
+
+.listing-right {
+  float: right;
+  margin: auto;
+  width: 365px;
+  height: 500px;
+  border: 1px solid #000;
+}
+
+.listing-gallery {
+  width: auto;
+  height: 475px;
+  border: 1px solid green;
+  margin-bottom: 30px;
+}
+
+.listing-detail {
+  width: auto;
+  height: 600px;
+  border: 1px solid orange;
+}
+
+.listing-overview {
+  width: auto;
+  height: 460px;
+  border: 10px solid rgb(228, 243, 217);
+  border-radius: 5px;
+}
