@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205032258) do
+ActiveRecord::Schema.define(version: 20160205170529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,18 @@ ActiveRecord::Schema.define(version: 20160205032258) do
   end
 
   add_index "languages", ["name"], name: "index_languages_on_name", unique: true, using: :btree
+
+  create_table "listing_images", force: :cascade do |t|
+    t.integer  "listing_id",         null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "listing_images", ["listing_id"], name: "index_listing_images_on_listing_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
     t.integer  "shop_id",     null: false
