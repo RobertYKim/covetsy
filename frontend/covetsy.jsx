@@ -9,6 +9,7 @@ var React = require('react'),
     Profile = require('./components/profile'),
     Sell = require('./components/sell'),
     Onboarding = require('./components/onboarding'),
+    Shop = require('./components/shop'),
     SessionsApiUtil = require('./util/sessions_api_util');
 
 var validate = function (nextState, transition, callback) {
@@ -26,6 +27,7 @@ var routes = (
     <Route path="people/:username" component={Profile}/>
     <Route path="sell" component={Sell}/>
     <Route path="onboarding" onEnter={validate} component={Onboarding}/>
+    <Route path="shops/:shop_name" component={Shop}/>
   </Route>
 );
 

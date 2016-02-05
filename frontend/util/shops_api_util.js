@@ -19,11 +19,11 @@ var ShopsApiUtil = {
     });
   },
 
-  fetchShop: function (shop) {
+  fetchShop: function (shop_name, callback) {
     $.ajax({
       type: "GET",
       url: "api/shops/:id",
-      data: {shop: shop},
+      data: {shop_name: shop_name},
       success: function (shop) {
         ShopActions.receiveShop(shop);
         if (callback) {

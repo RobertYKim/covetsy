@@ -1,5 +1,5 @@
 var Dispatcher = require('../dispatcher/dispatcher'),
-    ShopConstants = require('../constants/onboarding_constants');
+    ShopConstants = require('../constants/shop_constants');
 
 var ShopActions = {
   receiveShop: function (shop) {

@@ -24,6 +24,9 @@ var Header = React.createClass({
       AuthFormActions.showAuthForm(target);
     } else if (target === "sell") {
       this.history.pushState(null, 'sell', {});
+    } else if (target === "shop") {
+      var currentUser = CurrentUserStore.currentUser().username;
+      this.history.pushState(null, '/shops/' + currentUser, {});
     } else if (target === "you") {
       ProfileModalActions.showProfileModal();
     } else if (target === "guest") {

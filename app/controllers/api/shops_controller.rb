@@ -12,6 +12,7 @@ class Api::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find_by_shop_name(params[:shop_name])
+    @user = @shop.user
     if @shop
       render :show
     else
