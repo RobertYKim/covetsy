@@ -1,4 +1,5 @@
 var React = require('react'),
+    ListingActions = require('../actions/listing_actions'),
     ListingStore = require('../stores/listing_store'),
     ListingsApiUtil = require('../util/listings_api_util');
 
@@ -21,12 +22,19 @@ var Listing = React.createClass({
 
   componentWillUnmount: function () {
     this.listingStoreListener.remove();
+    ListingActions.resetListing();
+  },
+
+  componentWillReceiveProps: function () {
+    var listing = this.props.params.id;
+    ListingsApiUtil.fetchListing(listing);
   },
 
   render: function () {
     if (!ListingStore.listingHasBeenFetched()) {
       return <span className="fa fa-spinner fa-5x fa-pulse"></span>;
     }
+
     var listing = this.state.listing;
     var listingHeader;
 

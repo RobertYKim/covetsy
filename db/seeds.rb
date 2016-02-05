@@ -171,5 +171,25 @@ guest_listing_6 = Listing.create!(
 ListingImage.destroy_all
 guest_listing_1_image = ListingImage.create!(
   listing_id: guest_listing_1.id,
-  image: "https://s3.amazonaws.com/covetsy-seed/users/jonathan.jpg"
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/cuttingboards.jpg"
+)
+guest_listing_2_image = ListingImage.create!(
+  listing_id: guest_listing_2.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/candlesticks.jpg"
+)
+guest_listing_3_image = ListingImage.create!(
+  listing_id: guest_listing_3.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/chandelier.jpg"
+)
+guest_listing_4_image = ListingImage.create!(
+  listing_id: guest_listing_4.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/toolbox.jpg"
+)
+guest_listing_5_image = ListingImage.create!(
+  listing_id: guest_listing_5.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/stool.jpg"
+)
+guest_listing_6_image = ListingImage.create!(
+  listing_id: guest_listing_6.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/basket.jpg"
 )

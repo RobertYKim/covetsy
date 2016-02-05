@@ -1,8 +1,11 @@
 var React = require('react'),
+    History = require('react-router').History,
     ShopStore = require('../stores/shop_store'),
     ShopsApiUtil = require('../util/shops_api_util');
 
 var Shop = React.createClass({
+  mixins: [History],
+
   _shopChanged: function () {
     var shop = ShopStore.shop();
     this.setState({shop: shop});
@@ -45,6 +48,11 @@ var Shop = React.createClass({
 
   componentWillUnmount: function () {
     this.shopStoreListener.remove();
+  },
+
+  componentWillReceiveProps: function () {
+    var shop = this.props.params.shop_name;
+    ShopsApiUtil.fetchShop(shop);
   },
 
   render: function () {
@@ -122,7 +130,6 @@ var Shop = React.createClass({
 
     var shopListings = [];
     var listings = this.state.shop.listings;
-    console.log(listings);
     if (listings) {
       for (var i = 0; i < listings.length; i++) {
         var listingPath = "/#/listing/" + listings[i].id;

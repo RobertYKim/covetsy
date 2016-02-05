@@ -17,6 +17,10 @@ ListingStore.listingHasBeenFetched = function () {
 
 ListingStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
+    case ListingConstants.RESET_LISTING:
+      _listing = {};
+      _listingHasBeenFetched = false;
+      break;
     case ListingConstants.RECEIVE_LISTING:
       _listing = payload.listing;
       _listingHasBeenFetched = true;
