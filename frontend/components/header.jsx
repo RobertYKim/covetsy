@@ -25,6 +25,7 @@ var Header = React.createClass({
     } else if (target === "sell") {
       this.history.pushState(null, 'sell', {});
     } else if (target === "shop") {
+      debugger
       var currentUserShop = CurrentUserStore.currentUser().shop_name;
       this.history.pushState(null, '/shop/' + currentUserShop, {});
     } else if (target === "you") {

@@ -17,6 +17,7 @@ class Api::SessionsController < ApplicationController
       render json: ["Invalid email, username or password"], status: 401
     else
       sign_in(@user)
+      @shop = @user.shop
       render "api/users/show"
     end
   end
