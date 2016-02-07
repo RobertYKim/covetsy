@@ -1,5 +1,6 @@
 var React = require('react'),
     History = require('react-router').History,
+    ShopActions = require('../actions/shop_actions'),
     ShopStore = require('../stores/shop_store'),
     ShopsApiUtil = require('../util/shops_api_util');
 
@@ -9,6 +10,14 @@ var Shop = React.createClass({
   _shopChanged: function () {
     var shop = ShopStore.shop();
     this.setState({shop: shop});
+  },
+
+  handleClick: function (event) {
+    event.preventDefault();
+    if (event.currentTarget.className === "listing-image") {
+      var listingPath = "listing/" + event.currentTarget.id;
+      this.history.pushState(null, listingPath, {});
+    }
   },
 
   getInitialState: function () {
@@ -50,8 +59,8 @@ var Shop = React.createClass({
     this.shopStoreListener.remove();
   },
 
-  componentWillReceiveProps: function () {
-    var shop = this.props.params.shop_name;
+  componentWillReceiveProps: function (nextProps) {
+    var shop = nextProps.params.shop_name;
     ShopsApiUtil.fetchShop(shop);
   },
 
@@ -132,15 +141,23 @@ var Shop = React.createClass({
     var listings = this.state.shop.listings;
     if (listings) {
       for (var i = 0; i < listings.length; i++) {
-        var listingPath = "/#/listing/" + listings[i].id;
+        var listingId = listings[i].id;
+        var listingPath = "/#/listing/" + listingId;
         var image = "";
         if (listings[i].listing_images[0]) {
-          image = <img src={listings[i].listing_images[0].image_url}></img>;
+          image =
+          <img
+            id={listingId}
+            className="listing-image"
+            onClick={this.handleClick}
+            src={listings[i].listing_images[0].image_url}></img>;
         }
         shopListings.push(
           <div key={i} className="shop-listing">
             <div className="shop-listing-image">
-              {image}
+              <div className="shop-listing-image-wrapper">
+                {image}
+              </div>
             </div>
             <a href={listingPath}>{listings[i].title}</a>
             <h5>${listings[i].price}</h5>

@@ -114,6 +114,14 @@ guest_store = Shop.create!(
   currency_id: usd.id,
   seller_type: "other"
 )
+robert_store = Shop.create!(
+  user_id: robert.id,
+  shop_name: "CraftCoding",
+  language_id: english.id,
+  country_id: united_states.id,
+  currency_id: usd.id,
+  seller_type: "other"
+)
 
 # Listings
 Listing.destroy_all
@@ -166,6 +174,35 @@ guest_listing_6 = Listing.create!(
   description: "Weaved using traditional under water techniques. Measures 1 x
     1 x 1 foot."
 )
+robert_listing_1 = Listing.create!(
+  shop_id: robert_store.id,
+  title: "React Paper Ornament",
+  price: 9.99,
+  quantity: 1,
+  description: "Hand cut paper ornament in the style of the React logo."
+)
+robert_listing_2 = Listing.create!(
+  shop_id: robert_store.id,
+  title: "Flux Paper Ornament",
+  price: 9.99,
+  quantity: 1,
+  description: "Hand cut paper ornament in the style of the Flux logo."
+)
+robert_listing_3 = Listing.create!(
+  shop_id: robert_store.id,
+  title: "JavaScript Paper Ornament",
+  price: 9.99,
+  quantity: 1,
+  description: "Hand cut paper ornament in the style of the JavaScript logo."
+)
+robert_listing_4 = Listing.create!(
+  shop_id: robert_store.id,
+  title: "Ruby Paper Ornament",
+  price: 9.99,
+  quantity: 1,
+  description: "Hand cut paper ornament in the style of the Ruby logo."
+)
+
 
 # Listing Images
 ListingImage.destroy_all
@@ -192,4 +229,20 @@ guest_listing_5_image = ListingImage.create!(
 guest_listing_6_image = ListingImage.create!(
   listing_id: guest_listing_6.id,
   image: "https://s3.amazonaws.com/covetsy-seed/listings/basket.jpg"
+)
+robert_listing_1_image = ListingImage.create!(
+  listing_id: robert_listing_1.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/react.jpg"
+)
+robert_listing_2_image = ListingImage.create!(
+  listing_id: robert_listing_2.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/flux.jpg"
+)
+robert_listing_3_image = ListingImage.create!(
+  listing_id: robert_listing_3.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/js.jpg"
+)
+robert_listing_4_image = ListingImage.create!(
+  listing_id: robert_listing_4.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/ruby.jpg"
 )

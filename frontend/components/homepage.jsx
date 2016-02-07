@@ -15,7 +15,7 @@ var Homepage = React.createClass({
       discover = <Discover />;
     } else {
       signedIn = false;
-      hero = <Hero />;
+      hero = <Hero shopName="CraftCoding"/>;
       discover = <Discover />;
     }
 

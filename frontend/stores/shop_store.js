@@ -17,6 +17,11 @@ ShopStore.shopHasBeenFetched = function () {
 
 ShopStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
+    case ShopConstants.RESET_SHOP:
+      _shop = {};
+      _shopHasBeenFetched = false;
+      ShopStore.__emitChange();
+      break;
     case ShopConstants.RECEIVE_SHOP:
       _shop = payload.shop;
       _shopHasBeenFetched = true;
