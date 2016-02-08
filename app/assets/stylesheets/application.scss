@@ -645,12 +645,74 @@ body {
   width: 1000px;
   padding: 60px 0;
   margin: auto;
+  font-size: 14px;
 }
 
 .discover-body h2 {
   text-align: center;
   font-size: 30px;
   font-weight: 400;
+}
+
+.discover-listing {
+  box-sizing: border-box;
+  width: 225px;
+  height: 225px;
+  padding: 5px;
+  border: 1px solid #E1E3DF;
+  border-radius: 3px;
+  background-color: #fff;
+  float: left;
+  font-family: sans-serif;
+  margin-right: 33px;
+  margin-top: 30px;
+}
+
+.discover-listing:nth-child(4n+1) {
+  margin-right: 0;
+}
+
+.discover-listing-image-wrapper {
+  height: 175px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.discover-listing-image-wrapper img {
+  position: absolute;
+  height: 100%;
+  width: auto;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.discover-listing-image-wrapper img:hover {
+  cursor: pointer;
+}
+
+.discover-listing > a {
+  display: block;
+  color: rgb(102, 102, 102);
+  padding-top: 5px;
+}
+
+.discover-listing > a:hover {
+  text-decoration: underline;
+}
+
+.discover-listing-footer a {
+  float: left;
+  color: rgb(172, 172, 172);
+}
+
+.discover-listing-footer a:hover {
+  text-decoration: underline;
+}
+
+.discover-listing-footer h5 {
+  float: right;
+  color: #0c0;
 }
 
 /* --- PROFILE --- */
@@ -1151,7 +1213,7 @@ body {
   background-color: rgb(53, 162, 193);
 }
 
-/* --- SELL --- */
+/* --- SHOP --- */
 
 .shop-body {
   box-sizing: border-box;
@@ -1160,7 +1222,6 @@ body {
   padding: 0 10px;
   color: rgb(102, 102, 102);
   font-family: sans-serif;
-  font-weight: 12px;
   font-size: 14px;
 }
 
@@ -1268,7 +1329,7 @@ body {
 }
 
 .shop-listing-image img {
-  height: auto;
+  width: auto;
   height: 100%;
   position: absolute;
   left: 50%;

@@ -24,7 +24,8 @@ class Api::ListingsController < ApplicationController
   end
 
   def index
-    @listings = Listing.all.includes(:listing_images)
+    @listings =
+      Listing.all.includes(:shop).includes(:listing_images)
 
     if @listings
       render :index

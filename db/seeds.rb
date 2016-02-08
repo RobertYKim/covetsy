@@ -122,6 +122,14 @@ robert_store = Shop.create!(
   currency_id: usd.id,
   seller_type: "other"
 )
+lily_store = Shop.create!(
+  user_id: lily.id,
+  shop_name: "pots",
+  language_id: english.id,
+  country_id: united_states.id,
+  currency_id: usd.id,
+  seller_type: "other"
+)
 
 # Listings
 Listing.destroy_all
@@ -202,6 +210,22 @@ robert_listing_4 = Listing.create!(
   quantity: 1,
   description: "Hand cut paper ornament in the style of the Ruby logo."
 )
+lily_listing_1 = Listing.create!(
+  shop_id: lily_store.id,
+  title: "Blushing Red Head Pot",
+  price: 7.99,
+  quantity: 1,
+  description: "White ceramic pot with hand-drawn illustration. Great for house
+    plants!"
+)
+lily_listing_2 = Listing.create!(
+  shop_id: lily_store.id,
+  title: "Purple Teardrop Votive",
+  price: 5.99,
+  quantity: 1,
+  description: "White ceramic cup with hand-drawn purple teardrop design. Great
+    for votives or tiny house plants!"
+)
 
 
 # Listing Images
@@ -245,4 +269,12 @@ robert_listing_3_image = ListingImage.create!(
 robert_listing_4_image = ListingImage.create!(
   listing_id: robert_listing_4.id,
   image: "https://s3.amazonaws.com/covetsy-seed/listings/ruby.jpg"
+)
+lily_listing_1_image = ListingImage.create!(
+  listing_id: lily_listing_1.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/pot.jpg"
+)
+lily_listing_1_image = ListingImage.create!(
+  listing_id: lily_listing_2.id,
+  image: "https://s3.amazonaws.com/covetsy-seed/listings/votive.jpg"
 )
