@@ -23,6 +23,16 @@ class Api::ListingsController < ApplicationController
     end
   end
 
+  def index
+    @listings = Listing.all.includes(:listing_images)
+
+    if @listings
+      render :index
+    else
+      render json: ["Listings not found"], status: 404
+    end
+  end
+
   private
 
   def listing_params

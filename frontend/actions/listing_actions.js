@@ -13,6 +13,13 @@ var ListingActions = {
       actionType: ListingConstants.RECEIVE_LISTING,
       listing: listing
     });
+  },
+
+  receiveListings: function (listings) {
+    Dispatcher.dispatch({
+      actionType: ListingConstants.RECEIVE_LISTINGS,
+      listings: listings
+    });
   }
 };
 

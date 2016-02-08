@@ -15,6 +15,19 @@ var ListingsApiUtil = {
         ListingActions.receiveErrors(errors.responseJSON);
       }
     });
+  },
+
+  fetchListings: function (callback) {
+    $.ajax({
+      type: "GET",
+      url: "api/listings",
+      success: function (listings) {
+        ListingActions.receiveListings(listings);
+        if (callback) {
+          callback();
+        }
+      }
+    });
   }
 };
 
