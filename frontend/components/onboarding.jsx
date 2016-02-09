@@ -1,10 +1,14 @@
 var React = require('react'),
+    History = require('react-router').History,
+    OnboardingActions = require('../actions/onboarding_actions'),
     ShopStore = require('../stores/shop_store'),
     OnboardingStore = require('../stores/onboarding_store'),
     CurrentUserStore = require('../stores/current_user_store'),
     ShopsApiUtil = require('../util/shops_api_util');
 
 var Onboarding = React.createClass({
+  mixins: [History],
+
   _shopStoreChanged: function () {
     var shop = ShopStore.shop();
     if (shop.shop_name === this.state.shop_name) {
@@ -15,9 +19,14 @@ var Onboarding = React.createClass({
   },
 
   _onboardingStoreChanged: function () {
+    var shopCreated = OnboardingStore.shopCreated();
     var json = OnboardingStore.existingStore();
     var status = json[0] === "true" ? true : false;
-    this.setState({nameTaken: status, checkedName: this.state.shop_name});
+    this.setState({
+      nameTaken: status,
+      checkedName: this.state.shop_name,
+      shopCreated: shopCreated
+    });
   },
 
   handleBlur: function (event) {
@@ -26,8 +35,8 @@ var Onboarding = React.createClass({
   },
 
   handleClick: function (event) {
+    event.stopPropagation();
     if (event.target.className !== "submit") {
-      event.preventDefault();
       this.setState({clickedShopName: true});
     }
   },
@@ -74,7 +83,7 @@ var Onboarding = React.createClass({
       !this.state.nameTaken &&
       this.state.checkedName === this.state.shop_name
     ) {
-      ShopsApiUtil.createShop(this.state);
+      ShopsApiUtil.createShop(this.state, OnboardingActions.shopCreated);
     }
   },
 
@@ -100,6 +109,7 @@ var Onboarding = React.createClass({
     return ({
       clickedShopName: false,
       invalidShopName: true,
+      shopCreated: false,
       nameTaken: "notYetChecked",
       shop_name: "",
       language: "english",
@@ -122,6 +132,12 @@ var Onboarding = React.createClass({
   },
 
   render: function () {
+    if (this.state.shopCreated) {
+      var shopName = this.state.shop_name;
+      var userShopPath = "shop/" + shopName;
+      this.history.pushState(null, userShopPath, {});
+    }
+
     var shopLanguage =
       <li className="group">
         <label htmlFor="shop-language">Shop language</label>

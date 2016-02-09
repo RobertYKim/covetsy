@@ -14,6 +14,12 @@ var OnboardingActions = {
       actionType: OnboardingConstants.SHOP_EXISTANCE,
       status: status
     });
+  },
+
+  shopCreated: function () {
+    Dispatcher.dispatch({
+      actionType: OnboardingConstants.SHOP_CREATED
+    });
   }
 };
 

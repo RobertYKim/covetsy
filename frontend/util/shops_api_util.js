@@ -10,7 +10,7 @@ var ShopsApiUtil = {
       success: function (shop) {
         ShopActions.receiveShop(shop);
         if (callback) {
-          callback();
+          callback(shop);
         }
       },
       error: function (errors) {

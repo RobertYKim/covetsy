@@ -1,7 +1,7 @@
 class Api::ShopsController < ApplicationController
   def create
     @shop = current_user.build_shop(shop_params)
-    debugger
+    @user = @shop.user
     if @shop.save
       current_user.update(shop_owner: true)
       render :show

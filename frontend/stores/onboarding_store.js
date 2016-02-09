@@ -3,7 +3,8 @@ var Store = require('flux/utils').Store,
     OnboardingConstants = require('../constants/onboarding_constants');
 
 var _errors,
-    _status;
+    _status,
+    _created;
 
 var OnboardingStore = new Store(Dispatcher);
 
@@ -15,6 +16,10 @@ OnboardingStore.existingStore = function () {
   return _status;
 };
 
+OnboardingStore.shopCreated = function () {
+  return _created;
+};
+
 OnboardingStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case OnboardingConstants.RECEIVE_ERRORS:
@@ -23,6 +28,10 @@ OnboardingStore.__onDispatch = function (payload) {
       break;
     case OnboardingConstants.SHOP_EXISTANCE:
       _status = payload.status;
+      OnboardingStore.__emitChange();
+      break;
+    case OnboardingConstants.SHOP_CREATED:
+      _created = true;
       OnboardingStore.__emitChange();
       break;
   }
