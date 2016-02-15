@@ -19,7 +19,8 @@ Rails.application.routes.draw do
       collection do
         get "exists"
       end
+      resources :listings, only: [:create]
     end
-    resources :listings, only: [:create, :show, :index, :update]
+    resources :listings, only: [:show, :index, :update]
   end
 end
