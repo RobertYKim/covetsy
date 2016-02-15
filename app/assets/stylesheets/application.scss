@@ -1264,17 +1264,21 @@ body {
   margin-bottom: 10px;
 }
 
-.shop-sidebar > div > a:first-of-type {
-  display: block;
-  margin-top: 10px;
-}
-
 .shop-owner {
   margin-bottom: 15px;
 }
 
+.shop-owner a:first-of-type {
+  display: block;
+  margin-top: 10px;
+}
+
 .shop-owner > h5:last-of-type {
   margin-top: 10px;
+}
+
+.shop-info {
+  margin-bottom: 15px;
 }
 
 .shop-info > h5:last-child {

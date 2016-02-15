@@ -2,6 +2,7 @@ var React = require('react'),
     History = require('react-router').History,
     ShopActions = require('../actions/shop_actions'),
     ShopStore = require('../stores/shop_store'),
+    CurrentUserStore = require('../stores/current_user_store'),
     ShopsApiUtil = require('../util/shops_api_util');
 
 var Shop = React.createClass({
@@ -135,6 +136,16 @@ var Shop = React.createClass({
         <h5>Opened on {openDate}</h5>
       </div>;
 
+    var addListing,
+        currentUser;
+    currentUser = CurrentUserStore.currentUser().username;
+    if (username === currentUser) {
+      addListing =
+        <div className="add-listing">
+          <a>Add a new listing</a>
+        </div>;
+    }
+
     var shopBanner;
 
     var shopListings = [];
@@ -178,6 +189,7 @@ var Shop = React.createClass({
         <div className="shop-sidebar">
           {shopOwner}
           {shopInfo}
+          {addListing}
         </div>
         <div className="shop-content">
           {shopBanner}
