@@ -2,6 +2,10 @@ var React = require('react');
 
 var ListingForm = React.createClass({
   render: function () {
+
+
+    var shopPath = "#/shop/" + this.props.params.shop_name;
+
     var photo;
     photo =
       <div className="listing-form-photo">
@@ -80,7 +84,7 @@ var ListingForm = React.createClass({
     return (
       <div className="listing-form">
         <div className="lising-form-underlay"></div>
-        <a>Back to shop</a>
+        <a href={shopPath}>Back to shop</a>
         <h3>Add a new listing</h3>
         <form>
           {photo}

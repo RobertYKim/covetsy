@@ -127,6 +127,7 @@ input, textarea {
 
 .shop:hover {
   color: #000;
+  cursor: pointer;
 }
 
 .shop-container {
@@ -176,6 +177,7 @@ input, textarea {
 
 .you:hover {
   color: #000;
+  cursor: pointer;
 }
 
 .you-container {
@@ -1361,10 +1363,16 @@ input, textarea {
   display: block;
   margin-top: 25px;
   margin-bottom: 30px;
+  color: rgb(12, 146, 183);
 }
 
 .listing-form a:before {
   content: "◀ ";
+}
+
+.listing-form a:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .listing-form h3 {
