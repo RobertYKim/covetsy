@@ -96,7 +96,7 @@ var Shop = React.createClass({
       identifier = username;
     }
     location = " › " + shop_name;
-    path = "#/shops/" + shop_name;
+    path = "#/shop/" + shop_name;
     profilePath = "#/people/" + username;
 
     var shopBreadcrumbs;
@@ -137,12 +137,14 @@ var Shop = React.createClass({
       </div>;
 
     var addListing,
-        currentUser;
+        currentUser,
+        addListingPath;
     currentUser = CurrentUserStore.currentUser().username;
+    addListingPath = path + "/listing";
     if (username === currentUser) {
       addListing =
         <div className="add-listing">
-          <a>Add a new listing</a>
+          <a href={addListingPath}>Add a new listing</a>
         </div>;
     }
 
@@ -185,6 +187,7 @@ var Shop = React.createClass({
 
     return (
       <div className="shop-body group">
+        {this.props.children}
         {shopBreadcrumbs}
         <div className="shop-sidebar">
           {shopOwner}

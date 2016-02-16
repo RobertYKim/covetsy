@@ -20,7 +20,7 @@
 
 /* --- RESET --- */
 
-html, body, h1, h2, h3, h4, h5, a, ul, li, p, input, label, select, button {
+html, body, h1, h2, h3, h4, h5, a, ul, li, p, input, textarea, label, select, button {
   margin: 0;
   padding: 0;
   border: 0;
@@ -45,6 +45,18 @@ body {
   left: 0;
   background-color: #fff;
   font-family: 'Merriweather', serif;
+}
+
+label {
+  display: block;
+  padding-top: 5px;
+}
+
+input, textarea {
+  border: 1px solid #E1E3DF;
+  margin: 5px 0;
+  padding: 5px;
+  font-size: 12px;
 }
 
 /* --- CLEARFIX --- */
@@ -292,30 +304,9 @@ body {
   padding-top: 15px;
 }
 
-.first-name-input label,
-.last-name-input label,
-.email-input label,
-.password-input label,
-.confirm-password-input label,
-.username-input label,
-.email-or-username-input label,
-.signin-password-input label {
-  display: block;
+.gender label {
+  display: inline;
   padding-top: 5px;
-}
-
-.first-name-input input,
-.last-name-input input,
-.email-input input,
-.password-input input,
-.confirm-password-input input,
-.username-input input,
-.email-or-username-input input,
-.signin-password-input input {
-  margin: 5px 0;
-  padding: 5px;
-  width: 220px;
-  font-size: 12px;
 }
 
 .first-name-input span {
@@ -1040,6 +1031,10 @@ body {
   text-align: center;
 }
 
+.onboarding-form label {
+  display: inline;
+}
+
 .onboarding-form-name-form, .onboarding-form-preferences-form {
   margin: 0 40px;
   width: auto;
@@ -1350,6 +1345,145 @@ body {
 
 .shop-stock h5:last-child {
   color: #0c0;
+}
+
+/* --- LISTING FORM --- */
+.listing-form {
+  position: absolute;
+  z-index: 1;
+  width: 1000px;
+  height: 100%;
+  background-color: #fff;
+  color: rgb(51, 51, 51);
+}
+
+.listing-form a {
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+
+.listing-form a:before {
+  content: "◀ ";
+}
+
+.listing-form h3 {
+  font-family: 'Merriweather', serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.listing-form h4 {
+  font-family: 'Merriweather', serif;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.listing-form-photo-polaroid {
+  width: 190px;
+  height: 200px;
+  border-radius: 3px;
+  border: 1px solid #E1E3DF;
+  margin-top: 25px;
+}
+
+.listing-form-photo-image {
+  width: 180px;
+  height: 140px;
+  margin: 5px;
+  background-color: rgb(241, 251, 253);
+  text-align: center;
+  color: rgb(12, 146, 183);
+}
+
+.listing-form-photo-bottom {
+  border-top: 1px solid #E1E3DF;
+  width: 100%;
+}
+
+.listing-form p {
+  color: rgb(102, 102, 102);
+  display: block;
+  margin: 5px 0;
+}
+
+.listing-form-photo-image > p {
+  color: rgb(12, 146, 183);
+}
+
+.listing-form-photo-image span {
+  margin-top: 50px;
+}
+
+.listing-form > form > div {
+  border: 1px solid #E1E3DF;
+  border-radius: 3px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.listing-form-inputs > p {
+  margin-bottom: 20px;
+}
+
+.listing-form-inputs > div {
+  display: block;
+}
+
+.listing-form-inputs > div > div {
+  float: right;
+  width: 85%;
+  margin-bottom: 20px;
+}
+
+.listing-form-inputs label {
+  float: left;
+  width: 15%;
+  font-weight: 700;
+}
+
+.listing-form-inputs input, textarea {
+  float: left;
+  width: 60%;
+  margin-right: 30px;
+  padding: 10px 15px;
+}
+
+.listing-form-inputs > div p {
+  float: left;
+  width: 30%;
+  font-size: 13px;
+}
+
+.description-input > div > div {
+  float: left;
+  width: 30%;
+}
+
+.description-input > div > div p {
+  float: none;
+  width: 100%;
+}
+
+.listing-form button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 85px;
+  border-radius: 5px;
+  border: 1px solid rgb(54, 151, 177);
+  background-color: rgb(12, 146, 183);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.listing-form button:hover {
+  background-color: rgb(67, 177, 204);
+}
+
+.listing-form button:focus {
+  background-color: rgb(12, 146, 183);
 }
 
 /* --- LISTING --- */
