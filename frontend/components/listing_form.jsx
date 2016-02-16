@@ -11,6 +11,9 @@ var ListingForm = React.createClass({
       <div className="listing-form-photo">
         <h4>Photo</h4>
         <div className="listing-form-photo-polaroid">
+          <input
+            className="listing-form-photo-input"
+            type="file"/>
           <div className="listing-form-photo-image">
             <span className="fa fa-camera fa-lg"></span>
             <p>Add a photo</p>

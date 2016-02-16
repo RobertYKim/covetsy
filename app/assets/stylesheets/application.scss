@@ -1394,6 +1394,16 @@ input, textarea {
   border-radius: 3px;
   border: 1px solid #E1E3DF;
   margin-top: 25px;
+  position: relative;
+}
+
+.listing-form-photo-polaroid:hover {
+  border: 1px solid rgb(12, 146, 183);
+  cursor: pointer;
+}
+
+.listing-form-photo-polaroid:hover .listing-form-photo-bottom {
+  border-top: 1px solid rgb(12, 146, 183);
 }
 
 .listing-form-photo-image {
@@ -1414,6 +1424,15 @@ input, textarea {
   color: rgb(102, 102, 102);
   display: block;
   margin: 5px 0;
+}
+
+.listing-form-photo-input {
+  opacity: 0;
+  border: 1px solid #f00;
+  position: absolute;
+  top: -5px;
+  width: 190px;
+  height: 200px;
 }
 
 .listing-form-photo-image > p {
