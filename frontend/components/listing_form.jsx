@@ -16,24 +16,41 @@ var ListingForm = React.createClass({
     }
   },
 
+  handleClick: function (event) {
+    if (event.target.id !== "price") {
+      this.convertPrice();
+    }
+  },
+
   handleChange: function (event) {
     var id = event.target.id;
     var value = event.target.value;
-    var nondigit = /^[0-9]+$/;
+    var validQuantity = /^[0-9]+$/;
+    var validPrice = /^[0-9]+[\.]?[0-9]{0,2}$/;
     if (id === "title") {
       this.setState({title: value});
     } else if (id === "price") {
-      this.setState({price: value});
+      var oldPrice = this.state.price;
+      if (validPrice.test(value) || value === "") {
+        this.setState({price: value});
+      } else {
+        this.setState({price: oldPrice});
+      }
     } else if (id === "quantity") {
       var oldQuantity = this.state.quantity;
-      if (nondigit.test(value)) {
+      if (validQuantity.test(value) || value === "") {
         this.setState({quantity: value});
       } else {
         this.setState({quantity: oldQuantity});
       }
-      this.setState({quantity: value});
     } else if (id === "description") {
       this.setState({description: value});
+    }
+  },
+
+  convertPrice: function () {
+    if (this.state.price !== "") {
+      this.setState({price: parseFloat(this.state.price).toFixed(2)});
     }
   },
 
@@ -151,7 +168,7 @@ var ListingForm = React.createClass({
       </div>;
 
     return (
-      <div className="listing-form">
+      <div className="listing-form" onClick={this.handleClick}>
         <div className="lising-form-underlay"></div>
         <a href={shopPath}>Back to shop</a>
         <h3>Add a new listing</h3>
