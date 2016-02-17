@@ -1413,6 +1413,12 @@ input, textarea {
   background-color: rgb(241, 251, 253);
   text-align: center;
   color: rgb(12, 146, 183);
+  overflow: hidden;
+}
+
+.listing-form-photo-image img {
+  width: 100%;
+  height: auto;
 }
 
 .listing-form-photo-bottom {
@@ -1435,7 +1441,7 @@ input, textarea {
   height: 200px;
 }
 
-.listing-form-photo-image > p {
+.listing-form-photo-image > div > p {
   color: rgb(12, 146, 183);
 }
 

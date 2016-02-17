@@ -1,10 +1,68 @@
 var React = require('react');
 
 var ListingForm = React.createClass({
+  changeFile: function (event) {
+    var reader = new FileReader();
+    var file = event.currentTarget.files[0];
+
+    reader.onloadend = function () {
+      this.setState({imageFile: file, imageUrl: reader.result});
+    }.bind(this);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      this.setState({imageFile: null, imageUrl: ""});
+    }
+  },
+
+  handleChange: function (event) {
+    var id = event.target.id;
+    var value = event.target.value;
+    var nondigit = /^[0-9]+$/;
+    if (id === "title") {
+      this.setState({title: value});
+    } else if (id === "price") {
+      this.setState({price: value});
+    } else if (id === "quantity") {
+      var oldQuantity = this.state.quantity;
+      if (nondigit.test(value)) {
+        this.setState({quantity: value});
+      } else {
+        this.setState({quantity: oldQuantity});
+      }
+      this.setState({quantity: value});
+    } else if (id === "description") {
+      this.setState({description: value});
+    }
+  },
+
+  getInitialState: function () {
+    return {
+      imageFile: null,
+      imageUrl: "",
+      title: "",
+      price: "",
+      quantity: "",
+      description: ""
+    };
+  },
+
   render: function () {
-
-
     var shopPath = "#/shop/" + this.props.params.shop_name;
+
+    var image;
+    if (this.state.imageUrl) {
+      image = <img src={this.state.imageUrl}></img>;
+    } else if (this.props.imageUrl) {
+      image = <img src={this.props.imageUrl}></img>;
+    } else {
+      image =
+        <div>
+          <span className="fa fa-camera fa-lg"></span>
+          <p>Add a photo</p>
+        </div>;
+    }
 
     var photo;
     photo =
@@ -13,10 +71,10 @@ var ListingForm = React.createClass({
         <div className="listing-form-photo-polaroid">
           <input
             className="listing-form-photo-input"
-            type="file"/>
+            type="file"
+            onChange={this.changeFile}/>
           <div className="listing-form-photo-image">
-            <span className="fa fa-camera fa-lg"></span>
-            <p>Add a photo</p>
+            {image}
           </div>
           <div className="listing-form-photo-bottom">
 
@@ -31,7 +89,9 @@ var ListingForm = React.createClass({
         <div>
           <input
             id="title"
-            type="text"></input>
+            type="text"
+            value={this.state.title}
+            onChange={this.handleChange}></input>
           <p>Include keywords that buyers would use to search for your item.</p>
         </div>
       </div>;
@@ -42,7 +102,9 @@ var ListingForm = React.createClass({
         <div>
           <input
             id="price"
-            type="text"></input>
+            type="text"
+            value={this.state.price}
+            onChange={this.handleChange}></input>
           <p>Factor in the costs of materials and labor, plus any related business expenses.</p>
         </div>
       </div>;
@@ -54,7 +116,9 @@ var ListingForm = React.createClass({
         <div>
           <input
             id="quantity"
-            type="text"></input>
+            type="text"
+            value={this.state.quantity}
+            onChange={this.handleChange}></input>
         </div>
       </div>;
 
@@ -64,7 +128,9 @@ var ListingForm = React.createClass({
         <label htmlFor="description">Description</label>
         <div>
           <textarea
-            id="description"></textarea>
+            id="description"
+            value={this.state.description}
+            onChange={this.handleChange}></textarea>
           <div>
             <p>Start with a brief overview that describes your item's finest features.</p>
             <p>List details like dimensions and key features in easy-to-read bullet points.</p>
