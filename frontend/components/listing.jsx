@@ -1,13 +1,23 @@
 var React = require('react'),
+    History = require('react-router').History,
     ListingActions = require('../actions/listing_actions'),
     ListingStore = require('../stores/listing_store'),
+    CurrentUserStore = require('../stores/current_user_store'),
     ListingsApiUtil = require('../util/listings_api_util');
 
 
 var Listing = React.createClass({
+  mixins: [History],
+
   _listingChanged: function () {
     var listing = ListingStore.listing();
     this.setState({listing: listing});
+  },
+
+  handleClick: function (event) {
+    event.preventDefault();
+    var listingFormPath = "/shop/" + ListingStore.listing().shop_name + "/listing";
+    this.history.pushState({listing: this.state.listing}, listingFormPath, {});
   },
 
   getInitialState: function () {
@@ -68,10 +78,20 @@ var Listing = React.createClass({
         <p>Quantity: {listing.quantity}</p>
       </div>;
 
+    var editListing;
+    if (CurrentUserStore.currentUser().id === listing.user_id) {
+      var listingFormPath = "/#/shop/" + listing.shop_name + "/listings";
+      editListing =
+        <div className="listing-edit" onClick={this.handleClick}>
+          Edit Listing
+        </div>;
+    }
+
     var listingRight;
     listingRight =
       <div className="listing-right">
         {listingOverview}
+        {editListing}
       </div>;
 
     var listingBody;

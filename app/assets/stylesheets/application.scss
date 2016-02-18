@@ -1592,3 +1592,16 @@ input, textarea {
 .listing-overview h5:nth-child(2) {
   font-size: 20px;
 }
+
+.listing-edit {
+  background: rgb(245, 245, 241);
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.listing-edit:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

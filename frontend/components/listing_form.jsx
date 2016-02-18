@@ -93,14 +93,26 @@ var ListingForm = React.createClass({
   },
 
   getInitialState: function () {
-    return {
-      imageFile: null,
-      imageUrl: "",
-      title: "",
-      price: "",
-      quantity: "",
-      description: ""
-    };
+    if (this.props.location.state) {
+      var listing = this.props.location.state.listing;
+      return {
+        imageFile: null,
+        imageUrl: listing.listing_images[0].image_url,
+        title: listing.title,
+        price: listing.price,
+        quantity: listing.quantity,
+        description: listing.description
+      };
+    } else {
+      return {
+        imageFile: null,
+        imageUrl: "",
+        title: "",
+        price: "",
+        quantity: "",
+        description: ""
+      };
+    }
   },
 
   render: function () {

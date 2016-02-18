@@ -22,6 +22,8 @@ class Api::ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
     @listing_images = @listing.listing_images
+    @shop = @listing.shop
+    @user = @listing.user
     if @listing
       render :show
     else

@@ -3,4 +3,5 @@ class Listing < ActiveRecord::Base
 
   belongs_to :shop
   has_many :listing_images
+  has_one :user, through: :shop
 end
