@@ -11,8 +11,9 @@ class Api::ListingsController < ApplicationController
         listing_id: @listing.id,
         image: params[:listing][:image]
       })
-      @image.save
-      render :show
+      if @image.save
+        render :show
+      end
     else
       render json: [@listing.errors.full_messages], status: 422
     end

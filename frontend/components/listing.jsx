@@ -39,10 +39,12 @@ var Listing = React.createClass({
     var listingHeader;
 
     var listingGallery;
-    listingGallery =
+    if (this.state.listing.listing_images) {
+      listingGallery =
       <div className="listing-gallery">
         <img src={this.state.listing.listing_images[0].image_url}></img>
       </div>;
+    }
 
     var listingDetail;
     listingDetail =
