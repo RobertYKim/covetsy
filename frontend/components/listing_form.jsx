@@ -96,6 +96,7 @@ var ListingForm = React.createClass({
     if (this.props.location.state) {
       var listing = this.props.location.state.listing;
       return {
+        formType: "edit",
         imageFile: null,
         imageUrl: listing.listing_images[0].image_url,
         title: listing.title,
@@ -105,6 +106,7 @@ var ListingForm = React.createClass({
       };
     } else {
       return {
+        formType: "new",
         imageFile: null,
         imageUrl: "",
         title: "",
@@ -117,6 +119,13 @@ var ListingForm = React.createClass({
 
   render: function () {
     var shopPath = "#/shop/" + this.props.params.shop_name;
+
+    var formHeading;
+    if (this.state.formType === "new") {
+      formHeading = <h3>Add a new listing</h3>;
+    } else {
+      formHeading = <h3>Edit listing</h3>;
+    }
 
     var image;
     if (this.state.imageUrl) {
@@ -224,7 +233,7 @@ var ListingForm = React.createClass({
         onSubmit={this.handleSubmit}>
         <div className="lising-form-underlay"></div>
         <a href={shopPath}>Back to shop</a>
-        <h3>Add a new listing</h3>
+        {formHeading}
         <form>
           {photo}
           {input}
