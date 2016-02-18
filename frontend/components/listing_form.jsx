@@ -1,6 +1,11 @@
-var React = require('react');
+var React = require('react'),
+    History = require('react-router').History,
+    ShopStore = require('../stores/shop_store'),
+    ListingsApiUtil = require('../util/listings_api_util');
 
 var ListingForm = React.createClass({
+  mixins: [History],
+
   changeFile: function (event) {
     var reader = new FileReader();
     var file = event.currentTarget.files[0];
@@ -46,6 +51,39 @@ var ListingForm = React.createClass({
     } else if (id === "description") {
       this.setState({description: value});
     }
+  },
+
+  handleSubmit: function () {
+    var shop = ShopStore.shop();
+
+    if (this.validListing()) {
+      var formData = new FormData();
+      formData.append("listing[shop_id]", shop.id);
+      formData.append("listing[shop_name]", this.props.params.shop_name);
+      formData.append("listing[image]", this.state.imageFile);
+      formData.append("listing[title]", this.state.title);
+      formData.append("listing[price]", this.state.price);
+      formData.append("listing[quantity]", this.state.quantity);
+      formData.append("listing[description]", this.state.description);
+
+      ListingsApiUtil.createListing(formData, function (listing) {
+        var listingPath = "/listing/" + listing.id;
+        this.history.pushState(null, listingPath, {});
+      }.bind(this));
+    }
+  },
+
+  validListing: function () {
+    if (
+      this.state.imageUrl !== "" &&
+      this.state.title !== "" &&
+      this.state.price !== "" &&
+      this.state.quantity !== "" &&
+      this.state.description !== ""
+    ) {
+      return true;
+    }
+    return false;
   },
 
   convertPrice: function () {
@@ -168,7 +206,10 @@ var ListingForm = React.createClass({
       </div>;
 
     return (
-      <div className="listing-form" onClick={this.handleClick}>
+      <div
+        className="listing-form"
+        onClick={this.handleClick}
+        onSubmit={this.handleSubmit}>
         <div className="lising-form-underlay"></div>
         <a href={shopPath}>Back to shop</a>
         <h3>Add a new listing</h3>

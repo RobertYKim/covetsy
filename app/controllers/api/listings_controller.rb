@@ -1,12 +1,17 @@
 class Api::ListingsController < ApplicationController
   def create
-    if current_user.shop.id == params.listing.shop_id
+    if current_user.shop.id == params[:listing][:shop_id].to_i
       @listing = Listing.new(listing_params)
     else
       render json: ["Cannot create listings for other shops."], status: 403
     end
 
     if @listing.save
+      @image = ListingImage.new({
+        listing_id: @listing.id,
+        image: params[:listing][:image]
+      })
+      @image.save
       render :show
     else
       render json: [@listing.errors.full_messages], status: 422
