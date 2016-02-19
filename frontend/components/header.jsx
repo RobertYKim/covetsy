@@ -58,9 +58,12 @@ var Header = React.createClass({
   },
 
   getInitialState: function () {
+    var size =
+      Object.keys(JSON.parse(window.localStorage.cartListings)).length;
     return ({
       authFormVisible: false,
-      profileModalVisible: false
+      profileModalVisible: false,
+      cartSize: size
     });
   },
 
@@ -72,10 +75,18 @@ var Header = React.createClass({
     });
   },
 
+  _cookieChanged: function () {
+    var size =
+      Object.keys(JSON.parse(window.localStorage.cartListings)).length;
+    this.setState({cartSize: size});
+    this.history.pushState(null, 'cart', {});
+  },
+
   componentDidMount: function () {
     this.authFormListener = AuthFormStore.addListener(this._authFormChanged);
     this.profileModalLisener =
       ProfileModalStore.addListener(this._profileModalChanged);
+    this.cookieStoreListener = CookieStore.addListener(this._cookieChanged);
   },
 
   componentWillUnmount: function () {
@@ -129,11 +140,18 @@ var Header = React.createClass({
       </div>;
     }
 
+    var shoppingCartBadge;
+    if (this.state.cartSize > 0) {
+      shoppingCartBadge =
+        <div className="shopping-cart-badge">{this.state.cartSize}</div>;
+    }
+
     var shoppingCart;
     shoppingCart =
       <div className="shopping-cart" onClick={this.handleClick}>
         <div className="shopping-cart-container">
           <span className="fa fa-shopping-cart fa-lg"></span>
+          {shoppingCartBadge}
         </div>
         <p>Cart</p>
       </div>;

@@ -138,6 +138,24 @@ input, textarea {
   padding-top: 1px;
 }
 
+.shopping-cart-badge {
+  box-sizing: border-box;
+  position: absolute;
+  top: 17px;
+  right: 0;
+  height: 20px;
+  width: 20px;
+  padding-top: 1px;
+  border-radius: 3px;
+  background: rgb(123, 194, 44);
+  color: #fff;
+  text-align: center;
+}
+
+.shopping-cart:hover .shopping-cart-badge {
+  background-color: rgb(110, 174, 39);
+}
+
 .sell {
   float: left;
   padding: 10px 0;

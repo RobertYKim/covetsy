@@ -13,7 +13,6 @@ var addToCart = function (existingListings, newListing) {
   var id = newListing.listingId;
   var quantity = newListing.quantity;
   var max = newListing.max;
-  debugger
   if (_cartListings[id]) {
     if (_cartListings[id] + quantity <= max) {
       _cartListings[id] += quantity;
