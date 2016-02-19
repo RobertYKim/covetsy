@@ -7,6 +7,7 @@ var React = require('react'),
     AuthFormStore = require('../stores/auth_form_store'),
     ProfileModalStore = require('../stores/profile_modal_store'),
     CurrentUserStore = require('../stores/current_user_store'),
+    CookieStore = require('../stores/cookie_store'),
     SessionsApiUtil = require('../util/sessions_api_util');
 
 var _getProfileModalState = function () {

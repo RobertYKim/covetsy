@@ -1,5 +1,6 @@
 var React = require('react'),
     History = require('react-router').History,
+    CookieActions = require('../actions/cookie_actions'),
     ListingActions = require('../actions/listing_actions'),
     ListingStore = require('../stores/listing_store'),
     CurrentUserStore = require('../stores/current_user_store'),
@@ -18,6 +19,12 @@ var Listing = React.createClass({
     event.preventDefault();
     var listingFormPath = "/shop/" + ListingStore.listing().shop_name + "/listing";
     this.history.pushState({listing: this.state.listing}, listingFormPath, {});
+  },
+
+  addToCart: function () {
+    var existingListings = window.localStorage.getItem("cartListings");
+    var newListing = {listingId: this.props.params.id, quantity: 1};
+    CookieActions.addToCart(existingListings, newListing);
   },
 
   getInitialState: function () {
