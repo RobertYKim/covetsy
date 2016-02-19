@@ -76,6 +76,9 @@ var Listing = React.createClass({
         <h5>{listing.title}</h5>
         <h5>${listing.price}</h5>
         <p>Quantity: {listing.quantity}</p>
+        <div className="add-to-cart" onClick={this.addToCart}>
+          Add to Cart
+        </div>
       </div>;
 
     var editListing;
