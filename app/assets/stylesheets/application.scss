@@ -1499,7 +1499,7 @@ input, textarea {
   width: 100%;
 }
 
-.listing-form button {
+.listing-form > form button {
   display: block;
   margin: 20px auto;
   padding: 10px 85px;
@@ -1511,12 +1511,28 @@ input, textarea {
   font-weight: bold;
 }
 
-.listing-form button:hover {
+.listing-form > form button:hover {
   background-color: rgb(67, 177, 204);
 }
 
-.listing-form button:focus {
+.listing-form > form button:focus {
   background-color: rgb(12, 146, 183);
+}
+
+.listing-delete {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 85px;
+  border-radius: 5px;
+  background-color: rgb(239, 108, 104);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.listing-delete:hover {
+  cursor: pointer;
+  background-color: red;
 }
 
 /* --- LISTING --- */

@@ -70,6 +70,20 @@ class Api::ListingsController < ApplicationController
     end
   end
 
+  def destroy
+    @listing = Listing.find(params[:id])
+    @user = @listing.user
+    if @user.id == current_user.id
+      if @listing.destroy
+        render json: ["Your listing has been successfully deleted."]
+      else
+        render json: ["Oops, something went wrong."]
+      end
+    else
+      render json: ["You can only delete your own listings!"]
+    end
+  end
+
   private
 
   def listing_params

@@ -81,6 +81,13 @@ var ListingForm = React.createClass({
     }
   },
 
+  handleDelete: function () {
+    ListingsApiUtil.deleteListing(this.state.id, function () {
+      var shopPath = "/shop/" + this.props.params.shop_name;
+      this.history.pushState(null, shopPath, {});
+    }.bind(this));
+  },
+
   validListing: function () {
     if (
       this.state.imageUrl !== "" &&
@@ -235,6 +242,16 @@ var ListingForm = React.createClass({
         {description}
       </div>;
 
+    var deleteListing;
+    if (this.state.formType === "edit") {
+      deleteListing =
+        <button
+          className="listing-delete"
+          onClick={this.handleDelete}>
+          Delete
+        </button>;
+    }
+
     return (
       <div
         className="listing-form"
@@ -248,6 +265,7 @@ var ListingForm = React.createClass({
           {input}
           <button>Publish</button>
         </form>
+        {deleteListing}
       </div>
     );
   }

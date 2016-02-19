@@ -21,6 +21,6 @@ Rails.application.routes.draw do
       end
       resources :listings, only: [:create]
     end
-    resources :listings, only: [:show, :index, :update]
+    resources :listings, only: [:show, :index, :update, :destroy]
   end
 end

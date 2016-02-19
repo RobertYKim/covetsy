@@ -33,6 +33,18 @@ var ListingsApiUtil = {
     });
   },
 
+  deleteListing: function (id, callback) {
+    $.ajax({
+      type: "DELETE",
+      url: "api/listings/" + id,
+      success: function () {
+        if (callback) {
+          callback();
+        }
+      }
+    });
+  },
+
   fetchListing: function (listing, callback) {
     $.ajax({
       type: "GET",
