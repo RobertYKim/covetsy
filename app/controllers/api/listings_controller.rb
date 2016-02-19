@@ -7,11 +7,14 @@ class Api::ListingsController < ApplicationController
     end
 
     if @listing.save
+      @shop = @listing.shop
+      @user = @listing.user
       @image = ListingImage.new({
         listing_id: @listing.id,
         image: params[:listing][:image]
       })
       if @image.save
+        @listing_images = @listing.listing_images
         render :show
       end
     else
@@ -28,6 +31,31 @@ class Api::ListingsController < ApplicationController
       render :show
     else
       render json: ["Listing not found"], status: 404
+    end
+  end
+
+  def update
+    @listing = Listing.find(params[:listing][:id])
+    @shop = @listing.shop
+    @user = @listing.user
+    if @listing.update(listing_params)
+      if params[:listing][:image] != "null"
+        @image = ListingImage.find_by_listing_id(@listing.id)
+        if @image.update({
+          listing_id: @listing.id,
+          image: params[:listing][:image]
+        })
+          @listing_images = @listing.listing_images
+          render :show
+        else
+          render json: {}, status: 422
+        end
+      else
+        @listing_images = @listing.listing_images
+        render :show
+      end
+    else
+      render json: {}, status: 422
     end
   end
 

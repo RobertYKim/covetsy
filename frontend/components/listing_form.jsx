@@ -66,10 +66,18 @@ var ListingForm = React.createClass({
       formData.append("listing[quantity]", this.state.quantity);
       formData.append("listing[description]", this.state.description);
 
-      ListingsApiUtil.createListing(formData, function (listing) {
-        var listingPath = "/listing/" + listing.id;
-        this.history.pushState(null, listingPath, {});
-      }.bind(this));
+      if (this.state.formType == "edit") {
+        formData.append("listing[id]", this.state.id);
+        ListingsApiUtil.updateListing(formData, function (listing) {
+          var listingPath = "/listing/" + listing.id;
+          this.history.pushState(null, listingPath, {});
+        }.bind(this));
+      } else {
+        ListingsApiUtil.createListing(formData, function (listing) {
+          var listingPath = "/listing/" + listing.id;
+          this.history.pushState(null, listingPath, {});
+        }.bind(this));
+      }
     }
   },
 
@@ -102,7 +110,8 @@ var ListingForm = React.createClass({
         title: listing.title,
         price: listing.price,
         quantity: listing.quantity,
-        description: listing.description
+        description: listing.description,
+        id: listing.id
       };
     } else {
       return {

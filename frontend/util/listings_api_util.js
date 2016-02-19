@@ -17,6 +17,22 @@ var ListingsApiUtil = {
     });
   },
 
+  updateListing: function (formData, callback) {
+    $.ajax({
+      type: "PATCH",
+      url: "api/listings/:id",
+      processData: false,
+      contentType: false,
+      data: formData,
+      success: function (listing) {
+        ListingActions.receiveListing(listing);
+        if (callback) {
+          callback(listing);
+        }
+      }
+    });
+  },
+
   fetchListing: function (listing, callback) {
     $.ajax({
       type: "GET",
