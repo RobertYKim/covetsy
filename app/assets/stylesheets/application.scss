@@ -120,21 +120,21 @@ input, textarea {
   margin-right: 0;
 }
 
-.shop {
+.shop, .shopping-cart {
   float: left;
-  padding-right: 10px;
+  padding-left: 20px;
 }
 
-.shop:hover {
+.shop:hover, .shopping-cart:hover {
   color: #000;
   cursor: pointer;
 }
 
-.shop-container {
+.shop-container, .shopping-cart-container {
   padding: 5px;
 }
 
-.shop p {
+.shop p, .shopping-cart p {
   padding-top: 1px;
 }
 
@@ -172,7 +172,7 @@ input, textarea {
 
 .you {
   float: left;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .you:hover {
@@ -1620,4 +1620,29 @@ input, textarea {
 .listing-edit:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+/* --- SHOPPING CART --- */
+
+.cart {
+  background-color: rgb(245, 245, 241);
+  height: 1000px;
+  width: 100%;
+  position: absolute;
+}
+
+.cart-container {
+  box-sizing: border-box;
+  width: 1000px;
+  margin: auto;
+}
+
+.cart-empty {
+  text-align: center;
+  font-size: 18px;
+  margin: 30px 0;
+  padding: 40px 0;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #E1E3DF;
 }

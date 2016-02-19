@@ -22,6 +22,8 @@ var Header = React.createClass({
     var target = event.currentTarget.className;
     if (target === "register" || target === "signin") {
       AuthFormActions.showAuthForm(target);
+    } else if (target === "shopping-cart") {
+      this.history.pushState(null, 'cart', {});
     } else if (target === "sell") {
       this.history.pushState(null, 'sell', {});
     } else if (target === "shop") {
@@ -104,6 +106,17 @@ var Header = React.createClass({
           onClick={this.handleClick}>Sell on covEtsy</a>;
     }
 
+    var you;
+    you =
+      <div className="you" onClick={this.handleClick}>
+        <div className="you-container">
+          <img
+            className="you-container-image"
+            src={currentUser.image_url}></img>
+        </div>
+        <p>You ▾</p>
+      </div>;
+
     var shop;
     if (currentUser && currentUser.shop_owner) {
       shop =
@@ -115,20 +128,24 @@ var Header = React.createClass({
       </div>;
     }
 
+    var shoppingCart;
+    shoppingCart =
+      <div className="shopping-cart" onClick={this.handleClick}>
+        <div className="shopping-cart-container">
+          <span className="fa fa-shopping-cart fa-lg"></span>
+        </div>
+        <p>Cart</p>
+      </div>;
+
+
     var links;
     if (this.props.signedIn) {
       links =
       <div className="global-nav-links group">
         {shop}
         {sell}
-        <div className="you" onClick={this.handleClick}>
-          <div className="you-container">
-            <img
-              className="you-container-image"
-              src={currentUser.image_url}></img>
-          </div>
-          <p>You ▾</p>
-        </div>
+        {you}
+        {shoppingCart}
         {profileModal}
       </div>;
     } else {
@@ -150,6 +167,7 @@ var Header = React.createClass({
           className="signin"
           href="#"
           onClick={this.handleClick}>Sign in</a>
+        {cart}
       </div>;
     }
     return (

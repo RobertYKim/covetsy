@@ -12,6 +12,7 @@ var React = require('react'),
     Shop = require('./components/shop'),
     ListingForm = require('./components/listing_form'),
     Listing = require('./components/listing'),
+    Cart = require('./components/cart'),
     SessionsApiUtil = require('./util/sessions_api_util');
 
 var validate = function (nextState, transition, callback) {
@@ -43,6 +44,7 @@ var routes = (
       <Route path="listing" onEnter={validateOwner} component={ListingForm}/>
     </Route>
     <Route path="listing/:id" component={Listing}/>
+    <Route path="cart" component={Cart}/>
   </Route>
 );
 
