@@ -23,7 +23,11 @@ var Listing = React.createClass({
 
   addToCart: function () {
     var existingListings = window.localStorage.getItem("cartListings");
-    var newListing = {listingId: this.props.params.id, quantity: 1};
+    var newListing = {
+      listingId: this.props.params.id,
+      quantity: 1,
+      max: this.state.listing.quantity
+    };
     CookieActions.addToCart(existingListings, newListing);
   },
 
