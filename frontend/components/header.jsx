@@ -84,14 +84,15 @@ var Header = React.createClass({
 
   componentDidMount: function () {
     this.authFormListener = AuthFormStore.addListener(this._authFormChanged);
-    this.profileModalLisener =
+    this.profileModalListener =
       ProfileModalStore.addListener(this._profileModalChanged);
     this.cookieStoreListener = CookieStore.addListener(this._cookieChanged);
   },
 
   componentWillUnmount: function () {
     this.authFormListener.remove();
-    this.profileModalLisener.remove();
+    this.profileModalListener.remove();
+    this.cookieStoreListener.remove();
   },
 
   render: function () {
