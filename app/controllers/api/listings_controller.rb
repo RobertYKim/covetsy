@@ -60,8 +60,13 @@ class Api::ListingsController < ApplicationController
   end
 
   def index
-    @listings =
-      Listing.all.includes(:shop).includes(:listing_images)
+    if params[:data]
+      @listings =
+        Listing.find(params[:data])
+    else
+      @listings =
+        Listing.all.includes(:shop).includes(:listing_images)
+    end
 
     if @listings
       render :index

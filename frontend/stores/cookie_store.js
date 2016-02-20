@@ -24,10 +24,22 @@ var addToCart = function (existingListings, newListing) {
   window.localStorage.setItem("cartListings", JSON.stringify(_cartListings));
 };
 
+var removeFromCart = function (id) {
+  var listings = JSON.parse(window.localStorage.cartListings);
+  delete listings[id]
+
+  _cartListings = listings;
+  window.localStorage.setItem("cartListings", JSON.stringify(_cartListings));
+};
+
 CookieStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case CookieConstants.ADD_TO_CART:
       addToCart(payload.existingListings, payload.newListing);
+      CookieStore.__emitChange();
+      break;
+    case CookieConstants.REMOVE_FROM_CART:
+      removeFromCart(payload.id);
       CookieStore.__emitChange();
       break;
   }

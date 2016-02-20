@@ -8,6 +8,13 @@ var CookieActions = {
       existingListings: existingListings,
       newListing: newListing
     });
+  },
+
+  removeFromCart: function (id) {
+    Dispatcher.dispatch({
+      actionType: CookieConstants.REMOVE_FROM_CART,
+      id: id
+    });
   }
 };
 

@@ -58,12 +58,12 @@ var Header = React.createClass({
   },
 
   getInitialState: function () {
-    var size =
+    var cartSize =
       Object.keys(JSON.parse(window.localStorage.cartListings)).length;
     return ({
       authFormVisible: false,
       profileModalVisible: false,
-      cartSize: size
+      cartSize: cartSize
     });
   },
 
@@ -76,9 +76,9 @@ var Header = React.createClass({
   },
 
   _cookieChanged: function () {
-    var size =
+    var cartSize =
       Object.keys(JSON.parse(window.localStorage.cartListings)).length;
-    this.setState({cartSize: size});
+    this.setState({cartSize: cartSize});
     this.history.pushState(null, 'cart', {});
   },
 

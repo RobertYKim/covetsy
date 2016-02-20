@@ -61,10 +61,11 @@ var ListingsApiUtil = {
     });
   },
 
-  fetchListings: function (callback) {
+  fetchListings: function (data, callback) {
     $.ajax({
       type: "GET",
       url: "api/listings",
+      data: {data},
       success: function (listings) {
         ListingActions.receiveListings(listings);
         if (callback) {
@@ -72,7 +73,9 @@ var ListingsApiUtil = {
         }
       }
     });
-  }
+  },
+
+
 };
 
 module.exports = ListingsApiUtil;
