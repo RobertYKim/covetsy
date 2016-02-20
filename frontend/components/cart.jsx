@@ -21,12 +21,14 @@ var Cart = React.createClass({
   },
 
   fetchCartListings: function () {
-    var keys = Object.keys(JSON.parse(window.localStorage.cartListings));
     var listings = [];
-    keys.forEach( function (key) {
-      listings.push(parseInt(key));
-    });
-    return listings;
+    if (window.localStorage.cartListings) {
+      var keys = Object.keys(JSON.parse(window.localStorage.cartListings));
+      keys.forEach( function (key) {
+        listings.push(parseInt(key));
+      });
+      return listings;
+    }
   },
 
   componentDidMount: function () {
@@ -52,7 +54,7 @@ var Cart = React.createClass({
 
   render: function () {
     var header;
-    if (this.state.listings) {
+    if (this.state.listings && window.localStorage.cartListings) {
       var cartSize = Object.keys(this.state.listings.listings).length;
       if (cartSize === 1) {
         header = <h3 className="cart-size">1 Item in Your Cart</h3>;
@@ -64,7 +66,7 @@ var Cart = React.createClass({
     }
 
     var listings = [];
-    if (this.state.listings) {
+    if (this.state.listings && window.localStorage.cartListings) {
       var cartQuantities = JSON.parse(window.localStorage.cartListings);
       this.state.listings.listings.forEach ( function (listing) {
         var listingPath = "/#/listing/" + listing.id;

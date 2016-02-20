@@ -58,8 +58,13 @@ var Header = React.createClass({
   },
 
   getInitialState: function () {
-    var cartSize =
-      Object.keys(JSON.parse(window.localStorage.cartListings)).length;
+    var cartSize;
+    if (window.localStorage.cartListings) {
+      cartSize =
+        Object.keys(JSON.parse(window.localStorage.cartListings)).length;
+    } else {
+      cartSize = 0;
+    }
     return ({
       authFormVisible: false,
       profileModalVisible: false,
@@ -76,8 +81,13 @@ var Header = React.createClass({
   },
 
   _cookieChanged: function () {
-    var cartSize =
-      Object.keys(JSON.parse(window.localStorage.cartListings)).length;
+    var cartSize;
+    if (window.localStorage.cartListings) {
+      cartSize =
+        Object.keys(JSON.parse(window.localStorage.cartListings)).length;
+    } else {
+      cartSize = 0;
+    }
     this.setState({cartSize: cartSize});
     this.history.pushState(null, 'cart', {});
   },

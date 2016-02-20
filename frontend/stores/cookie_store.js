@@ -29,7 +29,11 @@ var removeFromCart = function (id) {
   delete listings[id]
 
   _cartListings = listings;
-  window.localStorage.setItem("cartListings", JSON.stringify(_cartListings));
+  if (Object.keys(_cartListings).length === 0) {
+    window.localStorage.removeItem("cartListings");
+  } else {
+    window.localStorage.setItem("cartListings", JSON.stringify(_cartListings));
+  }
 };
 
 CookieStore.__onDispatch = function (payload) {
