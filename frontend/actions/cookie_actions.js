@@ -15,6 +15,12 @@ var CookieActions = {
       actionType: CookieConstants.REMOVE_FROM_CART,
       id: id
     });
+  },
+
+  checkout: function () {
+    Dispatcher.dispatch({
+      actionType: CookieConstants.CHECKOUT
+    });
   }
 };
 

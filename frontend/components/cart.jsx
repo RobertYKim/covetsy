@@ -20,6 +20,10 @@ var Cart = React.createClass({
     CookieActions.removeFromCart(id);
   },
 
+  handleCheckout: function (event) {
+    CookieActions.checkout();
+  },
+
   fetchCartListings: function () {
     var listings = [];
     if (window.localStorage.cartListings) {
@@ -95,11 +99,18 @@ var Cart = React.createClass({
       }.bind(this));
     }
 
+    var checkout;
+    if (this.state.listings && window.localStorage.cartListings) {
+      checkout =
+        <div className="checkout" onClick={this.handleCheckout}>Checkout</div>;
+    }
+
     return (
       <div className="cart">
         <div className="cart-container">
           {header}
           {listings}
+          {checkout}
         </div>
       </div>
     );

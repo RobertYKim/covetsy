@@ -1745,3 +1745,24 @@ input, textarea {
   cursor: pointer;
   background-color: red;
 }
+
+.checkout {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px 0;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid rgb(111, 175, 41);
+  background-color: rgb(123, 194, 44);
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.checkout:hover {
+  background-color: rgb(135, 199, 65);
+  cursor: pointer;
+}

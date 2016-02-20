@@ -36,6 +36,10 @@ var removeFromCart = function (id) {
   }
 };
 
+var checkout = function () {
+  window.localStorage.removeItem("cartListings");
+};
+
 CookieStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case CookieConstants.ADD_TO_CART:
@@ -44,6 +48,10 @@ CookieStore.__onDispatch = function (payload) {
       break;
     case CookieConstants.REMOVE_FROM_CART:
       removeFromCart(payload.id);
+      CookieStore.__emitChange();
+      break;
+    case CookieConstants.CHECKOUT:
+      checkout();
       CookieStore.__emitChange();
       break;
   }
