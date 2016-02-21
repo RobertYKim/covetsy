@@ -40,6 +40,9 @@ gem 'paperclip'
 gem 'aws-sdk', '~> 1.6'
 gem 'figaro'
 
+# OmniAuth
+gem 'omniauth-facebook'
+
 group :production do
   gem 'rails_12factor'
 end

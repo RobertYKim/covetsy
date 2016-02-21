@@ -23,4 +23,7 @@ Rails.application.routes.draw do
     end
     resources :listings, only: [:show, :index, :update, :destroy]
   end
+
+  # Custom route for FB auth
+  get 'auth/facebook/callback', to: 'sessions#omniauth_facebook'
 end

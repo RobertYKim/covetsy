@@ -228,12 +228,33 @@ var AuthForm = React.createClass({
       </div>;
 
     var oAuth,
+        oAuthButtons,
         oAuthDisclaimer;
     if (modalType === "register") {
+      oAuthButtons =
+        <div>
+          <a
+            href="/auth/facebook"
+            className="oauth-facebook">
+            <span className="fa fa-facebook-official fa-lg"></span>
+            Continue with Facebook
+          </a>
+        </div>;
       oAuthDisclaimer = <p>We'll never post without your permission.</p>;
+    } else {
+      oAuthButtons =
+        <div>
+          <a
+            href="/auth/facebook"
+            className="oauth-facebook">
+            <span className="fa fa-facebook-official fa-lg"></span>
+            Sign in with Facebook
+          </a>
+        </div>;
     }
     oAuth =
       <div className="o-auth">
+        {oAuthButtons}
         {oAuthDisclaimer}
       </div>;
 
