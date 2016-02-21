@@ -239,6 +239,12 @@ var AuthForm = React.createClass({
             <span className="fa fa-facebook-official fa-lg"></span>
             Continue with Facebook
           </a>
+          <a
+            href="/auth/google_oauth2"
+            className="oauth-google">
+            <span className="fa fa-google fa-lg"></span>
+            Continue with Google
+          </a>
         </div>;
       oAuthDisclaimer = <p>We'll never post without your permission.</p>;
     } else {
@@ -249,6 +255,12 @@ var AuthForm = React.createClass({
             className="oauth-facebook">
             <span className="fa fa-facebook-official fa-lg"></span>
             Sign in with Facebook
+          </a>
+          <a
+            href="/auth/google_oauth2"
+            className="oauth-google">
+            <span className="fa fa-google fa-lg"></span>
+            Sign in with Google
           </a>
         </div>;
     }

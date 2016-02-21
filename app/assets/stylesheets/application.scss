@@ -249,7 +249,6 @@ input, textarea {
   color: #fff;
   font-size: 14px;
   font-weight: bold;
-
 }
 
 .oauth-facebook > span:first-child {
@@ -260,6 +259,29 @@ input, textarea {
 .oauth-facebook:hover {
   cursor: pointer;
   background-color: rgb(73, 95, 166);
+}
+
+.oauth-google {
+  display: block;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  width: 220px;
+  background-color: rgb(213, 81, 61);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.oauth-google > span:first-child {
+  text-align: left;
+  margin-right: 10px;
+}
+
+.oauth-google:hover {
+  cursor: pointer;
+  background-color: rgb(216, 96, 79);
 }
 
 .auth-modal input {
@@ -329,16 +351,13 @@ input, textarea {
 }
 
 .o-auth {
-  height: 140px;
-  padding: 20px 0;
   background: #fff;
   border-bottom: 1px solid #E1E3DF;
-  position: relative;
+  padding-bottom: 10px;
 }
 
 .o-auth p {
-  position: absolute;
-  bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .first-name-input,

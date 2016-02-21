@@ -25,5 +25,8 @@ Rails.application.routes.draw do
   end
 
   # Custom route for FB auth
-  get 'auth/facebook/callback', to: 'sessions#omniauth_facebook'
+  get '/auth/facebook/callback', to: 'api/sessions#omniauth_facebook'
+
+  # Custom route for Google auth
+  get '/auth/google_oauth2/callback', to: "api/sessions#omniauth_google"
 end
