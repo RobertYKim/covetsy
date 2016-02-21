@@ -1,8 +1,10 @@
 var React = require('react'),
     History = require('react-router').History,
+    CookieActions = require('../actions/cookie_actions'),
     ProfileActions = require('../actions/profile_actions'),
     ProfileModalActions = require('../actions/profile_modal_actions'),
     CurrentUserStore = require('../stores/current_user_store'),
+    UsersApiUtil = require('../util/users_api_util'),
     SessionsApiUtil = require('../util/sessions_api_util');
 
 var ProfileModal = React.createClass({
@@ -15,7 +17,16 @@ var ProfileModal = React.createClass({
       var currentUser = CurrentUserStore.currentUser().username;
       this.history.pushState(null, '/people/' + currentUser, {});
     } else if (event.currentTarget.className === "profile-modal-signout") {
-      SessionsApiUtil.signout();
+      var cartListings;
+      if (window.localStorage.cartListings) {
+        cartListings = window.localStorage.cartListings;
+      } else {
+        cartListings = "";
+      }
+      UsersApiUtil.editUser({cart: cartListings}, SessionsApiUtil.signout);
+      if (cartListings) {
+        CookieActions.checkout();
+      }
       this.history.pushState(null, '/', {});
     }
   },

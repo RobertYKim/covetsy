@@ -33,11 +33,16 @@ var Header = React.createClass({
     } else if (target === "you") {
       ProfileModalActions.showProfileModal();
     } else if (target === "guest") {
+      var cartListings = "";
+      if (window.localStorage.cartListings) {
+        cartListings = window.localStorage.cartListings;
+      }
       AuthFormActions.hideAuthForm();
       SessionsApiUtil.signin({
         email_or_username: "guest",
-        signin_password: "password"
-      });
+        signin_password: "password",
+        cartListings: cartListings
+      }, this.history.pushState(null, '/', {}));
     } else if (event.target.className === "logo") {
       this.history.pushState(null, '/', {});
     } else if (event.target.className !== "profile-modal") {
@@ -89,7 +94,6 @@ var Header = React.createClass({
       cartSize = 0;
     }
     this.setState({cartSize: cartSize});
-    this.history.pushState(null, 'cart', {});
   },
 
   componentDidMount: function () {
@@ -197,7 +201,7 @@ var Header = React.createClass({
           className="signin"
           href="#"
           onClick={this.handleClick}>Sign in</a>
-        {cart}
+        {shoppingCart}
       </div>;
     }
     return (

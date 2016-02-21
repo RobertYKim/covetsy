@@ -35,6 +35,18 @@ var Cart = React.createClass({
     }
   },
 
+  listingsToLoad: function () {
+    if (
+      this.state.listings &&
+      window.localStorage.cartListings &&
+      (window.localStorage.cartListings !== "{}")
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
   componentDidMount: function () {
     var listings = this.fetchCartListings();
     ListingsApiUtil.fetchListings(listings);
@@ -58,7 +70,7 @@ var Cart = React.createClass({
 
   render: function () {
     var header;
-    if (this.state.listings && window.localStorage.cartListings) {
+    if (this.listingsToLoad()) {
       var cartSize = Object.keys(this.state.listings.listings).length;
       if (cartSize === 1) {
         header = <h3 className="cart-size">1 Item in Your Cart</h3>;
@@ -70,7 +82,7 @@ var Cart = React.createClass({
     }
 
     var listings = [];
-    if (this.state.listings && window.localStorage.cartListings) {
+    if (this.listingsToLoad()) {
       var cartQuantities = JSON.parse(window.localStorage.cartListings);
       this.state.listings.listings.forEach ( function (listing) {
         var listingPath = "/#/listing/" + listing.id;
@@ -100,7 +112,7 @@ var Cart = React.createClass({
     }
 
     var checkout;
-    if (this.state.listings && window.localStorage.cartListings) {
+    if (this.listingsToLoad()) {
       checkout =
         <div className="checkout" onClick={this.handleCheckout}>Checkout</div>;
     }

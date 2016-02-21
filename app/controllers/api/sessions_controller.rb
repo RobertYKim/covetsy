@@ -18,6 +18,8 @@ class Api::SessionsController < ApplicationController
     else
       sign_in(@user)
       @shop = @user.shop
+      updatedCookie = reconcile_cookie
+      @user.update(cart: updatedCookie)
       render "api/users/show"
     end
   end
@@ -35,5 +37,22 @@ class Api::SessionsController < ApplicationController
   def destroy
     sign_out
     render json: {}
+  end
+
+  def reconcile_cookie
+    if params[:user][:cartListings].nil? || params[:user][:cartListings] == ""
+      local_cart = {}
+    else
+      local_cart = JSON.parse(params[:user][:cartListings])
+    end
+
+    if @user.cart.nil? || @user.cart == ""
+      user_cart = {}
+    else
+      user_cart = JSON.parse(@user.cart)
+    end
+
+    result = user_cart.merge(local_cart)
+    result.to_json
   end
 end

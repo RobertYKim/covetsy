@@ -13,8 +13,15 @@ var App = React.createClass({
 
   _currentUserChanged: function () {
     if (CurrentUserStore.isSignedIn()) {
+      var cart = CurrentUserStore.currentUser().cart;
+      if (cart !== null && cart !== "{}") {
+        window.localStorage.setItem("cartListings", cart);
+      }
       this.setState({signedIn: true});
     } else {
+      if (window.localStorage.cartListings) {
+        window.localStorage.removeItem("cartListings");
+      }
       this.setState({signedIn: false});
     }
     this.forceUpdate();

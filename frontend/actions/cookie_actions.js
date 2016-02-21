@@ -21,6 +21,13 @@ var CookieActions = {
     Dispatcher.dispatch({
       actionType: CookieConstants.CHECKOUT
     });
+  },
+
+  updateCart: function (listings) {
+    Dispatcher.dispatch({
+      actionType: CookieConstants.UPDATE_CART,
+      listings: listings
+    });
   }
 };
 

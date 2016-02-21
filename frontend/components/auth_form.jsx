@@ -155,6 +155,10 @@ var AuthForm = React.createClass({
   },
 
   getInitialState: function () {
+    var cartListings = "";
+    if (window.localStorage.cartListings) {
+      cartListings = window.localStorage.cartListings;
+    }
     return ({
       first_name: "",
       last_name: "",
@@ -169,7 +173,8 @@ var AuthForm = React.createClass({
       invalidPassword: true,
       invalidConfirmPassword: true,
       invalidUsername: true,
-      clickedUsername: false
+      clickedUsername: false,
+      cartListings: cartListings
     });
   },
 

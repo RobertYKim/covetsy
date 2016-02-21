@@ -37,7 +37,13 @@ var removeFromCart = function (id) {
 };
 
 var checkout = function () {
+  _cartListings = {};
   window.localStorage.removeItem("cartListings");
+};
+
+var updateCart = function (listings) {
+  _cartListings = JSON.parse(listings);
+  window.localStorage.setItem("cartListings", listings);
 };
 
 CookieStore.__onDispatch = function (payload) {
@@ -52,6 +58,10 @@ CookieStore.__onDispatch = function (payload) {
       break;
     case CookieConstants.CHECKOUT:
       checkout();
+      CookieStore.__emitChange();
+      break;
+    case CookieConstants.UPDATE_CART:
+      updateCart(payload.listings);
       CookieStore.__emitChange();
       break;
   }

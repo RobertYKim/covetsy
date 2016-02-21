@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
     if @user.shop_owner
       @shop = @user.shop
     end
-    
+
     if @user
       render :show
     else
@@ -24,10 +24,14 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update(user_params)
-      render :show
+    if params[:user]
+      if @user.update(user_params)
+        render :show
+      else
+        render json: [@user.errors.full_messages], status: 422
+      end
     else
-      render json: [@user.errors.full_messages], status: 422
+      render json: ["No updates"], status: 200
     end
   end
 
@@ -41,7 +45,8 @@ class Api::UsersController < ApplicationController
       :first_name,
       :last_name,
       :gender,
-      :image
+      :image,
+      :cart
     )
   end
 end
