@@ -154,6 +154,16 @@ var AuthForm = React.createClass({
     SessionsApiUtil.signin(this.state);
   },
 
+  handleFacebook: function (event) {
+    event.preventDefault();
+    var state;
+    if (window.localStorage.cartListings) {
+      state = JSON.parse(window.localStorage.cartListings);
+    }
+    var url = '/auth/facebook';
+    window.history.pushState(state, "", url);
+  },
+
   getInitialState: function () {
     var cartListings = "";
     if (window.localStorage.cartListings) {
