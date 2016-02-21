@@ -57,7 +57,11 @@ var Listing = React.createClass({
     }
 
     var listing = this.state.listing;
-    var listingHeader;
+    var listingShopPath = "/#/shop/" + listing.shop_name;
+    var listingHeader =
+      <div className="listing-header">
+        <a href={listingShopPath}>{listing.shop_name}</a>
+      </div>;
 
     var listingGallery;
     if (this.state.listing.listing_images) {
