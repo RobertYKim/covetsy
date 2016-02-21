@@ -1,6 +1,7 @@
 var React = require('react'),
     History = require('react-router').History,
     ShopActions = require('../actions/shop_actions'),
+    ProfileModalActions = require('../actions/profile_modal_actions'),
     ShopStore = require('../stores/shop_store'),
     CurrentUserStore = require('../stores/current_user_store'),
     ShopsApiUtil = require('../util/shops_api_util');
@@ -14,11 +15,11 @@ var Shop = React.createClass({
   },
 
   handleClick: function (event) {
-    event.preventDefault();
     if (event.currentTarget.className === "listing-image") {
       var listingPath = "listing/" + event.currentTarget.id;
       this.history.pushState(null, listingPath, {});
     }
+    ProfileModalActions.hideProfileModal();
   },
 
   getInitialState: function () {
@@ -186,17 +187,19 @@ var Shop = React.createClass({
       </div>;
 
     return (
-      <div className="shop-body group">
-        {this.props.children}
-        {shopBreadcrumbs}
-        <div className="shop-sidebar">
-          {shopOwner}
-          {shopInfo}
-          {addListing}
-        </div>
-        <div className="shop-content">
-          {shopBanner}
-          {shopStock}
+      <div onClick={this.handleClick}>
+        <div className="shop-body group">
+          {this.props.children}
+          {shopBreadcrumbs}
+          <div className="shop-sidebar">
+            {shopOwner}
+            {shopInfo}
+            {addListing}
+          </div>
+          <div className="shop-content">
+            {shopBanner}
+            {shopStock}
+          </div>
         </div>
       </div>
     );

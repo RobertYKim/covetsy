@@ -20,13 +20,9 @@ var Sell = React.createClass({
     }
   },
 
-  componentDidMount: function () {
-    AuthFormActions.hideAuthForm();
-  },
-
   render: function () {
     return (
-      <div className="sell-hero">
+      <div className="sell-hero" onClick={this.handleClick}>
         <div className="sell-hero-space"></div>
         <h1>Millions of shoppers can't wait to see what you have in store</h1>
         <a className="sell-hero-link" href="#" onClick={this.handleClick}>

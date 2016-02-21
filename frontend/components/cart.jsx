@@ -1,5 +1,6 @@
 var React = require('react'),
     CookieActions = require('../actions/cookie_actions'),
+    ProfileModalActions = require('../actions/profile_modal_actions'),
     CookieStore = require('../stores/cookie_store'),
     ListingStore = require('../stores/listing_store'),
     ListingsApiUtil = require('../util/listings_api_util');
@@ -13,6 +14,10 @@ var Cart = React.createClass({
   _listingChanged: function () {
     var listings = ListingStore.listings();
     this.setState({listings: listings});
+  },
+
+  handleClick: function (event) {
+    ProfileModalActions.hideProfileModal();
   },
 
   handleRemove: function (event) {
@@ -118,7 +123,7 @@ var Cart = React.createClass({
     }
 
     return (
-      <div className="cart">
+      <div className="cart" onClick={this.handleClick}>
         <div className="cart-container">
           {header}
           {listings}
