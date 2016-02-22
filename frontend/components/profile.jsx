@@ -83,7 +83,7 @@ var Profile = React.createClass({
   },
 
   getInitialState: function () {
-    return {user: {}};
+    return { user: {} };
   },
 
   render: function () {

@@ -65,7 +65,7 @@ var ListingsApiUtil = {
     $.ajax({
       type: "GET",
       url: "api/listings",
-      data: {data},
+      data: {data: data},
       success: function (listings) {
         ListingActions.receiveListings(listings);
         if (callback) {

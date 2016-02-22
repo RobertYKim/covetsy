@@ -17,12 +17,12 @@ var Cart = React.createClass({
   },
 
   handleClick: function (event) {
-    ProfileModalActions.hideProfileModal();
-  },
-
-  handleRemove: function (event) {
-    var id = event.currentTarget.id;
-    CookieActions.removeFromCart(id);
+    if (event.target.className === "cart") {
+      ProfileModalActions.hideProfileModal();
+    } else if (event.target.className === "cart-listing-remove") {
+      var id = event.target.id;
+      CookieActions.removeFromCart(id);
+    }
   },
 
   handleCheckout: function (event) {
@@ -107,8 +107,7 @@ var Cart = React.createClass({
             </div>
             <div
               id={listing.id}
-              className="cart-listing-remove"
-              onClick={this.handleRemove}>
+              className="cart-listing-remove">
               Remove
             </div>
           </div>;

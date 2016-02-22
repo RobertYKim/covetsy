@@ -9,7 +9,7 @@ var SessionsApiUtil = {
       url: "api/session",
       data: {user: data},
       success: function (currentUser) {
-        CookieActions.updateCart(currentUser.cart)
+        CookieActions.updateCart(currentUser.cart);
         CurrentUserActions.receiveCurrentUser(currentUser);
         if (callback) {
           callback();

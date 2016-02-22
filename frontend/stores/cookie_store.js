@@ -26,7 +26,7 @@ var addToCart = function (existingListings, newListing) {
 
 var removeFromCart = function (id) {
   var listings = JSON.parse(window.localStorage.cartListings);
-  delete listings[id]
+  delete listings[id];
 
   _cartListings = listings;
   if (Object.keys(_cartListings).length === 0) {
