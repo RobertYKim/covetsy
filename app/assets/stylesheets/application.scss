@@ -59,6 +59,10 @@ input, textarea {
   font-size: 12px;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* --- CLEARFIX --- */
 
 .group:after {
@@ -834,6 +838,7 @@ input, textarea {
   background-color: rgba(255, 255, 255, .6);;
   border: 1px solid #E1E3DF;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .profile-nav .fa-camera {
@@ -994,6 +999,7 @@ input, textarea {
   top: 0;
   width: 130px;
   height: 35px;
+  cursor: pointer;
 }
 
 .profile-picture-modal-cancel-submit {
@@ -1127,6 +1133,7 @@ input, textarea {
   border-left: 1px solid #E1E3DF;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  margin: 0;
 }
 
 .onboarding-form-name-input input:hover {
