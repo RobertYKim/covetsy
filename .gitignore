@@ -17,3 +17,8 @@ bundle.js
 
 # Ignore application configuration
 /config/application.yml
+
+
+# Ignore Byebug History and DS Store
+.byebug_history
+.DS_Store
