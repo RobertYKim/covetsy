@@ -35,14 +35,6 @@ module Covetsy
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
 
-    # Shoulda defaults
-    Shoulda::Matchers.configure do |config|
-      config.integrate do |with|
-        with.test_framework :rspec
-        with.library :rails
-      end
-    end
-
     config.paperclip_defaults = {
       :storage => :s3,
       :bucket => ENV["s3_bucket"],
