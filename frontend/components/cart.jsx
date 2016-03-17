@@ -1,8 +1,11 @@
 var React = require('react'),
+    CheckoutModal = require('../components/checkout_modal'),
     CookieActions = require('../actions/cookie_actions'),
     ProfileModalActions = require('../actions/profile_modal_actions'),
+    CheckoutModalActions = require('../actions/checkout_modal_actions'),
     CookieStore = require('../stores/cookie_store'),
     ListingStore = require('../stores/listing_store'),
+    CheckoutModalStore = require('../stores/checkout_modal_store'),
     ListingsApiUtil = require('../util/listings_api_util');
 
 var Cart = React.createClass({
@@ -16,6 +19,12 @@ var Cart = React.createClass({
     this.setState({listings: listings});
   },
 
+  _checkoutModalChanged: function () {
+    var CheckoutModalState = CheckoutModalStore.state();
+    var visibility = CheckoutModalState.visibility;
+    this.setState({checkoutModalVisible: visibility});
+  },
+
   handleClick: function (event) {
     if (event.target.className === "cart") {
       ProfileModalActions.hideProfileModal();
@@ -27,6 +36,7 @@ var Cart = React.createClass({
 
   handleCheckout: function (event) {
     CookieActions.checkout();
+    CheckoutModalActions.showCheckoutModal();
   },
 
   fetchCartListings: function () {
@@ -57,11 +67,14 @@ var Cart = React.createClass({
     ListingsApiUtil.fetchListings(listings);
     this.listingStoreListener = ListingStore.addListener(this._listingChanged);
     this.cookieStoreListener = CookieStore.addListener(this._cookieChanged);
+    this.checkoutModalStoreListener =
+      CheckoutModalStore.addListener(this._checkoutModalChanged);
   },
 
   componentWillUnmount: function () {
     this.listingStoreListener.remove();
     this.cookieStoreListener.remove();
+    this.checkoutModalStoreListener.remove();
   },
 
   getInitialState: function () {
@@ -121,8 +134,14 @@ var Cart = React.createClass({
         <div className="checkout" onClick={this.handleCheckout}>Checkout</div>;
     }
 
+    var checkoutModal;
+    if (this.state.checkoutModalVisible) {
+      checkoutModal = <CheckoutModal />;
+    }
+
     return (
       <div className="cart" onClick={this.handleClick}>
+        {checkoutModal}
         <div className="cart-container">
           {header}
           {listings}
