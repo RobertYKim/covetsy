@@ -28,7 +28,21 @@ var Listing = React.createClass({
       quantity: 1,
       max: this.state.listing.quantity
     };
+    this.checkStock();
     CookieActions.addToCart(existingListings, newListing);
+  },
+
+  checkStock: function () {
+    var existingListings = window.localStorage.getItem("cartListings");
+    var cartListings = JSON.parse(existingListings);
+    var id = this.props.params.id;
+    var quantity = 1;
+    var max = this.state.listing.quantity;
+    if (cartListings && cartListings[id]) {
+      if (cartListings[id] + quantity > max) {
+        this.setState({unavailable: true});
+      }
+    }
   },
 
   getInitialState: function () {
@@ -105,11 +119,20 @@ var Listing = React.createClass({
         </div>;
     }
 
+    var availability;
+    if (this.state.unavailable) {
+      availability =
+        <div className="listing-availability">
+          No more units available!
+        </div>;
+    }
+
     var listingRight;
     listingRight =
       <div className="listing-right">
         {listingOverview}
         {editListing}
+        {availability}
       </div>;
 
     var listingBody;
